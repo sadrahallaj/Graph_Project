@@ -25,17 +25,20 @@ public class Controller {
     public Pane customPane;
     public Label label1;
     private boolean waitingForPlacement = false;
+    public int index =0;
 
     public void btnNewNodeClicked() {
         waitingForPlacement = true;
+        Node node = new Node(index);
+        setPaneListener(index++);
     }
 
     public void newLineclicked() {
-        LinkedList< LinkedList<Integer> > graph = new LinkedList<>();
-        LinkedList <Integer> Temp= new LinkedList<>();
-        Temp.add(10);
-        graph.get(1).add();
-        graph.add(Temp);
+//        LinkedList< LinkedList<Integer> > graph = new LinkedList<>();
+//        LinkedList <Integer> Temp= new LinkedList<>();
+//        Temp.add(10);
+//        graph.get(1).add();
+//        graph.add(Temp);
     }
 
     public void Finishclicked() {
