@@ -28,18 +28,6 @@ public class Controller {
 
     public void btnNewNodeClicked() {
         waitingForPlacement = true;
-        int value;
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("creating new node");
-        dialog.setHeaderText("Creating a new Node");
-        dialog.setContentText("Please enter the value for this new node:");
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            value = Integer.parseInt(result.get());
-            setPaneListener(value);
-        }
-
-
     }
 
     public void newLineclicked() {
