@@ -1,10 +1,7 @@
 package sample;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -15,6 +12,7 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.stage.StageStyle;
 
+import java.util.LinkedList;
 import java.util.Optional;
 
 public class Controller {
@@ -45,6 +43,11 @@ public class Controller {
     }
 
     public void newLineclicked() {
+        LinkedList< LinkedList<Integer> > graph = new LinkedList<>();
+        LinkedList <Integer> Temp= new LinkedList<>();
+        Temp.add(10);
+        graph.get(1).add();
+        graph.add(Temp);
     }
 
     public void Finishclicked() {
