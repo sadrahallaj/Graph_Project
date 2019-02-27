@@ -1,19 +1,9 @@
 package sample;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Arc;
-import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
-import javafx.stage.StageStyle;
-
-import java.util.LinkedList;
-import java.util.Optional;
 
 public class Controller {
 
@@ -59,13 +49,10 @@ public class Controller {
     public void setPaneListener(int value) {
         customPane.setOnMouseClicked(event -> {
             if (waitingForPlacement) {
-
                 double centerX = event.getX();
                 double centerY = event.getY();
-
                 createCiecle(centerX , centerY , value);
                 waitingForPlacement = false;
-
             }
         });
     }
@@ -80,8 +67,8 @@ public class Controller {
 
         // add text to the circle :
         Text text   = new Text(String.valueOf(value));
-        text.setX(centerX - 3);
-        text.setY(centerY + 2);
+        text.setX(centerX - 4);
+        text.setY(centerY + 3);
 
         //add circle and its value to custom pane
         customPane.getChildren().add(circleBig);
