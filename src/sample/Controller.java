@@ -19,8 +19,10 @@ public class Controller {
 
     public void btnNewNodeClicked() {
         waitingForPlacement = true;
-        Node node = new Node(index);
-        setPaneListener(index++);
+
+        double[] argument = setPaneListener();
+        Node node = new Node(index++ , argument[0] , argument[1]);
+
     }
 
     public void newLineclicked() {
@@ -46,33 +48,39 @@ public class Controller {
 
     }
 
-    public void setPaneListener(int value) {
+    public double[] setPaneListener() {
+        double[] tmp = new double[2];
         customPane.setOnMouseClicked(event -> {
+        double centerX = 0,centerY =0;
             if (waitingForPlacement) {
-                double centerX = event.getX();
-                double centerY = event.getY();
-                createCiecle(centerX , centerY , value);
+                centerX = event.getX();
+                centerY = event.getY();
+//                createCiecle(centerX , centerY , value);
                 waitingForPlacement = false;
+                tmp[0] = centerX;
+                tmp[1] = centerY;
             }
+
         });
+        return tmp;
     }
 
     // drawing Ring :
-    public void createCiecle(double centerX , double centerY , int value){
-        // creating ring and add it to custom pane :
-        Circle circleBig = new Circle(centerX, centerY, 25);
-        Circle circleSmall = new Circle(centerX, centerY, 20);
-        circleBig.setFill(javafx.scene.paint.Color.BLUE);
-        circleSmall.setFill(javafx.scene.paint.Color.WHITE);
-
-        // add text to the circle :
-        Text text   = new Text(String.valueOf(value));
-        text.setX(centerX - 4);
-        text.setY(centerY + 3);
-
-        //add circle and its value to custom pane
-        customPane.getChildren().add(circleBig);
-        customPane.getChildren().add(circleSmall);
-        customPane.getChildren().add(text);
-    }
+//    public void createCiecle(double centerX , double centerY , int value){
+//        // creating ring and add it to custom pane :
+//        Circle circleBig = new Circle(centerX, centerY, 25);
+//        Circle circleSmall = new Circle(centerX, centerY, 20);
+//        circleBig.setFill(javafx.scene.paint.Color.BLUE);
+//        circleSmall.setFill(javafx.scene.paint.Color.WHITE);
+//
+//        // add text to the circle :
+//        Text text   = new Text(String.valueOf(value));
+//        text.setX(centerX - 4);
+//        text.setY(centerY + 3);
+//
+//        //add circle and its value to custom pane
+//        customPane.getChildren().add(circleBig);
+//        customPane.getChildren().add(circleSmall);
+//        customPane.getChildren().add(text);
+//    }
 }
