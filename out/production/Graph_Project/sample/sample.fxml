@@ -8,29 +8,81 @@
 <?import javafx.scene.layout.Pane?>
 
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-    <top>
-        <Label alignment="CENTER" prefWidth="112" text="Menu" BorderPane.alignment="TOP_RIGHT" >
-            <font>
-                    <Font name = "Times New Roman bold" size = "40"/>
-            </font>
-        </Label>
-    </top>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.Controller" style="-fx-background-color:
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+        -fx-background-radius: 10;
+        -fx-background-insets: 0,1,2,3,0;
+        -fx-text-fill: #654b00;
+        -fx-font-weight: bold;
+        -fx-font-size: 14px;
+        -fx-padding: 10 20 10 20;">
+  
     <right>
-        <GridPane alignment="TOP_RIGHT" hgap="10 " style="-fx-border-color: blue ; -fx-arc-height: 5 ; -fx-background-color: #6bcc0d" vgap="10">
-            <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
-            <Button fx:id="btnNewNode" onAction="#btnNewNodeClicked" prefWidth="90" text="new node" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <Button fx:id="btnNewLine" onMouseClicked="#newLineclicked" prefWidth="90" text="new line" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="90" text="finish" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-            <Button fx:id="btnBfs" onMouseClicked="#bfsclicked" prefWidth="90" text="bfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="15" />
-            <Button fx:id="btnDfs" onMouseClicked="#dfsclicked" prefWidth="90" text="dfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="16" />
+        <GridPane alignment="TOP_RIGHT" hgap="10 "
+                  vgap="10">
+           
+            <Label text="Menu" >
+                <font>
+                    <Font name="Times New Roman bold" size="40"/>
+                </font>
+            </Label>
+            <Button fx:id="btnNewNode" onAction="#btnNewNodeClicked" prefWidth="90" text="new node"
+                    GridPane.columnIndex="0" GridPane.rowIndex="5"
+                    style="-fx-background-color:
+                    linear-gradient(#90cbf0, #0490ea),
+                    radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
+                    -fx-background-radius: 6, 5;
+                    -fx-background-insets: 0, 1;
+                    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+                    -fx-text-fill: #395306;"/>
+            <Button fx:id="btnNewLine" onMouseClicked="#newLineclicked" prefWidth="90" text="new line"
+                    GridPane.columnIndex="0" GridPane.rowIndex="6"
+                    style="-fx-background-color:
+                    linear-gradient(#90cbf0, #0490ea),
+                    radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
+                    -fx-background-radius: 6, 5;
+                    -fx-background-insets: 0, 1;
+                    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+                    -fx-text-fill: #395306;"/>
+            <Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="90" text="finish"
+                    GridPane.columnIndex="0" GridPane.rowIndex="7"
+                    style="-fx-background-color:
+                    linear-gradient(#90cbf0, #0490ea),
+                    radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
+                    -fx-background-radius: 6, 5;
+                    -fx-background-insets: 0, 1;
+                    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+                    -fx-text-fill: #395306;"/>
+            <Button fx:id="btnBfs" onMouseClicked="#bfsclicked" prefWidth="90" text="bfs" visible="false"
+                    GridPane.columnIndex="0" GridPane.rowIndex="15"
+                    style="-fx-background-color:
+                    linear-gradient(#90cbf0, #0490ea),
+                    radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
+                    -fx-background-radius: 6, 5;
+                    -fx-background-insets: 0, 1;
+                    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+                    -fx-text-fill: #395306;"/>
+            <Button fx:id="btnDfs" onMouseClicked="#dfsclicked" prefWidth="90" text="dfs" visible="false"
+                    GridPane.columnIndex="0" GridPane.rowIndex="16"
+                    style="-fx-background-color:
+                    linear-gradient(#90cbf0, #0490ea),
+                    radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
+                    -fx-background-radius: 6, 5;
+                    -fx-background-insets: 0, 1;
+                    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+                    -fx-text-fill: #395306;"/>
         </GridPane>
     </right>
-   <center>
-      <Pane fx:id="customPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-border-color: red ; -fx-background-color: white" BorderPane.alignment="CENTER" />
-   </center>
+    <center>
+        <Pane fx:id="customPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+              prefHeight="700.0" prefWidth="700.0" style="-fx-border-color: red ; -fx-background-color: white"
+              BorderPane.alignment="CENTER"/>
+    </center>
 </BorderPane>
 
 
