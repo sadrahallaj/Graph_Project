@@ -7,7 +7,6 @@ public class Node extends Button {
     private int index;
     private boolean isVisited;
 
-
     public Node(int index, double centerX , double centerY){
         super();
         this.isVisited = false;
@@ -15,9 +14,9 @@ public class Node extends Button {
         this.setText(String.valueOf(index));
         this.setLayoutX(centerX);
         this.setLayoutY(centerY);
-        this.setStyle("-fx-background-radius: 50 ;");
-    }
+        this.setStyle("-fx-background-color: #d0d0d0 ;-fx-background-radius: 50 ;");
 
+    }
 
     public int getIndex() {
         return index;
@@ -34,5 +33,6 @@ public class Node extends Button {
     public void setVisited(boolean visited) {
         isVisited = visited;
     }
+
 }
 
