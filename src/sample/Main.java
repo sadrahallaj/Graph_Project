@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Breadth First Search or Depth First Search for a Graph");
         primaryStage.setScene(new Scene(root, 900, 850));
         primaryStage.show();
     }
