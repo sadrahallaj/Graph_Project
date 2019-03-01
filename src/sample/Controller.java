@@ -91,14 +91,10 @@ public class Controller {
 
     public void BFS(int s) {
 
-        // Mark all the vertices as not visited(By default
-        // set as false)
         boolean visited[] = new boolean[nodesList.size()];
 
-        // Create a queue for BFS
         LinkedList<Node> queue = new LinkedList<>();
 
-        // Mark the current node as visited and enqueue it
         visited[nodesList.get(s).get(0).getIndex()] = true;
         queue.add(nodesList.get(s).get(0));
 
