@@ -9,6 +9,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class Controller {
 
     public Button btnNewNode;
-    public Button btnNewLine;
+    //    public Button btnNewLine;
     public Button btnFinish;
     public Button btnBfs;
     public Button btnDfs;
@@ -73,7 +74,7 @@ public class Controller {
 
     public void Finishclicked() {
         btnNewNode.setVisible(false);
-        btnNewLine.setVisible(false);
+//        btnNewLine.setVisible(false);
         btnFinish.setVisible(false);
         btnDfs.setVisible(true);
         btnBfs.setVisible(true);
@@ -84,10 +85,12 @@ public class Controller {
     }
 
     public void dfsclicked() {
+        DFS(0);
     }
 
 
-    void BFS(int s) {
+    public void BFS(int s) {
+
         // Mark all the vertices as not visited(By default
         // set as false)
         boolean visited[] = new boolean[nodesList.size()];
@@ -102,10 +105,9 @@ public class Controller {
         while (queue.size() != 0) {
             s = queue.poll().getIndex();
             System.out.print(nodesList.get(s).get(0).getIndex() + " ");
-//            nodesList.get(s).get(0).setStyle("-fx-border-color: red ;-fx-background-radius: 50 ;");
-            for (int i = 0; i < ; i++) {
-                
-            }
+            nodesList.get(s).get(0).setStyle("-fx-background-color: red ;-fx-background-radius: 50 ;");
+
+            // delay
             try {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
@@ -123,5 +125,28 @@ public class Controller {
         }
     }
 
+    void DFS(int v) {
+        boolean visited[] = new boolean[nodesList.size()];
+        DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
+    }
+
+    void DFSUtil(int v, boolean visited[]) {
+        visited[nodesList.get(v).get(0).getIndex()] = true;
+        System.out.print(nodesList.get(v).get(0).getIndex() + " ");
+//        nodesList.get(v).get(0).setStyle("-fx-background-color: red ;-fx-background-radius: 50 ;");
+
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Iterator<Node> i = nodesList.get(v).listIterator();
+        while (i.hasNext()) {
+            Node n = i.next();
+            if (!visited[n.getIndex()])
+                DFSUtil(n.getIndex(), visited);
+        }
+    }
 
 }
