@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class Controller {
 
     public Button btnNewNode;
-    public Button btnNewLine;
+//     public Button btnNewLine;
     public Button btnFinish;
     public Button btnBfs;
     public Button btnDfs;
@@ -73,7 +73,7 @@ public class Controller {
 
     public void Finishclicked() {
         btnNewNode.setVisible(false);
-        btnNewLine.setVisible(false);
+//         btnNewLine.setVisible(false);
         btnFinish.setVisible(false);
         btnDfs.setVisible(true);
         btnBfs.setVisible(true);
