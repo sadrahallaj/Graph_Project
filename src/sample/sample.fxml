@@ -40,15 +40,15 @@
                     -fx-background-insets: 0, 1;
                     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                     -fx-text-fill: #395306;"/>
-            <Button fx:id="btnNewLine" onMouseClicked="#newLineclicked" prefWidth="90" text="new line"
-                    GridPane.columnIndex="0" GridPane.rowIndex="6"
-                    style="-fx-background-color:
-                    linear-gradient(#90cbf0, #0490ea),
-                    radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
-                    -fx-background-radius: 6, 5;
-                    -fx-background-insets: 0, 1;
-                    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
-                    -fx-text-fill: #395306;"/>
+            <!--<Button fx:id="btnNewLine" onMouseClicked="#newLineclicked" prefWidth="90" text="new line"-->
+                    <!--GridPane.columnIndex="0" GridPane.rowIndex="6"-->
+                    <!--style="-fx-background-color:-->
+                    <!--linear-gradient(#90cbf0, #0490ea),-->
+                    <!--radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);-->
+                    <!-- -fx-background-radius: 6, 5;-->
+                    <!-- -fx-background-insets: 0, 1;-->
+                    <!-- -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );-->
+                    <!-- -fx-text-fill: #395306;"/>-->
             <Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="90" text="finish"
                     GridPane.columnIndex="0" GridPane.rowIndex="7"
                     style="-fx-background-color:
