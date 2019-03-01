@@ -103,9 +103,9 @@ public class Controller {
             s = queue.poll().getIndex();
             System.out.print(nodesList.get(s).get(0).getIndex() + " ");
 //            nodesList.get(s).get(0).setStyle("-fx-border-color: red ;-fx-background-radius: 50 ;");
-            for (int i = 0; i < ; i++) {
+//             for (int i = 0; i < ; i++) {
                 
-            }
+//             }
             try {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
