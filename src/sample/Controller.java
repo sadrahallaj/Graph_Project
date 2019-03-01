@@ -31,11 +31,15 @@ public class Controller {
 
 
     public void btnNewNodeClicked() {
+        btnNewNode.setOnMouseClicked(e -> {
+            btnNewNode.setStyle("-fx-scale-y: 0.9; -fx-scale-x: 0.9;");
+        });
         waitingForPlacement = true;
         customPane.setOnMouseClicked(event -> {
             double centerX = event.getX();
             double centerY = event.getY();
             if (waitingForPlacement) {
+                btnNewNode.setStyle("-fx-background-color: linear-gradient(#90cbf0, #0490ea), radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%); -fx-background-radius: 6, 5;");
                 Node node = new Node(index++, centerX, centerY);
                 LinkedList<Node> tmp = new LinkedList<>();
                 tmp.add(node);
@@ -48,6 +52,7 @@ public class Controller {
                 });
                 customPane.getChildren().add(node);
                 waitingForPlacement = false;
+
             }
         });
     }
