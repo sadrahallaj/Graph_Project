@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,6 +9,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
@@ -95,35 +99,44 @@ public class Controller {
 
 
     public void BFS(int s) {
+        Thread thread;
 
-        boolean visited[] = new boolean[nodesList.size()];
+        int[] finalS = new int[1];
+        finalS[0] = s;
 
-        LinkedList<Node> queue = new LinkedList<>();
+        thread = new Thread(() -> {
+            boolean visited[] = new boolean[nodesList.size()];
 
-        visited[nodesList.get(s).get(0).getIndex()] = true;
-        queue.add(nodesList.get(s).get(0));
+            LinkedList<Node> queue = new LinkedList<>();
 
-        while (queue.size() != 0) {
-            s = queue.poll().getIndex();
-            System.out.print(nodesList.get(s).get(0).getIndex() + " ");
-            nodesList.get(s).get(0).setStyle("-fx-background-color: red ;-fx-background-radius: 50 ;");
+            visited[nodesList.get(finalS[0]).get(0).getIndex()] = true;
+            queue.add(nodesList.get(finalS[0]).get(0));
 
-            // delay
-            try {
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            while (queue.size() != 0) {
+                finalS[0] = queue.poll().getIndex();
+                System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
+                nodesList.get(finalS[0]).get(0).setStyle("-fx-background-color: red ;-fx-background-radius: 50 ; -fx-text-fill: #fff");
 
-            Iterator<Node> i = nodesList.get(s).listIterator();
-            while (i.hasNext()) {
-                Node n = i.next();
-                if (!visited[n.getIndex()]) {
-                    visited[n.getIndex()] = true;
-                    queue.add(n);
+                Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
+                while (i.hasNext()) {
+                    Node n = i.next();
+                    if (!visited[n.getIndex()]) {
+                        visited[n.getIndex()] = true;
+                        queue.add(n);
+                    }
+                }
+
+                // delay
+                try {
+                    Thread.sleep(500);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-        }
+        });
+
+        thread.start();
     }
 
     void DFS(int v) {
