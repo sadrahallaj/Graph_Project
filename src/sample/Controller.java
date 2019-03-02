@@ -65,7 +65,9 @@ public class Controller {
         if (nodeLine.size() != 2) return;
         Node node1 = nodeLine.pop();
         Node node2 = nodeLine.pop();
-        Line line = new Line(node1.getLayoutX() + 10, node1.getLayoutY() + 10, node2.getLayoutX() + 10, node2.getLayoutY() + 10);
+        System.out.println(node1.getWidth());
+//        Line line = new Line(node1.getLayoutX() + 10, node1.getLayoutY() + 10, node2.getLayoutX() + 10, node2.getLayoutY() + 10);
+        Line line = new Line(node1.getLayoutX() + node1.getWidth() / 2 + node1.getHeight() / 2, node1.getLayoutY() + node1.getHeight() / 2, node2.getLayoutX() + 10, node2.getLayoutY() + 10);
         nodesList.get(node1.getIndex()).add(node2);
         nodesList.get(node2.getIndex()).add(node1);
         node1.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ;");
@@ -115,7 +117,7 @@ public class Controller {
             while (queue.size() != 0) {
                 finalS[0] = queue.poll().getIndex();
                 System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
-                nodesList.get(finalS[0]).get(0).setStyle("-fx-background-color: red ;-fx-background-radius: 50 ; -fx-text-fill: #fff");
+                nodesList.get(finalS[0]).get(0).setStyle("-fx-background-color: #858bea ;-fx-background-radius: 50 ; -fx-text-fill: #fff");
 
                 Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
                 while (i.hasNext()) {
@@ -128,7 +130,7 @@ public class Controller {
 
                 // delay
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -141,16 +143,21 @@ public class Controller {
 
     void DFS(int v) {
         boolean visited[] = new boolean[nodesList.size()];
-        DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
+        Thread dfsThread;
+        dfsThread = new Thread(() -> {
+            DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
+        });
+
+        dfsThread.start();
     }
 
     void DFSUtil(int v, boolean visited[]) {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
-//        nodesList.get(v).get(0).setStyle("-fx-background-color: red ;-fx-background-radius: 50 ;");
+        nodesList.get(v).get(0).setStyle("-fx-background-color: #d17516 ;-fx-background-radius: 50 ;");
 
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
