@@ -35,28 +35,26 @@ public class Controller {
 
 
     public void btnNewNodeClicked() {
-        btnNewNode.setOnMouseClicked(e -> {
-            btnNewNode.setStyle("-fx-scale-y: 0.9; -fx-scale-x: 0.9;");
-        });
+        btnNewNode.setOnMouseClicked(e -> btnNewNode.setVisible(false));
         waitingForPlacement = true;
         customPane.setOnMouseClicked(event -> {
-            double centerX = event.getX();
-            double centerY = event.getY();
+            double centerX = event.getX() - 20  ;
+            double centerY = event.getY() - 20  ;
             if (waitingForPlacement) {
-                btnNewNode.setStyle("-fx-background-color: linear-gradient(#90cbf0, #0490ea), radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%); -fx-background-radius: 6, 5;");
+                btnNewNode.setStyle("-fx-background-color: linear-gradient(#90cbf0, #0490ea), radial-gradient(center 50% -40%," +
+                        " radius 200%, #90cbf0 45%, #0490ea 50%); -fx-background-radius: 6, 5;");
                 Node node = new Node(index++, centerX, centerY);
                 LinkedList<Node> tmp = new LinkedList<>();
                 tmp.add(node);
                 nodesList.add(tmp);
                 node.setOnMouseClicked(event1 -> {
-                    node.setStyle("-fx-background-color: red ;-fx-background-radius: 50 ;");
+                    node.setStyle("-fx-background-color: red ;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
                     nodeLine.add(node);
                     drawLine();
 
                 });
                 customPane.getChildren().add(node);
-                waitingForPlacement = false;
-
+//                waitingForPlacement = false;
             }
         });
     }
@@ -66,17 +64,17 @@ public class Controller {
         Node node1 = nodeLine.pop();
         Node node2 = nodeLine.pop();
         System.out.println(node1.getWidth());
-//        Line line = new Line(node1.getLayoutX() + 10, node1.getLayoutY() + 10, node2.getLayoutX() + 10, node2.getLayoutY() + 10);
-        Line line = new Line(node1.getLayoutX() + node1.getWidth() / 2 + node1.getHeight() / 2, node1.getLayoutY() + node1.getHeight() / 2, node2.getLayoutX() + 10, node2.getLayoutY() + 10);
+        Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20 , node2.getLayoutX() + 20, node2.getLayoutY() + 20);
         nodesList.get(node1.getIndex()).add(node2);
         nodesList.get(node2.getIndex()).add(node1);
-        node1.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ;");
-        node2.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ;");
+        node1.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+        node2.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 40 ; -fx-pref-width: 40");
         customPane.getChildren().add(line);
     }
 
 
     public void Finishclicked() {
+        waitingForPlacement = false;
         btnNewNode.setVisible(false);
         btnFinish.setVisible(false);
         btnDfs.setVisible(true);
@@ -87,18 +85,22 @@ public class Controller {
         BFS(0);
     }
 
-    public void dfsclicked() {
+    public void dfsclicked()
+    {
         DFS(0);
     }
 
 
     public void BFS(int s) {
+
         Thread thread;
 
         int[] finalS = new int[1];
         finalS[0] = s;
 
         thread = new Thread(() -> {
+            btnDfs.setVisible(false);
+
             boolean visited[] = new boolean[nodesList.size()];
 
             LinkedList<Node> queue = new LinkedList<>();
@@ -109,7 +111,9 @@ public class Controller {
             while (queue.size() != 0) {
                 finalS[0] = queue.poll().getIndex();
                 System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
-                nodesList.get(finalS[0]).get(0).setStyle("-fx-background-color: #858bea ;-fx-background-radius: 50 ; -fx-text-fill: #fff");
+                nodesList.get(finalS[0]).get(0)
+                        .setStyle("-fx-background-color: #858bea ;-fx-background-radius: 50 ;" +
+                                " -fx-text-fill: #fff ; -fx-pref-height: 40 ; -fx-pref-width: 40");
 
                 Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
                 while (i.hasNext()) {
@@ -128,8 +132,8 @@ public class Controller {
                     e.printStackTrace();
                 }
             }
+            btnDfs.setVisible(true);
         });
-
         thread.start();
     }
 
@@ -137,7 +141,9 @@ public class Controller {
         boolean visited[] = new boolean[nodesList.size()];
         Thread dfsThread;
         dfsThread = new Thread(() -> {
+            btnBfs.setVisible(false);
             DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
+            btnBfs.setVisible(true);
         });
 
         dfsThread.start();
@@ -146,7 +152,8 @@ public class Controller {
     void DFSUtil(int v, boolean visited[]) {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
-        nodesList.get(v).get(0).setStyle("-fx-background-color: #d17516 ;-fx-background-radius: 50 ;");
+        nodesList.get(v).get(0).setStyle("-fx-background-color: #d17516 ;-fx-background-radius: 50 ;" +
+                " -fx-pref-height: 40 ; -fx-pref-width: 40");
 
         try {
             TimeUnit.SECONDS.sleep(1);

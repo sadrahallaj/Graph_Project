@@ -15,7 +15,8 @@ public class Main extends Application {
         primaryStage.setTitle("Breadth First Search or Depth First Search for a Graph");
         Image image = new Image(getClass().getResourceAsStream("graph.png"));
         primaryStage.getIcons().add(image);
-        primaryStage.setScene(new Scene(root, 900, 850));
+        primaryStage.setScene(new Scene(root, 1000, 960));
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 
