@@ -75,17 +75,9 @@ public class Controller {
         customPane.getChildren().add(line);
     }
 
-//    public void newLineclicked() {
-//        LinkedList< LinkedList<Integer> > graph = new LinkedList<>();
-//        LinkedList <Integer> Temp= new LinkedList<>();
-//        Temp.add(10);
-//        graph.get(1).add();
-//        graph.add(Temp);
-//    }
 
     public void Finishclicked() {
         btnNewNode.setVisible(false);
-//        btnNewLine.setVisible(false);
         btnFinish.setVisible(false);
         btnDfs.setVisible(true);
         btnBfs.setVisible(true);
