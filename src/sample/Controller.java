@@ -57,13 +57,11 @@ public class Controller {
                 tmp.add(node);
                 nodesList.add(tmp);
                 node.setOnMouseClicked(event1 -> {
-                    node.setStyle("-fx-background-color: red ;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                    node.setStyle("-fx-background-color: #ff0000 ;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
                     nodeLine.add(node);
                     drawLine();
-
                 });
                 customPane.getChildren().add(node);
-//                waitingForPlacement = false;
             }
         });
     }
@@ -110,7 +108,7 @@ public class Controller {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("inf.png"));
         stage.getIcons().add(image);
-        alert.setContentText("Create new vertex : In order to create new vertex click one on new vertex button and for more vertices just click on screen.\n" +
+        alert.setContentText("Create new vertex : In order to create a new vertex click on new vertex button and for more vertices just click on screen.\n" +
                 "\n" +
                 "Create new connection : if you want to create new connection between two vertices , at first click on first vertex and then select the  second one .\n" +
                 "\n" +
