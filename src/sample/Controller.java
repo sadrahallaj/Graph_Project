@@ -57,10 +57,11 @@ public class Controller {
                 tmp.add(node);
                 nodesList.add(tmp);
                 node.setOnMouseClicked(event1 -> {
-                    node.setStyle("-fx-background-color: #ff0000 ;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                    node.setStyle("-fx-background-color: #ff0000;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
                     nodeLine.add(node);
                     drawLine();
                 });
+
                 customPane.getChildren().add(node);
             }
         });
