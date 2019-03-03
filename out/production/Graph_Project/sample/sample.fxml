@@ -11,44 +11,56 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane
-        style="-fx-background-color:         linear-gradient(#ffd65b, #e68400),         linear-gradient(#ffef84, #f2ba44),         linear-gradient(#ffea6a, #efaa22),         linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),         linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));         -fx-background-radius: 10;         -fx-background-insets: 0,1,2,3,0;         -fx-text-fill: #654b00;         -fx-font-weight: bold;         -fx-font-size: 14px;         -fx-padding: 10 20 10 20;"
+        style="-fx-background-color:linear-gradient(#ffd65b, #e68400),linear-gradient(#ffef84, #f2ba44),linear-gradient(#ffea6a, #efaa22),
+                linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+                -fx-background-insets: 0,1,2,3,0;         -fx-text-fill: #654b00;         -fx-font-weight: bold;         -fx-font-size: 14px;         -fx-padding: 10 20 10 20;"
         xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="sample.Controller">
 
     <right>
         <GridPane alignment="TOP_RIGHT" hgap="10 " vgap="10">
 
-            <Label text="Menu">
+            <Label text="Menu" GridPane.rowIndex="3" prefWidth="100">
                 <font>
                     <Font name="Times New Roman bold" size="40"/>
                 </font>
             </Label>
-            <Button fx:id="btnNewNode" onAction="#btnNewNodeClicked" prefWidth="90"
+            <Button fx:id="btnNewNode" onAction="#btnNewNodeClicked" prefWidth="95"
                     style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                            -fx-text-fill: #395306;"
-                    text="new node" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="90"
+                    text="new vertex" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <Button fx:id="restart" onAction="#btnRestartClicked" prefWidth="95"
+                    style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
+                           -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+                           -fx-text-fill: #395306;"
+                    text="restart" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="95"
                     style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                            -fx-text-fill: #395306;"
                     text="finish" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-            <Button fx:id="btnBfs" onMouseClicked="#bfsclicked" prefWidth="90"
+            <Button fx:id="btnBfs" onMouseClicked="#bfsclicked" prefWidth="95"
                     style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                            -fx-text-fill: #395306;"
-                    text="bfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="15"/>
-            <Button fx:id="btnDfs" onMouseClicked="#dfsclicked" prefWidth="90"
+                    text="bfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="17"/>
+            <Button fx:id="btnDfs" onMouseClicked="#dfsclicked" prefWidth="95"
                     style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                            -fx-text-fill: #395306;"
-                    text="dfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="16"/>
+                    text="dfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="18"/>
+            <Button fx:id="help" onMouseClicked="#helpClicked" prefWidth="95"
+                    style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
+                           -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+                           -fx-text-fill: #395306;"
+                    text="help" visible="true" GridPane.columnIndex="0" GridPane.rowIndex="64"/>
 
         </GridPane>
     </right>
     <center>
         <Pane fx:id="customPane" prefHeight="700.0" prefWidth="700.0"
-              style=" -fx-background-radius: 20 ; -fx-background-color: white ; -fx-background-color: #fff3ed"
+              style=" -fx-background-radius: 20 ; -fx-background-color: white ; -fx-background-color: #fff3ed ; -fx-border-color: #0000ff ; -fx-border-width: 3 ; -fx-border-radius: 20"
               BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets bottom="50.0" left="30.0" right="30.0" top="50.0"/>

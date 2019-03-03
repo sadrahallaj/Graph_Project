@@ -5,29 +5,38 @@ import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
 
     public Button btnNewNode;
-    //    public Button btnNewLine;
     public Button btnFinish;
     public Button btnBfs;
     public Button btnDfs;
     public Pane customPane;
-    public Label label1;
+    public Button restart;
+    public Button help;
     public boolean waitingForPlacement = false;
     public int index = 0;
     public LinkedList<Node> nodeLine = new LinkedList<>();
@@ -38,8 +47,8 @@ public class Controller {
         btnNewNode.setOnMouseClicked(e -> btnNewNode.setVisible(false));
         waitingForPlacement = true;
         customPane.setOnMouseClicked(event -> {
-            double centerX = event.getX() - 20  ;
-            double centerY = event.getY() - 20  ;
+            double centerX = event.getX() - 20;
+            double centerY = event.getY() - 20;
             if (waitingForPlacement) {
                 btnNewNode.setStyle("-fx-background-color: linear-gradient(#90cbf0, #0490ea), radial-gradient(center 50% -40%," +
                         " radius 200%, #90cbf0 45%, #0490ea 50%); -fx-background-radius: 6, 5;");
@@ -63,8 +72,10 @@ public class Controller {
         if (nodeLine.size() != 2) return;
         Node node1 = nodeLine.pop();
         Node node2 = nodeLine.pop();
-        System.out.println(node1.getWidth());
-        Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20 , node2.getLayoutX() + 20, node2.getLayoutY() + 20);
+        Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 20);
+        line.setStrokeWidth(2);
+        line.setSmooth(true);
+        line.setStroke(Color.rgb(24, 17, 140));
         nodesList.get(node1.getIndex()).add(node2);
         nodesList.get(node2.getIndex()).add(node1);
         node1.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
@@ -72,6 +83,17 @@ public class Controller {
         customPane.getChildren().add(line);
     }
 
+    public void btnRestartClicked() {
+        waitingForPlacement = false;
+        btnNewNode.setVisible(true);
+        btnFinish.setVisible(true);
+        btnDfs.setVisible(false);
+        btnBfs.setVisible(false);
+        nodesList.clear();
+        nodeLine.clear();
+        index = 0;
+        customPane.getChildren().clear();
+    }
 
     public void Finishclicked() {
         waitingForPlacement = false;
@@ -81,13 +103,32 @@ public class Controller {
         btnBfs.setVisible(true);
     }
 
-    public void bfsclicked() {
-        BFS(0);
+    public void helpClicked() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Help");
+        alert.setHeaderText("Information");
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("inf.png"));
+        stage.getIcons().add(image);
+        alert.setContentText("Create new vertex : In order to create new vertex click one on new vertex button and for more vertices just click on screen.\n" +
+                "\n" +
+                "Create new connection : if you want to create new connection between two vertices , at first click on first vertex and then select the  second one .\n" +
+                "\n" +
+                "If your graph has already completed you can click finish button and then choose the type of search (dfs or bfs) .\n" +
+                "\n" +
+                "also you can restart the process at every time that you want by clicking on restart button .");
+        alert.showAndWait();
     }
 
-    public void dfsclicked()
-    {
-        DFS(0);
+
+    public void bfsclicked() {
+        Random rand = new Random();
+        BFS(rand.nextInt(nodesList.size()));
+    }
+
+    public void dfsclicked() {
+        Random rand = new Random();
+        DFS(rand.nextInt(nodesList.size()));
     }
 
 
@@ -112,7 +153,7 @@ public class Controller {
                 finalS[0] = queue.poll().getIndex();
                 System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
                 nodesList.get(finalS[0]).get(0)
-                        .setStyle("-fx-background-color: #858bea ;-fx-background-radius: 50 ;" +
+                        .setStyle("-fx-background-color: #4d4bfa ;-fx-background-radius: 50 ;" +
                                 " -fx-text-fill: #fff ; -fx-pref-height: 40 ; -fx-pref-width: 40");
 
                 Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
@@ -152,8 +193,8 @@ public class Controller {
     void DFSUtil(int v, boolean visited[]) {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
-        nodesList.get(v).get(0).setStyle("-fx-background-color: #d17516 ;-fx-background-radius: 50 ;" +
-                " -fx-pref-height: 40 ; -fx-pref-width: 40");
+        nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                " -fx-text-fill: #e5e5e5 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
 
         try {
             TimeUnit.SECONDS.sleep(1);
