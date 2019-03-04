@@ -114,13 +114,13 @@ public class Controller {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("inf.png"));
         stage.getIcons().add(image);
-        alert.setContentText("Create new vertex : In order to create a new vertex click on new vertex button and for more vertices just click on screen.\n" +
+        alert.setContentText("Create new vertex: In order to create a new vertex click on new vertex button and for more vertices just click on screen.\n" +
                 "\n" +
-                "Create new connection : if you want to create new connection between two vertices , at first click on first vertex and then select the  second one .\n" +
+                "Create new connection: If you want to create a new connection between two vertices , first click on the desired vertex and then select the second.\n" +
                 "\n" +
-                "If your graph has already completed you can click finish button and then choose the type of search (dfs or bfs) .\n" +
+                "When your graph is completed, click on the finish button and then choose the type of search (dfs or bfs).\n" +
                 "\n" +
-                "also you can restart the process at every time that you want by clicking on restart button .");
+                "Additionally, you can restart the process any time you want by clicking on the restart button.");
         alert.showAndWait();
     }
 
