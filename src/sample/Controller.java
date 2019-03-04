@@ -102,6 +102,9 @@ public class Controller {
         btnFinish.setVisible(false);
         btnDfs.setVisible(true);
         btnBfs.setVisible(true);
+        for (int i=0; i<nodesList.size();i++){
+            nodesList.get(i).getFirst().setDisable(true);
+        }
     }
 
     public void helpClicked() {
