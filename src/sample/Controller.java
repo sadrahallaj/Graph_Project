@@ -1,31 +1,12 @@
 package sample;
-
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.omg.PortableServer.THREAD_POLICY_ID;
-
-import java.awt.*;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
