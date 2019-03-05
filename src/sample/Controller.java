@@ -61,9 +61,14 @@ public class Controller {
                 nodesList.add(tmp);
                 node.setOnMouseClicked(event1 -> {
                     if(!finished){
-                        node.setStyle("-fx-background-color: #ff0000;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
-                        nodeLine.add(node);
-                        drawLine();
+                        try{
+                            node.setStyle("-fx-background-color: #ff0000;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                            nodeLine.add(node);
+                            drawLine();
+                        }
+                        catch (Exception e){
+                            System.out.println(e);
+                        }
                     }
                 });
 
