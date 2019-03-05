@@ -40,6 +40,7 @@ public class Controller {
     public Button help;
     public boolean waitingForPlacement = false;
     public int index = 0;
+    public boolean finished = false;
     public LinkedList<Node> nodeLine = new LinkedList<>();
     public LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
 
@@ -59,9 +60,16 @@ public class Controller {
                 tmp.add(node);
                 nodesList.add(tmp);
                 node.setOnMouseClicked(event1 -> {
-                    node.setStyle("-fx-background-color: #ff0000;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
-                    nodeLine.add(node);
-                    drawLine();
+                    if(!finished){
+                        try{
+                            node.setStyle("-fx-background-color: #ff0000;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                            nodeLine.add(node);
+                            drawLine();
+                        }
+                        catch (Exception e){
+                            System.out.println(e);
+                        }
+                    }
                 });
 
                 customPane.getChildren().add(node);
@@ -93,6 +101,7 @@ public class Controller {
         nodesList.clear();
         nodeLine.clear();
         index = 0;
+        finished = false ;
         customPane.getChildren().clear();
     }
 
@@ -102,9 +111,8 @@ public class Controller {
         btnFinish.setVisible(false);
         btnDfs.setVisible(true);
         btnBfs.setVisible(true);
-        for (int i=0; i<nodesList.size();i++){
-            nodesList.get(i).getFirst().setDisable(true);
-        }
+        finished = true ;
+
     }
 
     public void helpClicked() {

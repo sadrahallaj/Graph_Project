@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+    </list>
+>>>>>>> fix
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -25,8 +31,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-19">
               <caret line="117" column="22" lean-forward="true" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
+=======
+            <state relative-caret-position="-2317">
+              <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
+>>>>>>> fix
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,10 +98,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -185,6 +195,9 @@
       <workItem from="1551608471493" duration="1556000" />
       <workItem from="1551630358467" duration="521000" />
       <workItem from="1551631762631" duration="708000" />
+      <workItem from="1551711548853" duration="843000" />
+      <workItem from="1551713880644" duration="393000" />
+      <workItem from="1551771870664" duration="809000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -232,7 +245,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61483000" />
+    <option name="totallyTimeSpent" value="64141000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -256,7 +269,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50402683" side_tool="true" weight="0.32624114" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.32765958" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.32719395" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -325,6 +338,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -333,6 +347,8 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
+=======
+>>>>>>> fix
     <entry file="file://$PROJECT_DIR$/src/sample/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -343,10 +359,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-19">
           <caret line="117" column="22" lean-forward="true" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
+=======
+        <state relative-caret-position="-2317">
+          <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
+>>>>>>> fix
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
