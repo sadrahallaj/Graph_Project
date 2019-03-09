@@ -1,12 +1,17 @@
 package sample;
+
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +28,8 @@ public class Controller {
     public int index = 0;
     public boolean finished = false;
     public LinkedList<Node> nodeLine = new LinkedList<>();
+    public LinkedList<Double> xDir = new LinkedList<>();
+    public LinkedList<Double> yDir = new LinkedList<>();
     public LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
 
 
@@ -33,21 +40,27 @@ public class Controller {
         customPane.setOnMouseClicked(event -> {
             double centerX = event.getX() - 20;
             double centerY = event.getY() - 20;
-            if (waitingForPlacement) {
-                btnNewNode.setStyle("-fx-background-color: linear-gradient(#90cbf0, #0490ea), radial-gradient(center 50% -40%," +
-                        " radius 200%, #90cbf0 45%, #0490ea 50%); -fx-background-radius: 6, 5;");
+            for (int i = 0; i < xDir.size() ; i++) {
+                double x = xDir.get(i);
+                double y = yDir.get(i);
+                if(centerX < x + 20 &&  centerX > x - 20 && centerY < y + 20 && centerY > y - 20 ) return;
+            }
+            if (event.getX() < 25 || event.getY() > customPane.getHeight() - 25 || event.getX() > customPane.getWidth() - 25 || event.getY() < 25)
+                return;
+            else if (waitingForPlacement) {
+                xDir.add(centerX);
+                yDir.add(centerY);
                 Node node = new Node(index++, centerX, centerY);
                 LinkedList<Node> tmp = new LinkedList<>();
                 tmp.add(node);
                 nodesList.add(tmp);
                 node.setOnMouseClicked(event1 -> {
-                    if(!finished){
-                        try{
+                    if (!finished) {
+                        try {
                             node.setStyle("-fx-background-color: #ff0000;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
                             nodeLine.add(node);
                             drawLine();
-                        }
-                        catch (Exception e){
+                        } catch (Exception e) {
                             System.out.println(e);
                         }
                     }
@@ -81,8 +94,10 @@ public class Controller {
         btnBfs.setVisible(false);
         nodesList.clear();
         nodeLine.clear();
+        xDir.clear();
+        yDir.clear();
         index = 0;
-        finished = false ;
+        finished = false;
         customPane.getChildren().clear();
     }
 
@@ -92,8 +107,7 @@ public class Controller {
         btnFinish.setVisible(false);
         btnDfs.setVisible(true);
         btnBfs.setVisible(true);
-        finished = true ;
-
+        finished = true;
     }
 
     public void helpClicked() {
@@ -115,13 +129,43 @@ public class Controller {
 
 
     public void bfsclicked() {
-        Random rand = new Random();
-        BFS(rand.nextInt(nodesList.size()));
+
+        LinkedList<String> options = new LinkedList<>();
+        options.add("random vertex");
+        for (int i = 0; i < nodesList.size(); i++) {
+            options.add(String.valueOf(nodesList.get(i).get(0).getIndex()));
+        }
+        ChoiceDialog d = new ChoiceDialog(options.get(0), options);
+        d.setHeaderText("Options");
+        d.setContentText("please select to start from which vertex : ");
+        if (!d.showAndWait().isPresent()) return;
+        else if (d.getSelectedItem() == "default ( vertex with index 0 ) ") BFS(0);
+        else if (d.getSelectedItem() == "random vertex") {
+            Random rand = new Random();
+            BFS(rand.nextInt(nodesList.size()));
+        } else {
+            BFS(Integer.parseInt(d.getSelectedItem().toString()));
+        }
+
     }
 
     public void dfsclicked() {
-        Random rand = new Random();
-        DFS(rand.nextInt(nodesList.size()));
+        LinkedList<String> options = new LinkedList<>();
+        options.add("random vertex");
+        for (int i = 0; i < nodesList.size(); i++) {
+            options.add(String.valueOf(nodesList.get(i).get(0).getIndex()));
+        }
+        ChoiceDialog d = new ChoiceDialog(options.get(0), options);
+        d.setHeaderText("Options");
+        d.setContentText("please select to start from which vertex : ");
+        if (!d.showAndWait().isPresent()) return;
+        else if (d.getSelectedItem() == "default ( vertex with index 0 ) ") DFS(0);
+        else if (d.getSelectedItem() == "random vertex") {
+            Random rand = new Random();
+            DFS(rand.nextInt(nodesList.size()));
+        } else {
+            DFS(Integer.parseInt(d.getSelectedItem().toString()));
+        }
     }
 
 

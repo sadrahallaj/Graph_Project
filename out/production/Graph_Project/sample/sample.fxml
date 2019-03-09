@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ComboBox?>
 <BorderPane
         style="-fx-background-color:linear-gradient(#ffd65b, #e68400),linear-gradient(#ffef84, #f2ba44),linear-gradient(#ffea6a, #efaa22),
                 linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
@@ -30,7 +31,7 @@
                     style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                            -fx-text-fill: #395306;"
-                    text="new vertex" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                    text="start" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
             <Button fx:id="restart" onAction="#btnRestartClicked" prefWidth="95"
                     style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
@@ -51,11 +52,13 @@
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                            -fx-text-fill: #395306;"
                     text="dfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="18"/>
+
             <Button fx:id="help" onMouseClicked="#helpClicked" prefWidth="95"
                     style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);
                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
                            -fx-text-fill: #395306;"
                     text="help" visible="true" GridPane.columnIndex="0" GridPane.rowIndex="64"/>
+
 
         </GridPane>
     </right>
