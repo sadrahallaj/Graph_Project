@@ -3,6 +3,8 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
@@ -40,10 +42,10 @@ public class Controller {
         customPane.setOnMouseClicked(event -> {
             double centerX = event.getX() - 20;
             double centerY = event.getY() - 20;
-            for (int i = 0; i < xDir.size() ; i++) {
+            for (int i = 0; i < xDir.size(); i++) {
                 double x = xDir.get(i);
                 double y = yDir.get(i);
-                if(centerX < x + 20 &&  centerX > x - 20 && centerY < y + 20 && centerY > y - 20 ) return;
+                if (centerX < x + 20 && centerX > x - 20 && centerY < y + 20 && centerY > y - 20) return;
             }
             if (event.getX() < 25 || event.getY() > customPane.getHeight() - 25 || event.getX() > customPane.getWidth() - 25 || event.getY() < 25)
                 return;
@@ -136,30 +138,44 @@ public class Controller {
             options.add(String.valueOf(nodesList.get(i).get(0).getIndex()));
         }
         ChoiceDialog d = new ChoiceDialog(options.get(0), options);
-        d.setHeaderText("Options");
+        d.setTitle("options");
+        d.setHeaderText("Getting start vertex");
         d.setContentText("please select to start from which vertex : ");
+        d.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("choice.png"))));
+        d.setX(customPane.getWidth()/2 + 320);
+        d.setY(customPane.getHeight()/2 - 50);
+        Stage stage = (Stage) d.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("options.png"));
+        stage.getIcons().add(image);
+
         if (!d.showAndWait().isPresent()) return;
-        else if (d.getSelectedItem() == "default ( vertex with index 0 ) ") BFS(0);
         else if (d.getSelectedItem() == "random vertex") {
             Random rand = new Random();
             BFS(rand.nextInt(nodesList.size()));
         } else {
             BFS(Integer.parseInt(d.getSelectedItem().toString()));
         }
-
     }
 
     public void dfsclicked() {
+
         LinkedList<String> options = new LinkedList<>();
         options.add("random vertex");
         for (int i = 0; i < nodesList.size(); i++) {
             options.add(String.valueOf(nodesList.get(i).get(0).getIndex()));
         }
         ChoiceDialog d = new ChoiceDialog(options.get(0), options);
-        d.setHeaderText("Options");
+        d.setTitle("options");
+        d.setHeaderText("Getting start vertex");
         d.setContentText("please select to start from which vertex : ");
+        d.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("choice.png"))));
+        d.setX(customPane.getWidth()/2 + 320);
+        d.setY(customPane.getHeight()/2 - 50);
+        Stage stage = (Stage) d.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("options.png"));
+        stage.getIcons().add(image);
+
         if (!d.showAndWait().isPresent()) return;
-        else if (d.getSelectedItem() == "default ( vertex with index 0 ) ") DFS(0);
         else if (d.getSelectedItem() == "random vertex") {
             Random rand = new Random();
             DFS(rand.nextInt(nodesList.size()));
