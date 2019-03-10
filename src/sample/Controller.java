@@ -140,7 +140,10 @@ public class Controller {
 
 
     public void bfsclicked() {
-        
+
+        for (int i = 0; i <nodesList.size() ; i++) {
+            nodesList.get(i).get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
         LinkedList<String> options = new LinkedList<>();
         options.add("random vertex");
         for (int i = 0; i < nodesList.size(); i++) {
@@ -168,6 +171,9 @@ public class Controller {
 
     public void dfsclicked() {
 
+        for (int i = 0; i <nodesList.size() ; i++) {
+            nodesList.get(i).get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
         LinkedList<String> options = new LinkedList<>();
         options.add("random vertex");
         for (int i = 0; i < nodesList.size(); i++) {
