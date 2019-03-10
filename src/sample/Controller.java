@@ -105,6 +105,7 @@ public class Controller {
         yDir.clear();
         index = 0;
         finished = false;
+        btnFinish.setVisible(false);
         customPane.getChildren().clear();
     }
 
@@ -139,7 +140,7 @@ public class Controller {
 
 
     public void bfsclicked() {
-
+        
         LinkedList<String> options = new LinkedList<>();
         options.add("random vertex");
         for (int i = 0; i < nodesList.size(); i++) {
