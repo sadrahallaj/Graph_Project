@@ -60,7 +60,7 @@ public class Controller {
                 node.setOnMouseClicked(event1 -> {
                     if (!finished) {
                         try {
-                            node.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                            node.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
                             nodeLine.add(node);
                             drawLine();
                         } catch (Exception e) {
@@ -85,8 +85,8 @@ public class Controller {
         line.setStroke(Color.rgb(24, 17, 140));
         nodesList.get(node1.getIndex()).add(node2);
         nodesList.get(node2.getIndex()).add(node1);
-        node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
-        node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 40 ; -fx-pref-width: 40");
+        node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
         customPane.getChildren().add(line);
         line.toBack();
         node1.toFront();
@@ -220,7 +220,7 @@ public class Controller {
                 System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
                 nodesList.get(finalS[0]).get(0)
                         .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
-                                " -fx-text-fill: #fff ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                                " -fx-text-fill: #fff ; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
                 Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
                 while (i.hasNext()) {
@@ -260,7 +260,7 @@ public class Controller {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
         nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
-                " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
         try {
             TimeUnit.SECONDS.sleep(1);
