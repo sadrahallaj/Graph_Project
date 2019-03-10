@@ -45,7 +45,7 @@ public class Controller {
             for (int i = 0; i < xDir.size(); i++) {
                 double x = xDir.get(i);
                 double y = yDir.get(i);
-                if (centerX < x + 20 && centerX > x - 20 && centerY < y + 20 && centerY > y - 20) return;
+                if (centerX < x + 30 && centerX > x - 30 && centerY < y + 30 && centerY > y - 30) return;
             }
             if (event.getX() < 25 || event.getY() > customPane.getHeight() - 25 || event.getX() > customPane.getWidth() - 25 || event.getY() < 25)
                 return;
@@ -201,6 +201,10 @@ public class Controller {
 
             visited[nodesList.get(finalS[0]).get(0).getIndex()] = true;
             queue.add(nodesList.get(finalS[0]).get(0));
+
+            LinkedList<Integer> lineColor = new LinkedList<>();
+            lineColor.add(finalS[0]);
+            lineColor.add(finalS[0]);
 
             while (queue.size() != 0) {
                 finalS[0] = queue.poll().getIndex();
