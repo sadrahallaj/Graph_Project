@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Graph_Project/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/choice.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Graph_Project/sample/choice.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/choice.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/choice.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,9 +68,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="950" />
-    <option name="width" value="975" />
-    <option name="height" value="1050" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
