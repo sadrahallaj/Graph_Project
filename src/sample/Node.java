@@ -14,7 +14,7 @@ public class Node extends Button {
         this.setText(String.valueOf(index));
         this.setLayoutX(centerX);
         this.setLayoutY(centerY);
-        this.setStyle("-fx-background-color: #d0d0d0 ;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+        this.setStyle("-fx-background-color: #d0d0d0; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
 
     }
 

@@ -45,11 +45,12 @@ public class Controller {
             for (int i = 0; i < xDir.size(); i++) {
                 double x = xDir.get(i);
                 double y = yDir.get(i);
-                if (centerX < x + 30 && centerX > x - 30 && centerY < y + 30 && centerY > y - 30) return;
+                if (centerX < x + 60 && centerX > x - 60 && centerY < y + 60 && centerY > y - 60) return;
             }
             if (event.getX() < 25 || event.getY() > customPane.getHeight() - 25 || event.getX() > customPane.getWidth() - 25 || event.getY() < 25)
                 return;
             else if (waitingForPlacement) {
+                btnFinish.setVisible(true);
                 xDir.add(centerX);
                 yDir.add(centerY);
                 Node node = new Node(index++, centerX, centerY);
@@ -59,7 +60,7 @@ public class Controller {
                 node.setOnMouseClicked(event1 -> {
                     if (!finished) {
                         try {
-                            node.setStyle("-fx-background-color: #ff0000;-fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                            node.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
                             nodeLine.add(node);
                             drawLine();
                         } catch (Exception e) {
@@ -78,14 +79,18 @@ public class Controller {
         Node node1 = nodeLine.pop();
         Node node2 = nodeLine.pop();
         Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 20);
-        line.setStrokeWidth(2);
+        line.setStrokeWidth(4);
         line.setSmooth(true);
+//        line.setStyle("-fx-text-fill: #fff;-fx-border-co: #fff;");
         line.setStroke(Color.rgb(24, 17, 140));
         nodesList.get(node1.getIndex()).add(node2);
         nodesList.get(node2.getIndex()).add(node1);
-        node1.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
-        node2.setStyle("-fx-border-color: #d0d0d0 ; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 40 ; -fx-pref-width: 40");
+        node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+        node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 40 ; -fx-pref-width: 40");
         customPane.getChildren().add(line);
+        line.toBack();
+        node1.toFront();
+        node2.toFront();
     }
 
     public void btnRestartClicked() {
@@ -104,12 +109,15 @@ public class Controller {
     }
 
     public void Finishclicked() {
-        waitingForPlacement = false;
-        btnNewNode.setVisible(false);
-        btnFinish.setVisible(false);
-        btnDfs.setVisible(true);
-        btnBfs.setVisible(true);
-        finished = true;
+        if (!nodesList.isEmpty()) {
+            waitingForPlacement = false;
+            btnNewNode.setVisible(false);
+            btnFinish.setVisible(false);
+            btnDfs.setVisible(true);
+            btnBfs.setVisible(true);
+            finished = true;
+        }
+
     }
 
     public void helpClicked() {
@@ -142,8 +150,8 @@ public class Controller {
         d.setHeaderText("Getting start vertex");
         d.setContentText("please select to start from which vertex : ");
         d.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("choice.png"))));
-        d.setX(customPane.getWidth()/2 + 320);
-        d.setY(customPane.getHeight()/2 - 50);
+        d.setX(customPane.getWidth() / 2 + 320);
+        d.setY(customPane.getHeight() / 2 - 50);
         Stage stage = (Stage) d.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("options.png"));
         stage.getIcons().add(image);
@@ -169,8 +177,8 @@ public class Controller {
         d.setHeaderText("Getting start vertex");
         d.setContentText("please select to start from which vertex : ");
         d.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("choice.png"))));
-        d.setX(customPane.getWidth()/2 + 320);
-        d.setY(customPane.getHeight()/2 - 50);
+        d.setX(customPane.getWidth() / 2 + 320);
+        d.setY(customPane.getHeight() / 2 - 50);
         Stage stage = (Stage) d.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("options.png"));
         stage.getIcons().add(image);
@@ -210,7 +218,7 @@ public class Controller {
                 finalS[0] = queue.poll().getIndex();
                 System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
                 nodesList.get(finalS[0]).get(0)
-                        .setStyle("-fx-background-color: #4d4bfa ;-fx-background-radius: 50 ;" +
+                        .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
                                 " -fx-text-fill: #fff ; -fx-pref-height: 40 ; -fx-pref-width: 40");
 
                 Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
@@ -251,7 +259,7 @@ public class Controller {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
         nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
-                " -fx-text-fill: #e5e5e5 ; -fx-pref-height: 40 ; -fx-pref-width: 40");
+                " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 40 ; -fx-pref-width: 40");
 
         try {
             TimeUnit.SECONDS.sleep(1);
