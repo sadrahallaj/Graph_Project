@@ -45,7 +45,7 @@ public class Controller {
             for (int i = 0; i < xDir.size(); i++) {
                 double x = xDir.get(i);
                 double y = yDir.get(i);
-                if (centerX < x + 60 && centerX > x - 60 && centerY < y + 60 && centerY > y - 60) return;
+                if (centerX < x + 50 && centerX > x - 50 && centerY < y + 50 && centerY > y - 50) return;
             }
             if (event.getX() < 25 || event.getY() > customPane.getHeight() - 25 || event.getX() > customPane.getWidth() - 25 || event.getY() < 25)
                 return;
@@ -179,7 +179,7 @@ public class Controller {
         d.setContentText("please select to start from which vertex : ");
         d.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("choice.png"))));
         d.setX(customPane.getWidth() / 2 + 320);
-        d.setY(customPane.getHeight() / 2 - 50);
+        d.setY(customPane.getHeight() / 2 - 50 );
         Stage stage = (Stage) d.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("options.png"));
         stage.getIcons().add(image);
