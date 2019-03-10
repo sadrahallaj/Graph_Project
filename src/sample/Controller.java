@@ -81,7 +81,6 @@ public class Controller {
         Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 20);
         line.setStrokeWidth(4);
         line.setSmooth(true);
-//        line.setStyle("-fx-text-fill: #fff;-fx-border-co: #fff;");
         line.setStroke(Color.rgb(24, 17, 140));
         nodesList.get(node1.getIndex()).add(node2);
         nodesList.get(node2.getIndex()).add(node1);
@@ -128,7 +127,8 @@ public class Controller {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("inf.png"));
         stage.getIcons().add(image);
-        alert.setContentText("Create new vertex: In order to create a new vertex click on new vertex button and for more vertices just click on screen.\n" +
+        alert.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("help.png"))));
+        alert.setContentText("Create new vertex: In order to create a new vertex click on start button and for more vertices just click on screen.\n" +
                 "\n" +
                 "Create new connection: If you want to create a new connection between two vertices , first click on the desired vertex and then select the second.\n" +
                 "\n" +
