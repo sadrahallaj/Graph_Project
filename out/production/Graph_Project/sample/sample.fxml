@@ -25,84 +25,11 @@
             <Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="finish" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="7" />
             <Button fx:id="btnBfs" onMouseClicked="#bfsclicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="bfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="17" />
             <Button fx:id="btnDfs" onMouseClicked="#dfsclicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="dfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="18" />
-
             <Button fx:id="help" onMouseClicked="#helpClicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="help" visible="true" GridPane.columnIndex="0" GridPane.rowIndex="64" />
-         <columnConstraints>
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-
-
         </GridPane>
     </right>
     <center>
-        <Pane fx:id="customPane" prefWidth="700.0" style=" -fx-background-radius: 20 ; -fx-background-color: white ; -fx-background-color: #fff3ed ; -fx-border-color: #0000ff ; -fx-border-width: 3 ; -fx-border-radius: 20" BorderPane.alignment="CENTER">
+        <Pane fx:id="customPane" prefHeight="700.0" prefWidth="700.0" style=" -fx-background-radius: 20 ; -fx-background-color: white ; -fx-background-color: #fff3ed ; -fx-border-color: #0000ff ; -fx-border-width: 3 ; -fx-border-radius: 20" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets bottom="50.0" left="30.0" right="30.0" top="50.0" />
             </BorderPane.margin>
