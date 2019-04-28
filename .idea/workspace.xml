@@ -3,28 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/choice.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/graph.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/help.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/inf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/options.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/sample/sample.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/back.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/choice.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/choice.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/graph.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/graph.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/help.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/help.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/inf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/inf.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/options.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/options.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="143">
@@ -46,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1225">
-              <caret line="212" selection-start-line="212" selection-end-line="212" />
+            <state relative-caret-position="100">
+              <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
               <folding>
                 <element signature="method#btnNewNodeClicked#0;class#Controller#0" />
                 <element signature="e#1257#2750#0" />
@@ -136,6 +114,7 @@
       <find>start</find>
       <find>restart</find>
       <find>public</find>
+      <find>png</find>
     </findStrings>
     <replaceStrings>
       <replace>private</replace>
@@ -157,8 +136,8 @@
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
       </list>
     </option>
   </component>
@@ -169,8 +148,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="979" />
+    <option name="x" value="432" />
+    <option name="y" value="86" />
+    <option name="width" value="1308" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -193,33 +173,6 @@
               <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -229,7 +182,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556471319507" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556471416881" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -326,7 +279,7 @@
       <workItem from="1552207741298" duration="2730000" />
       <workItem from="1552245328135" duration="1103000" />
       <workItem from="1552293787272" duration="139000" />
-      <workItem from="1556470174462" duration="1001000" />
+      <workItem from="1556470174462" duration="1299000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -384,15 +337,21 @@
       <option name="project" value="LOCAL" />
       <updated>1552210609936</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="change the package system">
+      <created>1556471397398</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556471397399</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94884000" />
+    <option name="totallyTimeSpent" value="95182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1442953" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -466,7 +425,8 @@
     <MESSAGE value="delete dialog" />
     <MESSAGE value="draw Line" />
     <MESSAGE value="..." />
-    <option name="LAST_COMMIT_MESSAGE" value="..." />
+    <MESSAGE value="change the package system" />
+    <option name="LAST_COMMIT_MESSAGE" value="change the package system" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -511,10 +471,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="15" column="85" lean-forward="true" selection-start-line="15" selection-start-column="85" selection-end-line="15" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1225">
-          <caret line="212" selection-start-line="212" selection-end-line="212" />
+        <state relative-caret-position="100">
+          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
           <folding>
             <element signature="method#btnNewNodeClicked#0;class#Controller#0" />
             <element signature="e#1257#2750#0" />
@@ -553,13 +520,6 @@
             <element signature="e#10972#11016#0" />
             <element signature="e#11106#11236#1" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="15" column="85" lean-forward="true" selection-start-line="15" selection-start-column="85" selection-end-line="15" selection-end-column="85" />
         </state>
       </provider>
     </entry>
