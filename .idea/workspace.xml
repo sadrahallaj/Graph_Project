@@ -4,7 +4,6 @@
     <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,38 +28,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="209" lean-forward="true" selection-start-line="209" selection-end-line="209" />
+            <state relative-caret-position="294">
+              <caret line="166" column="32" lean-forward="true" selection-start-line="166" selection-start-column="32" selection-end-line="166" selection-end-column="32" />
               <folding>
-                <element signature="method#btnNewNodeClicked#0;class#Controller#0" />
                 <element signature="e#1414#1615#1" />
-                <element signature="e#2252#2532#0" />
-                <element signature="method#btnRestartClicked#0;class#Controller#0" />
-                <element signature="method#Finishclicked#0;class#Controller#0" />
-                <element signature="e#4221#4459#1" />
-                <element signature="method#helpClicked#0;class#Controller#0" />
-                <element signature="method#bfsclicked#0;class#Controller#0" />
-                <element signature="e#5714#5893#1" />
-                <element signature="e#6040#6128#1" />
+                <element signature="e#4846#5014#1" />
+                <element signature="e#5159#5236#1" />
                 <element signature="e#6877#6977#1" />
                 <element signature="e#6983#7061#1" />
-                <element signature="method#dfsclicked#0;class#Controller#0" />
-                <element signature="e#7152#7331#1" />
-                <element signature="e#7478#7566#1" />
                 <element signature="e#8316#8416#1" />
                 <element signature="e#8422#8500#1" />
                 <element signature="method#drawLine#0;class#Controller#0" />
-                <element signature="method#BFS#0;class#Controller#0" />
-                <element signature="e#8650#10126#0" />
-                <element signature="e#9127#10079#1" />
-                <element signature="e#9644#9866#1" />
-                <element signature="e#9733#9848#1" />
                 <element signature="e#9913#9973#0" />
                 <element signature="e#10005#10065#0" />
-                <element signature="method#DFSUtil#0;class#Controller#0" />
                 <element signature="e#10890#10940#0" />
                 <element signature="e#10972#11016#0" />
-                <element signature="e#11106#11236#1" />
               </folding>
             </state>
           </provider>
@@ -159,7 +141,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556473307457" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556481757454" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -256,7 +238,7 @@
       <workItem from="1552207741298" duration="2730000" />
       <workItem from="1552245328135" duration="1103000" />
       <workItem from="1552293787272" duration="139000" />
-      <workItem from="1556470174462" duration="3608000" />
+      <workItem from="1556470174462" duration="6369000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -335,17 +317,24 @@
       <option name="project" value="LOCAL" />
       <updated>1556471503800</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="change the variables names">
+      <created>1556480477418</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1556480477418</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97491000" />
+    <option name="totallyTimeSpent" value="100252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1442953" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1442953" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -419,7 +408,8 @@
     <MESSAGE value="..." />
     <MESSAGE value="change the package system" />
     <MESSAGE value="add git ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="add git ignore" />
+    <MESSAGE value="change the variables names" />
+    <option name="LAST_COMMIT_MESSAGE" value="change the variables names" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -473,38 +463,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="209" lean-forward="true" selection-start-line="209" selection-end-line="209" />
+        <state relative-caret-position="294">
+          <caret line="166" column="32" lean-forward="true" selection-start-line="166" selection-start-column="32" selection-end-line="166" selection-end-column="32" />
           <folding>
-            <element signature="method#btnNewNodeClicked#0;class#Controller#0" />
             <element signature="e#1414#1615#1" />
-            <element signature="e#2252#2532#0" />
-            <element signature="method#btnRestartClicked#0;class#Controller#0" />
-            <element signature="method#Finishclicked#0;class#Controller#0" />
-            <element signature="e#4221#4459#1" />
-            <element signature="method#helpClicked#0;class#Controller#0" />
-            <element signature="method#bfsclicked#0;class#Controller#0" />
-            <element signature="e#5714#5893#1" />
-            <element signature="e#6040#6128#1" />
+            <element signature="e#4846#5014#1" />
+            <element signature="e#5159#5236#1" />
             <element signature="e#6877#6977#1" />
             <element signature="e#6983#7061#1" />
-            <element signature="method#dfsclicked#0;class#Controller#0" />
-            <element signature="e#7152#7331#1" />
-            <element signature="e#7478#7566#1" />
             <element signature="e#8316#8416#1" />
             <element signature="e#8422#8500#1" />
             <element signature="method#drawLine#0;class#Controller#0" />
-            <element signature="method#BFS#0;class#Controller#0" />
-            <element signature="e#8650#10126#0" />
-            <element signature="e#9127#10079#1" />
-            <element signature="e#9644#9866#1" />
-            <element signature="e#9733#9848#1" />
             <element signature="e#9913#9973#0" />
             <element signature="e#10005#10065#0" />
-            <element signature="method#DFSUtil#0;class#Controller#0" />
             <element signature="e#10890#10940#0" />
             <element signature="e#10972#11016#0" />
-            <element signature="e#11106#11236#1" />
           </folding>
         </state>
       </provider>

@@ -32,6 +32,7 @@ public class MainPage {
 
     private boolean waitingForPlacement = false;
     private int index = 0;
+    private ChoiceDialog choiceDialog;
     private boolean finished = false;
     private LinkedList<Node> nodeLine = new LinkedList<>();
     private LinkedList<Double> xDir = new LinkedList<>();
@@ -69,11 +70,11 @@ public class MainPage {
                             nodeLine.add(node);
                             drawLine();
                         } catch (Exception e) {
-                            System.out.println(e);
+                            //todo
+                            System.out.println(e.toString());
                         }
                     }
                 });
-
                 customPane.getChildren().add(node);
             }
         });
@@ -128,65 +129,50 @@ public class MainPage {
         alert.showAndWait();
     }
 
-    @FXML
-    private void BFS_Handler() {
-
-        for (int i = 0; i <nodesList.size() ; i++) {
-            nodesList.get(i).get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+    private void stillDontKnow(){
+        for (LinkedList<Node> nodes : nodesList) {
+            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
         }
         LinkedList<String> options = new LinkedList<>();
         options.add("random vertex");
-        for (int i = 0; i < nodesList.size(); i++) {
-            options.add(String.valueOf(nodesList.get(i).get(0).getIndex()));
+        for (LinkedList<Node> nodes : nodesList) {
+            options.add(String.valueOf(nodes.get(0).getIndex()));
         }
-        ChoiceDialog d = new ChoiceDialog(options.get(0), options);
-        d.setTitle("options");
-        d.setHeaderText("Getting start vertex");
-        d.setContentText("please select to start from which vertex : ");
-        d.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        d.setX(customPane.getWidth() / 2 + 320);
-        d.setY(customPane.getHeight() / 2 - 50);
-        Stage stage = (Stage) d.getDialogPane().getScene().getWindow();
+        choiceDialog = new ChoiceDialog(options.get(0), options);
+        choiceDialog.setTitle("options");
+        choiceDialog.setHeaderText("Getting start vertex");
+        choiceDialog.setContentText("please select to start from which vertex : ");
+        choiceDialog.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialog.setX(customPane.getWidth() / 2 + 320);
+        choiceDialog.setY(customPane.getHeight() / 2 - 50);
+        Stage stage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
         stage.getIcons().add(image);
+    }
 
-        if (!d.showAndWait().isPresent()) return;
-        else if (d.getSelectedItem() == "random vertex") {
+    @FXML
+    private void BFS_Handler() {
+        //todo
+        stillDontKnow();
+        if (!choiceDialog.showAndWait().isPresent()) return;
+        else if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
             BFS_Algorithm(rand.nextInt(nodesList.size()));
         } else {
-            BFS_Algorithm(Integer.parseInt(d.getSelectedItem().toString()));
+            BFS_Algorithm(Integer.parseInt(choiceDialog.getSelectedItem().toString()));
         }
     }
 
     @FXML
     private void DFS_Handler() {
-
-        for (int i = 0; i <nodesList.size() ; i++) {
-            nodesList.get(i).get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        }
-        LinkedList<String> options = new LinkedList<>();
-        options.add("random vertex");
-        for (int i = 0; i < nodesList.size(); i++) {
-            options.add(String.valueOf(nodesList.get(i).get(0).getIndex()));
-        }
-        ChoiceDialog d = new ChoiceDialog(options.get(0), options);
-        d.setTitle("options");
-        d.setHeaderText("Getting start vertex");
-        d.setContentText("please select to start from which vertex : ");
-        d.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        d.setX(customPane.getWidth() / 2 + 320);
-        d.setY(customPane.getHeight() / 2 - 50 );
-        Stage stage = (Stage) d.getDialogPane().getScene().getWindow();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
-        stage.getIcons().add(image);
-
-        if (!d.showAndWait().isPresent()) return;
-        else if (d.getSelectedItem() == "random vertex") {
+        //todo
+        stillDontKnow();
+        if (!choiceDialog.showAndWait().isPresent()) return;
+        else if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
             DFS_Algorithm(rand.nextInt(nodesList.size()));
         } else {
-            DFS_Algorithm(Integer.parseInt(d.getSelectedItem().toString()));
+            DFS_Algorithm(Integer.parseInt(choiceDialog.getSelectedItem().toString()));
         }
     }
 
@@ -236,9 +222,7 @@ public class MainPage {
                         .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
                                 " -fx-text-fill: #fff ; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
-                Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
-                while (i.hasNext()) {
-                    Node n = i.next();
+                for (Node n : nodesList.get(finalS[0])) {
                     if (!visited[n.getIndex()]) {
                         visited[n.getIndex()] = true;
                         queue.add(n);
@@ -282,9 +266,7 @@ public class MainPage {
             e.printStackTrace();
         }
 
-        Iterator<Node> i = nodesList.get(v).listIterator();
-        while (i.hasNext()) {
-            Node n = i.next();
+        for (Node n : nodesList.get(v)) {
             if (!visited[n.getIndex()])
                 DFSUtil(n.getIndex(), visited);
         }
