@@ -23,38 +23,38 @@
                <!--<Font name="Times New Roman bold" size="40"/>-->
                <!--</font>-->
                <!--</Label>-->
-               <!--<Button fx:id="btnNewNode" onAction="#btnNewNodeClicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="start" GridPane.columnIndex="0" GridPane.rowIndex="5" />-->
-               <Button fx:id="btnNewNode" onAction="#btnNewNodeClicked" prefWidth="95" styleClass="bevel-grey" text="Start">
+               <!--<Button fx:id="btnNewNode" onAction="#newNodeHandler" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="start" GridPane.columnIndex="0" GridPane.rowIndex="5" />-->
+               <Button fx:id="btnNewNode" onAction="#newNodeHandler" prefWidth="95" styleClass="bevel-grey" text="Start">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-               <!--<Button fx:id="restart" onAction="#btnRestartClicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="restart" GridPane.columnIndex="0" GridPane.rowIndex="6" />-->
-               <Button fx:id="restart" onAction="#btnRestartClicked" prefWidth="95" styleClass="bevel-grey" text="Restart">
+               <!--<Button fx:id="restart" onAction="#restartHandler" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="restart" GridPane.columnIndex="0" GridPane.rowIndex="6" />-->
+               <Button fx:id="restart" onAction="#restartHandler" prefWidth="95" styleClass="bevel-grey" text="Restart">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-               <!--<Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="finish" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="7" />-->
-               <Button fx:id="btnFinish" onMouseClicked="#Finishclicked" prefWidth="95" styleClass="bevel-grey" text="Finish" visible="false">
+               <!--<Button fx:id="btnFinish" onMouseClicked="#finishHandler" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="finish" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="7" />-->
+               <Button fx:id="btnFinish" onMouseClicked="#finishHandler" prefWidth="95" styleClass="bevel-grey" text="Finish" visible="false">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-               <!--<Button fx:id="btnBfs" onMouseClicked="#bfsclicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="bfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="17" />-->
-               <Button fx:id="btnBfs" onMouseClicked="#bfsclicked" prefWidth="95" styleClass="bevel-grey" text="BFS" visible="false">
+               <!--<Button fx:id="btnBfs" onMouseClicked="#BFS_Handler" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="bfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="17" />-->
+               <Button fx:id="btnBfs" onMouseClicked="#BFS_Handler" prefWidth="95" styleClass="bevel-grey" text="BFS" visible="false">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-               <!--<Button fx:id="btnDfs" onMouseClicked="#dfsclicked" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="dfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="18" />-->
-               <Button fx:id="btnDfs" onMouseClicked="#dfsclicked" prefWidth="95" styleClass="bevel-grey" text="DFS" visible="false">
+               <!--<Button fx:id="btnDfs" onMouseClicked="#DFS_Handler" prefWidth="95" style="-fx-background-color:linear-gradient(#90cbf0, #0490ea),radial-gradient(center 50% -40%, radius 200%, #90cbf0 45%, #0490ea 50%);                            -fx-background-radius: 6, 5;-fx-background-insets: 0, 1;-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                            -fx-text-fill: #395306;" text="dfs" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="18" />-->
+               <Button fx:id="btnDfs" onMouseClicked="#DFS_Handler" prefWidth="95" styleClass="bevel-grey" text="DFS" visible="false">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
    
-               <Button fx:id="help" onMouseClicked="#helpClicked" prefWidth="95" styleClass="bevel-grey" text="Help">
+               <Button fx:id="help" onMouseClicked="#helpHandler" prefWidth="95" styleClass="bevel-grey" text="Help">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>

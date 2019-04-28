@@ -28,10 +28,7 @@ public class MainPage {
     private Button btnDfs;
     @FXML
     private Pane customPane;
-    @FXML
-    private Button restart;
-    @FXML
-    private Button help;
+
 
     private boolean waitingForPlacement = false;
     private int index = 0;
@@ -43,7 +40,7 @@ public class MainPage {
 
 
     @FXML
-    private void btnNewNodeClicked() {
+    private void newNodeHandler() {
 
         btnNewNode.setOnMouseClicked(e -> btnNewNode.setVisible(false));
         waitingForPlacement = true;
@@ -83,7 +80,7 @@ public class MainPage {
     }
 
     @FXML
-    private void btnRestartClicked() {
+    private void restartHandler() {
         waitingForPlacement = false;
         btnNewNode.setVisible(true);
         btnFinish.setVisible(true);
@@ -100,7 +97,7 @@ public class MainPage {
     }
 
     @FXML
-    private void Finishclicked() {
+    private void finishHandler() {
         if (!nodesList.isEmpty()) {
             waitingForPlacement = false;
             btnNewNode.setVisible(false);
@@ -113,7 +110,7 @@ public class MainPage {
     }
 
     @FXML
-    private void helpClicked() {
+    private void helpHandler() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Help");
         alert.setHeaderText("Information");
@@ -132,7 +129,7 @@ public class MainPage {
     }
 
     @FXML
-    private void bfsclicked() {
+    private void BFS_Handler() {
 
         for (int i = 0; i <nodesList.size() ; i++) {
             nodesList.get(i).get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
@@ -156,14 +153,14 @@ public class MainPage {
         if (!d.showAndWait().isPresent()) return;
         else if (d.getSelectedItem() == "random vertex") {
             Random rand = new Random();
-            BFS(rand.nextInt(nodesList.size()));
+            BFS_Algorithm(rand.nextInt(nodesList.size()));
         } else {
-            BFS(Integer.parseInt(d.getSelectedItem().toString()));
+            BFS_Algorithm(Integer.parseInt(d.getSelectedItem().toString()));
         }
     }
 
     @FXML
-    private void dfsclicked() {
+    private void DFS_Handler() {
 
         for (int i = 0; i <nodesList.size() ; i++) {
             nodesList.get(i).get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
@@ -187,9 +184,9 @@ public class MainPage {
         if (!d.showAndWait().isPresent()) return;
         else if (d.getSelectedItem() == "random vertex") {
             Random rand = new Random();
-            DFS(rand.nextInt(nodesList.size()));
+            DFS_Algorithm(rand.nextInt(nodesList.size()));
         } else {
-            DFS(Integer.parseInt(d.getSelectedItem().toString()));
+            DFS_Algorithm(Integer.parseInt(d.getSelectedItem().toString()));
         }
     }
 
@@ -211,7 +208,7 @@ public class MainPage {
         node2.toFront();
     }
 
-    private void BFS(int s) {
+    private void BFS_Algorithm(int s) {
 
         Thread thread;
 
@@ -221,7 +218,7 @@ public class MainPage {
         thread = new Thread(() -> {
             btnDfs.setVisible(false);
 
-            boolean visited[] = new boolean[nodesList.size()];
+            boolean[] visited = new boolean[nodesList.size()];
 
             LinkedList<Node> queue = new LinkedList<>();
 
@@ -261,8 +258,8 @@ public class MainPage {
         thread.start();
     }
 
-    private void DFS(int v) {
-        boolean visited[] = new boolean[nodesList.size()];
+    private void DFS_Algorithm(int v) {
+        boolean[] visited = new boolean[nodesList.size()];
         Thread dfsThread;
         dfsThread = new Thread(() -> {
             btnBfs.setVisible(false);
@@ -273,7 +270,7 @@ public class MainPage {
         dfsThread.start();
     }
 
-    private void DFSUtil(int v, boolean visited[]) {
+    private void DFSUtil(int v, boolean[] visited) {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
         nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
