@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graph_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Graph_Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,17 +24,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+            <state relative-caret-position="238">
+              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+            <state relative-caret-position="250">
+              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,45 +46,16 @@
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="167" column="10" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="10" />
-              <folding>
-                <element signature="e#1465#1666#1" />
-                <element signature="e#2303#2583#0" />
-                <element signature="method#restartHandler#0;class#MainPage#0" />
-                <element signature="method#finishHandler#0;class#MainPage#0" />
-                <element signature="e#3387#3625#1" />
-                <element signature="method#helpHandler#0;class#MainPage#0" />
-                <element signature="method#stillDontKnow#0;class#MainPage#0" />
-                <element signature="e#4906#5074#1" />
-                <element signature="e#5219#5296#1" />
-                <element signature="e#6247#6357#1" />
-                <element signature="e#6363#6462#1" />
-                <element signature="e#6682#6792#1" />
-                <element signature="e#6798#6897#1" />
-                <element signature="method#drawLine#0;class#MainPage#0" />
-                <element signature="method#BFS_Algorithm#0;class#MainPage#0" />
-                <element signature="e#8006#9482#0" />
-                <element signature="e#8483#9435#1" />
-                <element signature="e#9000#9222#1" />
-                <element signature="e#9089#9204#1" />
-                <element signature="e#9269#9329#0" />
-                <element signature="e#9361#9421#0" />
-                <element signature="method#DFS_Algorithm#0;class#MainPage#0" />
-                <element signature="e#9672#9830#0" />
-                <element signature="method#DFSUtil#0;class#MainPage#0" />
-                <element signature="e#10272#10322#0" />
-                <element signature="e#10354#10398#0" />
-                <element signature="e#10440#10539#1" />
-              </folding>
+            <state relative-caret-position="296">
+              <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -101,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="25" selection-start-column="25" selection-end-column="25" />
+            <state relative-caret-position="304">
+              <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -115,6 +86,7 @@
       <list>
         <option value="CSS File" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -124,6 +96,8 @@
       <find>restart</find>
       <find>public</find>
       <find>png</find>
+      <find>delay</find>
+      <find>sleep</find>
     </findStrings>
     <replaceStrings>
       <replace>private</replace>
@@ -144,14 +118,15 @@
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/ui/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/algo.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/ShortestPath.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithm.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage2.fxml" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
       </list>
     </option>
   </component>
@@ -199,6 +174,21 @@
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -209,11 +199,15 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556528422678" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556537582271" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/Users/Amir/Downloads/jfoenix-8.0.8.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet.css" />
   </component>
@@ -321,7 +315,7 @@
       <workItem from="1552245328135" duration="1103000" />
       <workItem from="1552293787272" duration="139000" />
       <workItem from="1556470174462" duration="6492000" />
-      <workItem from="1556524457634" duration="3049000" />
+      <workItem from="1556524457634" duration="8322000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -414,11 +408,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556485427120</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="...">
+      <created>1556529131383</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1556529131383</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103424000" />
+    <option name="totallyTimeSpent" value="108697000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -442,11 +443,11 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49597314" weight="0.32152975" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.39858156" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49597314" visible="true" weight="0.32152975" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.398017" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32827735" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
@@ -504,12 +505,12 @@
     <MESSAGE value="title changed" />
     <MESSAGE value="delete dialog" />
     <MESSAGE value="draw Line" />
-    <MESSAGE value="..." />
     <MESSAGE value="change the package system" />
     <MESSAGE value="add git ignore" />
     <MESSAGE value="change the variables names" />
     <MESSAGE value="some change" />
-    <option name="LAST_COMMIT_MESSAGE" value="some change" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -533,13 +534,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/sd.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -547,73 +541,153 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" selection-start-column="25" selection-end-column="25" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="167" column="10" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="10" />
-          <folding>
-            <element signature="e#1465#1666#1" />
-            <element signature="e#2303#2583#0" />
-            <element signature="method#restartHandler#0;class#MainPage#0" />
-            <element signature="method#finishHandler#0;class#MainPage#0" />
-            <element signature="e#3387#3625#1" />
-            <element signature="method#helpHandler#0;class#MainPage#0" />
-            <element signature="method#stillDontKnow#0;class#MainPage#0" />
-            <element signature="e#4906#5074#1" />
-            <element signature="e#5219#5296#1" />
-            <element signature="e#6247#6357#1" />
-            <element signature="e#6363#6462#1" />
-            <element signature="e#6682#6792#1" />
-            <element signature="e#6798#6897#1" />
-            <element signature="method#drawLine#0;class#MainPage#0" />
-            <element signature="method#BFS_Algorithm#0;class#MainPage#0" />
-            <element signature="e#8006#9482#0" />
-            <element signature="e#8483#9435#1" />
-            <element signature="e#9000#9222#1" />
-            <element signature="e#9089#9204#1" />
-            <element signature="e#9269#9329#0" />
-            <element signature="e#9361#9421#0" />
-            <element signature="method#DFS_Algorithm#0;class#MainPage#0" />
-            <element signature="e#9672#9830#0" />
-            <element signature="method#DFSUtil#0;class#MainPage#0" />
-            <element signature="e#10272#10322#0" />
-            <element signature="e#10354#10398#0" />
-            <element signature="e#10440#10539#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        <state relative-caret-position="250">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="15" />
+          <folding>
+            <element signature="n#Pane#0;n#center#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#BorderPane.margin#0;n#Pane#0;n#center#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#Button#1;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#VBox.margin#0;n#Button#1;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#Button#2;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#VBox.margin#0;n#Button#2;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#Button#3;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#VBox.margin#0;n#Button#3;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#Button#4;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#VBox.margin#0;n#Button#4;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#Button#5;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#VBox.margin#0;n#Button#5;n#children#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+            <element signature="n#BorderPane.margin#0;n#VBox#0;n#left#0;n#BorderPane#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage2.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Graph_Project</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>jfoenix-8.0.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

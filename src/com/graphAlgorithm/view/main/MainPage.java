@@ -1,5 +1,8 @@
 package com.graphAlgorithm.view.main;
 
+import com.jfoenix.controls.JFXSlider;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -10,7 +13,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import com.graphAlgorithm.view.other.Node;
+import javafx.util.Callback;
 
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -19,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class MainPage {
 
     @FXML
-    private Button btnNewNode;
+    private JFXSlider slider;
     @FXML
     private Button btnFinish;
     @FXML
@@ -39,13 +44,31 @@ public class MainPage {
     private LinkedList<Double> yDir = new LinkedList<>();
     private LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
 
-
     @FXML
-    private void newNodeHandler() {
+    void initialize(){
+        //slider custom text
+        slider.setValueFactory(new Callback<JFXSlider, StringBinding>() {
+            @Override
+            public StringBinding call(JFXSlider arg0) {
+                return Bindings.createStringBinding(new java.util.concurrent.Callable<String>(){
+                    @Override
+                    public String call() throws Exception {
+                        DecimalFormat df = new DecimalFormat("#x");
+                        return df.format(slider.getValue());
+                    }
+                }, slider.valueProperty());
+            }
+        });
 
-        btnNewNode.setOnMouseClicked(e -> btnNewNode.setVisible(false));
+
+
+
+        btnDfs.setVisible(false);
+        btnBfs.setVisible(false);
+
         waitingForPlacement = true;
         customPane.setOnMouseClicked(event -> {
+            btnFinish.setDisable(false);
             double centerX = event.getX() - 20;
             double centerY = event.getY() - 20;
             for (int i = 0; i < xDir.size(); i++) {
@@ -83,8 +106,7 @@ public class MainPage {
     @FXML
     private void restartHandler() {
         waitingForPlacement = false;
-        btnNewNode.setVisible(true);
-        btnFinish.setVisible(true);
+        btnFinish.setDisable(true);
         btnDfs.setVisible(false);
         btnBfs.setVisible(false);
         nodesList.clear();
@@ -93,21 +115,19 @@ public class MainPage {
         yDir.clear();
         index = 0;
         finished = false;
-        btnFinish.setVisible(false);
         customPane.getChildren().clear();
+        initialize();
     }
 
     @FXML
     private void finishHandler() {
         if (!nodesList.isEmpty()) {
             waitingForPlacement = false;
-            btnNewNode.setVisible(false);
-            btnFinish.setVisible(false);
+            btnFinish.setDisable(true);
             btnDfs.setVisible(true);
             btnBfs.setVisible(true);
             finished = true;
         }
-
     }
 
     @FXML
@@ -230,11 +250,10 @@ public class MainPage {
                         queue.add(n);
                     }
                 }
-
                 // delay
                 try {
-                    Thread.sleep(1000);
-
+                    Thread.sleep((long)(1000*(1/slider.getValue())));
+                    System.out.println((long)(1000*(1/slider.getValue())));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -263,7 +282,8 @@ public class MainPage {
                 " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
         try {
-            TimeUnit.SECONDS.sleep(1);
+            Thread.sleep((long)(1000*(1/slider.getValue())));
+            System.out.println(1/slider.getValue());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
