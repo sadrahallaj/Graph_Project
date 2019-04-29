@@ -1,25 +1,30 @@
 package com.graphAlgorithm.view.main;
 
+import com.jfoenix.controls.JFXSlider;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import com.graphAlgorithm.view.other.Node;
 
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class MainPage {
 
     @FXML
-    private Button btnNewNode;
+    private JFXSlider slider;
+    @FXML
+    private VBox speedControl;
     @FXML
     private Button btnFinish;
     @FXML
@@ -28,6 +33,8 @@ public class MainPage {
     private Button btnDfs;
     @FXML
     private Pane customPane;
+    @FXML
+    private Button btnShortestPath;
 
 
     private boolean waitingForPlacement = false;
@@ -39,13 +46,32 @@ public class MainPage {
     private LinkedList<Double> yDir = new LinkedList<>();
     private LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
 
+    private void setAlgoButVisible(boolean b){
+        btnDfs.setVisible(b);
+        btnBfs.setVisible(b);
+        btnShortestPath.setVisible(b);
+        speedControl.setVisible(b);
+    }
+
+    private void setAlgoButDisable(boolean b){
+        btnDfs.setDisable(b);
+        btnBfs.setDisable(b);
+        btnShortestPath.setDisable(b);
+    }
 
     @FXML
-    private void newNodeHandler() {
+    void initialize(){
+        //slider custom text
+        slider.setValueFactory(arg0 -> Bindings.createStringBinding(() -> {
+            DecimalFormat df = new DecimalFormat("#x");
+            return df.format(slider.getValue());
+        }, slider.valueProperty()));
 
-        btnNewNode.setOnMouseClicked(e -> btnNewNode.setVisible(false));
+        setAlgoButVisible(false);
+
         waitingForPlacement = true;
         customPane.setOnMouseClicked(event -> {
+            btnFinish.setDisable(false);
             double centerX = event.getX() - 20;
             double centerY = event.getY() - 20;
             for (int i = 0; i < xDir.size(); i++) {
@@ -83,31 +109,26 @@ public class MainPage {
     @FXML
     private void restartHandler() {
         waitingForPlacement = false;
-        btnNewNode.setVisible(true);
-        btnFinish.setVisible(true);
-        btnDfs.setVisible(false);
-        btnBfs.setVisible(false);
+        btnFinish.setDisable(true);
+        setAlgoButVisible(false);
         nodesList.clear();
         nodeLine.clear();
         xDir.clear();
         yDir.clear();
         index = 0;
         finished = false;
-        btnFinish.setVisible(false);
         customPane.getChildren().clear();
+        initialize();
     }
 
     @FXML
     private void finishHandler() {
         if (!nodesList.isEmpty()) {
             waitingForPlacement = false;
-            btnNewNode.setVisible(false);
-            btnFinish.setVisible(false);
-            btnDfs.setVisible(true);
-            btnBfs.setVisible(true);
+            btnFinish.setDisable(true);
+            setAlgoButVisible(true);
             finished = true;
         }
-
     }
 
     @FXML
@@ -202,7 +223,7 @@ public class MainPage {
         finalS[0] = s;
 
         thread = new Thread(() -> {
-            btnDfs.setVisible(false);
+            setAlgoButDisable(true);
 
             boolean[] visited = new boolean[nodesList.size()];
 
@@ -230,16 +251,14 @@ public class MainPage {
                         queue.add(n);
                     }
                 }
-
                 // delay
                 try {
-                    Thread.sleep(1000);
-
+                    Thread.sleep((long)(1000*(1/slider.getValue())));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            btnDfs.setVisible(true);
+            setAlgoButDisable(false);
         });
         thread.start();
     }
@@ -248,9 +267,9 @@ public class MainPage {
         boolean[] visited = new boolean[nodesList.size()];
         Thread dfsThread;
         dfsThread = new Thread(() -> {
-            btnBfs.setVisible(false);
+            setAlgoButDisable(true);
             DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
-            btnBfs.setVisible(true);
+            setAlgoButDisable(false);
         });
 
         dfsThread.start();
@@ -263,7 +282,7 @@ public class MainPage {
                 " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
         try {
-            TimeUnit.SECONDS.sleep(1);
+            Thread.sleep((long)(1000*(1/slider.getValue())));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

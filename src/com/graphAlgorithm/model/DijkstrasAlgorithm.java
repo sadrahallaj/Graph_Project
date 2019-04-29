@@ -12,6 +12,7 @@ public class DijkstrasAlgorithm {
         this.source = source;
 
         //todo
+        //https://www.youtube.com/watch?v=k1kLCB7AZbM
 
         LinkedList<Pair<Integer,Integer>> data = new LinkedList<>();
         this.data = data;
