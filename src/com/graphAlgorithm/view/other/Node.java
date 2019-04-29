@@ -1,4 +1,4 @@
-package sample;
+package com.graphAlgorithm.view.other;
 
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
