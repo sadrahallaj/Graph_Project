@@ -24,45 +24,53 @@
         <children>
             <VBox prefHeight="749.0" prefWidth="273.0">
                 <children>
-                    <JFXButton onAction="#restartHandler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red;" text="Restart">
+                    <JFXButton onAction="#restartHandler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Restart">
                         <VBox.margin>
-                            <Insets bottom="2.0" top="2.0" />
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </VBox.margin>
                     </JFXButton>
-                    <JFXButton fx:id="btnFinish" disable="true" onAction="#finishHandler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red;" text="Finnish">
+                    <JFXButton fx:id="btnFinish" disable="true" onAction="#finishHandler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Finnish">
                         <VBox.margin>
-                            <Insets bottom="2.0" top="2.0" />
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </VBox.margin>
                     </JFXButton>
-                    <JFXButton fx:id="btnBfs" onAction="#BFS_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red;" text="BFS">
+                    <JFXButton fx:id="btnBfs" onAction="#BFS_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="BFS">
                         <VBox.margin>
-                            <Insets bottom="2.0" top="2.0" />
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </VBox.margin>
                     </JFXButton>
-                    <JFXButton fx:id="btnDfs" onAction="#DFS_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red;" text="DFS">
+                    <JFXButton fx:id="btnDfs" onAction="#DFS_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="DFS">
                         <VBox.margin>
-                            <Insets bottom="2.0" top="2.0" />
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </VBox.margin>
                     </JFXButton>
-                    <VBox prefHeight="70.0" prefWidth="206.0" style="-fx-background-color: red; -fx-background-radius: 5;">
+               <JFXButton fx:id="btnShortestPath" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Shortest Path">
+                  <VBox.margin>
+                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                  </VBox.margin>
+               </JFXButton>
+                    <VBox fx:id="speedControl" prefHeight="70.0" prefWidth="206.0" style="-fx-background-color: red; -fx-background-radius: 0;">
                         <children>
                             <Label alignment="CENTER" prefHeight="21.0" prefWidth="364.0" text="previow speed:">
                                 <font>
                                     <Font name="System Bold" size="20.0" />
                                 </font>
                             </Label>
-                            <JFXSlider fx:id="slider" blockIncrement="1.0" max="4.0" min="0.1" prefHeight="43.0" prefWidth="206.0" value="1.0" />
+                            <JFXSlider fx:id="slider" blockIncrement="1.0" majorTickUnit="0.5" max="4.0" min="0.1" prefHeight="43.0" prefWidth="206.0" value="1.0">
+                        <VBox.margin>
+                           <Insets left="5.0" right="5.0" />
+                        </VBox.margin></JFXSlider>
                         </children>
                         <VBox.margin>
-                            <Insets bottom="2.0" top="2.0" />
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </VBox.margin>
                     </VBox>
                 </children>
                 <GridPane.margin>
-                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    <Insets bottom="5.0" left="5.0" right="5.0" />
                 </GridPane.margin>
             </VBox>
-            <Pane fx:id="customPane" prefHeight="723.0" prefWidth="417.0" style="-fx-background-color: white; -fx-background-color: #fff3ed;" GridPane.columnIndex="1">
+            <Pane fx:id="customPane" prefHeight="723.0" prefWidth="417.0" style="-fx-background-color: white; -fx-background-color: #fff3ed; -fx-border-width: 2; -fx-border-style: solid;" GridPane.columnIndex="1">
             </Pane>
         </children>
     </GridPane>
