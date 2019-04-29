@@ -119,9 +119,9 @@ public class MainPage {
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/inf.png"));
         stage.getIcons().add(image);
         alert.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/help.png"))));
-        alert.setContentText("Create new vertex: In order to create a new vertex click on start button and for more vertices just click on screen.\n" +
+        alert.setContentText("Create new vertex: In order to create first new vertex click on start button and for more vertices just click on screen.\n" +
                 "\n" +
-                "Create new connection: If you want to create a new connection between two vertices , first click on the desired vertex and then select the second.\n" +
+                "Create new connection: If you want to create first new connection between two vertices , first click on the desired vertex and then select the second.\n" +
                 "\n" +
                 "When your graph is completed, click on the finish button and then choose the type of search (dfs or bfs).\n" +
                 "\n" +
@@ -222,7 +222,9 @@ public class MainPage {
                         .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
                                 " -fx-text-fill: #fff ; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
-                for (Node n : nodesList.get(finalS[0])) {
+                Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
+                while (i.hasNext()) {
+                    Node n = i.next();
                     if (!visited[n.getIndex()]) {
                         visited[n.getIndex()] = true;
                         queue.add(n);

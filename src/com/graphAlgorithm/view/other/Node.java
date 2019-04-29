@@ -15,25 +15,11 @@ public class Node extends Button {
         this.setLayoutX(centerX);
         this.setLayoutY(centerY);
         this.setStyle("-fx-background-color: #d0d0d0; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-
     }
 
     public int getIndex() {
         return index;
     }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    public boolean isVisited() {
-        return isVisited;
-    }
-
-    public void setVisited(boolean visited) {
-        isVisited = visited;
-    }
-
 
 }
 

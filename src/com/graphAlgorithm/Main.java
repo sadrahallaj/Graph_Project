@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/com/graphAlgorithm/view/main/mainPage.fxml"));
-        primaryStage.setTitle("Breadth First Search or Depth First Search for a Graph");
+        primaryStage.setTitle("Breadth First Search or Depth First Search for first Graph");
         Image image = new Image(getClass().getResourceAsStream("/source/graph.png"));
         primaryStage.getIcons().add(image);
         primaryStage.setScene(new Scene(root, 1000, 960));
