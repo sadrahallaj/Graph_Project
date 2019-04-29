@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Graph_Project:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Graph_Project_jar</output-path>
+    <root id="archive" name="Graph_Project.jar">
+      <element id="module-output" name="Graph_Project" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
