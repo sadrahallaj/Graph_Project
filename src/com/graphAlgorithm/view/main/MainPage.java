@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import com.graphAlgorithm.view.other.Node;
-
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
