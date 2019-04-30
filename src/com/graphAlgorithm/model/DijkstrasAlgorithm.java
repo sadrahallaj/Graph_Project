@@ -11,7 +11,6 @@ public class DijkstrasAlgorithm {
     public void algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
         this.source = source;
 
-        //todo
         //https://www.youtube.com/watch?v=k1kLCB7AZbM
 
         LinkedList<Pair<Integer,Integer>> data = new LinkedList<>();
@@ -49,8 +48,10 @@ public class DijkstrasAlgorithm {
             for (int i = 0; i < adjList.get(currentIndex).size()  ; i++) {
                 if(adjList.get(currentIndex).getFirst().getFirst() == Integer.MIN_VALUE) break;
                 Pair tmp = adjList.get(currentIndex).get(i);
-                data.get((Integer) tmp.getFirst()).setFirst((Integer) tmp.getSecond() + data.get(currentIndex).getFirst());
-                data.get((Integer) tmp.getFirst()).setSecond(currentIndex);
+                if((Integer) tmp.getSecond() + data.get(currentIndex).getFirst() < data.get(currentIndex).getFirst()){
+                    data.get((Integer) tmp.getFirst()).setFirst((Integer) tmp.getSecond() + data.get(currentIndex).getFirst());
+                    data.get((Integer) tmp.getFirst()).setSecond(currentIndex);
+                }
             }
 
             visitedVertices[currentIndex] = true ;
@@ -66,6 +67,7 @@ public class DijkstrasAlgorithm {
     public LinkedList<Integer> shortesPath(int d){
 
         //todo
+
 
         return new LinkedList<>();
     }
