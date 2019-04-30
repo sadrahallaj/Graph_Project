@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class DijkstrasAlgorithm {
     public LinkedList<Pair<Integer,Integer>> data;
-    private int source;
+    public int source;
 
     public void algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
         this.source = source;
@@ -48,7 +48,7 @@ public class DijkstrasAlgorithm {
             for (int i = 0; i < adjList.get(currentIndex).size()  ; i++) {
                 if(adjList.get(currentIndex).getFirst().getFirst() == Integer.MIN_VALUE) break;
                 Pair tmp = adjList.get(currentIndex).get(i);
-                if((Integer) tmp.getSecond() + data.get(currentIndex).getFirst() < data.get(currentIndex).getFirst()){
+                if((Integer) tmp.getSecond() + data.get(currentIndex).getFirst() < data.get((Integer) tmp.getSecond()).getFirst()){
                     data.get((Integer) tmp.getFirst()).setFirst((Integer) tmp.getSecond() + data.get(currentIndex).getFirst());
                     data.get((Integer) tmp.getFirst()).setSecond(currentIndex);
                 }
@@ -67,9 +67,15 @@ public class DijkstrasAlgorithm {
     public LinkedList<Integer> shortesPath(int d){
 
         //todo
-
-
-        return new LinkedList<>();
+        int currentVertex = d ;
+        LinkedList<Integer> path = new LinkedList<>();
+        path.add(d);
+        while (currentVertex != source){
+           if(data.get(currentVertex).getSecond() == -1 ) break;
+           currentVertex = data.get(currentVertex).getSecond();
+           path.add(currentVertex);
+        }
+        return path;
     }
 
 

@@ -31,6 +31,7 @@ public class TestAlgo {
         DijkstrasAlgorithm dijkstrasAlgorithm = new DijkstrasAlgorithm();
         dijkstrasAlgorithm.algorithm(adjList , 0);
 //        System.out.println(dijkstrasAlgorithm.data);
+        dijkstrasAlgorithm.shortesPath(3);
     }
 
 
