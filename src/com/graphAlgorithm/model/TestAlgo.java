@@ -14,7 +14,6 @@ public class TestAlgo {
         adjList.add(tmp);
 
         tmp = new LinkedList<>();
-        tmp.add(new Pair<>(Integer.MIN_VALUE, Integer.MIN_VALUE));
         adjList.add(tmp);
 
         tmp = new LinkedList<>();
@@ -23,7 +22,6 @@ public class TestAlgo {
         adjList.add(tmp);
 
         tmp = new LinkedList<>();
-        tmp.add(new Pair<>(Integer.MIN_VALUE,Integer.MIN_VALUE));
         adjList.add(tmp);
 
         tmp = new LinkedList<>();
@@ -32,8 +30,7 @@ public class TestAlgo {
 
         DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
         LinkedList<Pair<Integer,Integer>> b  = dijkstraAlgorithm.algorithm(adjList , 0);
-//        System.out.println(dijkstraAlgorithm.data);
-        LinkedList<Integer> a = dijkstraAlgorithm.shortestPath(3);
+        LinkedList<Integer> a = dijkstraAlgorithm.shortestPath(1);
         for(int inA : a ){
             System.out.println(inA);
         }
