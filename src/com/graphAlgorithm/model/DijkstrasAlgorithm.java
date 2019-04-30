@@ -59,6 +59,7 @@ public class DijkstrasAlgorithm {
             for (boolean b:visitedVertices) {
                 if(b == false ) falseNumber++ ;
             }
+            if(falseNumber == 0 ) run = false ;
         }
 
         System.out.println(data.toString());
