@@ -4,17 +4,14 @@ import com.graphAlgorithm.view.other.Pair;
 
 import java.util.LinkedList;
 
-public class DijkstrasAlgorithm {
-    public LinkedList<Pair<Integer,Integer>> data;
-    public int source;
+class DijkstraAlgorithm {
+    private LinkedList<Pair<Integer,Integer>> data;
+    private int source;
 
-    public void algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
+    void algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
         this.source = source;
 
-        //https://www.youtube.com/watch?v=k1kLCB7AZbM
-
         LinkedList<Pair<Integer,Integer>> data = new LinkedList<>();
-        this.data = data;
         Boolean[] visitedVertices = new Boolean[adjList.size()];
 //        creating empty linklist(data):
         for (int i = 0; i < adjList.size() ; i++) {
@@ -58,13 +55,13 @@ public class DijkstrasAlgorithm {
 
             int falseNumber = 0 ;
             for (boolean b:visitedVertices) {
-                if(b == false ) falseNumber++ ;
+                if(!b) falseNumber++ ;
             }
             if(falseNumber == 0 ) run = false ;
         }
     }
 
-    public LinkedList<Integer> shortesPath(int d){
+    LinkedList<Integer> shortestPath(int d){
 
         //todo
         int currentVertex = d ;
