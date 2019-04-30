@@ -49,15 +49,15 @@ public class DijkstrasAlgorithm {
             for (int i = 0; i < adjList.get(currentIndex).size()  ; i++) {
                 if(adjList.get(currentIndex).getFirst().getFirst() == Integer.MIN_VALUE) break;
                 Pair tmp = adjList.get(currentIndex).get(i);
-                data.get((Integer) tmp.getFirst()).setFirst((Integer) tmp.getSecond());
+                data.get((Integer) tmp.getFirst()).setFirst((Integer) tmp.getSecond() + data.get(currentIndex).getFirst());
                 data.get((Integer) tmp.getFirst()).setSecond(currentIndex);
             }
 
             visitedVertices[currentIndex] = true ;
 
-            for (int i = 0; i < visitedVertices.length ; i++) {
-                if (visitedVertices[i] == false) break;
-                run = false ;
+            int falseNumber = 0 ;
+            for (boolean b:visitedVertices) {
+                if(b == false ) falseNumber++ ;
             }
         }
 
