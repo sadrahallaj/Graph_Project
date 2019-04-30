@@ -1,14 +1,14 @@
 package com.graphAlgorithm.model;
 
 import com.graphAlgorithm.view.other.Pair;
-
 import java.util.LinkedList;
 
 class DijkstraAlgorithm {
-    private LinkedList<Pair<Integer,Integer>> data;
+
+    private LinkedList<Pair<Integer,Integer>> data = new LinkedList<>();
     private int source;
 
-    void algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
+    LinkedList<Pair<Integer,Integer>> algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
         this.source = source;
 
         LinkedList<Pair<Integer,Integer>> data = new LinkedList<>();
@@ -59,8 +59,48 @@ class DijkstraAlgorithm {
             }
             if(falseNumber == 0 ) run = false ;
         }
+        this.data = data;
+        return data;
     }
 
+    LinkedList<Pair<Integer,Integer>> algorithm2(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
+        int s = source;
+        int visNum = 0;
+        int[] dist =new int[adjList.size()];
+        int[] prev =new int[adjList.size()];
+        boolean[] vis =new boolean[adjList.size()];
+
+        //initialise
+        for (int i=0; i<adjList.size(); i++){
+            dist[i] = Integer.MIN_VALUE;
+            prev[i] = -1;
+            vis[i] = false;
+        }
+        dist[s] = 0;
+
+        while(true){
+            //check all the source edges
+            for (int i=0; i<adjList.get(s).size(); i++){
+                //check all edges
+            }
+            visNum++; vis[s] = true;
+
+            //break condition
+            if (visNum == adjList.size()) break;
+
+            //find the next source
+            for (int i=0; i<adjList.size(); i++){
+                int min = Integer.MAX_VALUE, index;
+                if (!vis[i] && dist[i] < min){
+                    min = dist[i];
+                    index = i;
+                }
+            }
+
+        }
+
+        return null;
+    }
     LinkedList<Integer> shortestPath(int d){
 
         //todo
