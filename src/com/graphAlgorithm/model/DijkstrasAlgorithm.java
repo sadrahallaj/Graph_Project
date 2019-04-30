@@ -61,9 +61,6 @@ public class DijkstrasAlgorithm {
             }
             if(falseNumber == 0 ) run = false ;
         }
-
-        System.out.println(data.toString());
-
     }
 
     public LinkedList<Integer> shortesPath(int d){
