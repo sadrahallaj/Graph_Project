@@ -37,15 +37,16 @@ public class DijkstrasAlgorithm {
         while(run){
             //search
             int minValue = Integer.MAX_VALUE ;
-            int currentIndex = - 1 ;
+            int currentIndex = -1 ;
             for (int i = 0; i <data.size() ; i++) {
-                if(visitedVertices[i]) continue;
-                if( i == source) continue;
-                if(data.get(i).getFirst() < minValue) minValue = data.get(i).getFirst() ;
-                currentIndex = data.indexOf(minValue);
+                if(visitedVertices[i] || i == source ) continue;
+                if(data.get(i).getFirst() < minValue){
+                    minValue = data.get(i).getFirst();
+                    currentIndex = i ;
+                }
             }
 
-            for (int i = 0; i < adjList.get(currentIndex).size() ; i++) {
+            for (int i = 0; i < adjList.get(currentIndex).size()  ; i++) {
                 if(adjList.get(currentIndex).getFirst().getFirst() == Integer.MIN_VALUE) break;
                 Pair tmp = adjList.get(currentIndex).get(i);
                 data.get((Integer) tmp.getFirst()).setFirst((Integer) tmp.getSecond());
@@ -59,6 +60,8 @@ public class DijkstrasAlgorithm {
                 run = false ;
             }
         }
+
+        System.out.println(data.toString());
 
     }
 

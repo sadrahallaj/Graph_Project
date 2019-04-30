@@ -30,7 +30,7 @@ public class TestAlgo {
 
         DijkstrasAlgorithm dijkstrasAlgorithm = new DijkstrasAlgorithm();
         dijkstrasAlgorithm.algorithm(adjList , 0);
-        System.out.println(dijkstrasAlgorithm.data);
+//        System.out.println(dijkstrasAlgorithm.data);
     }
 
 
