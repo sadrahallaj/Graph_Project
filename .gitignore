@@ -26,3 +26,6 @@ hs_err_pid*
 .idea/misc.xml
 workspace.xml
 
+.idea/libraries/jfoenix_8_0_8.xml
+.idea/workspace.xml
+.idea/misc.xml

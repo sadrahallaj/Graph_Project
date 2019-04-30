@@ -66,7 +66,16 @@ class DijkstraAlgorithm {
            currentVertex = data.get(currentVertex).getSecond();
            path.add(currentVertex);
         }
-        return path;
+        return reverseLinkedList(path);
+    }
+
+    public static LinkedList<Integer> reverseLinkedList(LinkedList<Integer> llist)
+    {
+        LinkedList<Integer> revLinkedList = new LinkedList<Integer>();
+        for (int i = llist.size() - 1; i >= 0; i--) {
+            revLinkedList.add(llist.get(i));
+        }
+        return revLinkedList;
     }
 
 }
