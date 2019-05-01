@@ -3,12 +3,12 @@ package com.graphAlgorithm.model;
 import com.graphAlgorithm.view.other.Pair;
 import java.util.LinkedList;
 
-class DijkstraAlgorithm {
+public class DijkstraAlgorithm {
 
     private LinkedList<Pair<Integer,Integer>> data = new LinkedList<>();
     private int source;
 
-    LinkedList<Pair<Integer,Integer>> algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
+    public LinkedList<Pair<Integer,Integer>> algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
         this.source = source;
 
         int s = source ,visNum = 0;
@@ -28,8 +28,8 @@ class DijkstraAlgorithm {
             for (int i=0; i<adjList.get(s).size(); i++){
                 Pair<Integer,Integer> now = adjList.get(s).get(i);
                 //update data table
-                if (dist[now.first] > now.second){
-                    dist[now.first] = now.second;
+                if (dist[now.first] > now.second + dist[s]){
+                    dist[now.first] = now.second + dist[s];
                     prev[now.first] = s;
                 }
             }
@@ -57,16 +57,25 @@ class DijkstraAlgorithm {
         return data;
     }
 
-    LinkedList<Integer> shortestPath(int d){
+    public LinkedList<Integer> shortestPath(int d){
         int currentVertex = d ;
         LinkedList<Integer> path = new LinkedList<>();
         path.add(d);
         while (currentVertex != source){
-           if(data.get(currentVertex).getSecond() == -1 ) break;
-           currentVertex = data.get(currentVertex).getSecond();
-           path.add(currentVertex);
+            if(data.get(currentVertex).getSecond() == -1 ) break;
+            currentVertex = data.get(currentVertex).getSecond();
+            path.add(currentVertex);
         }
-        return path;
+        return reverseLinkedList(path);
+    }
+
+    public static LinkedList<Integer> reverseLinkedList(LinkedList<Integer> llist)
+    {
+        LinkedList<Integer> revLinkedList = new LinkedList<Integer>();
+        for (int i = llist.size() - 1; i >= 0; i--) {
+            revLinkedList.add(llist.get(i));
+        }
+        return revLinkedList;
     }
 
 }
