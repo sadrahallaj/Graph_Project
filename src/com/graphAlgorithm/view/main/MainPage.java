@@ -36,6 +36,8 @@ public class MainPage {
     @FXML
     private Button btnDfs;
     @FXML
+    private Button btnShortestPath;
+    @FXML
     private Pane customPane;
 
 
@@ -116,6 +118,7 @@ public class MainPage {
         btnFinish.setDisable(true);
         btnDfs.setVisible(false);
         btnBfs.setVisible(false);
+        btnShortestPath.setVisible(false);
         nodesList.clear();
         nodeLine.clear();
         xDir.clear();
@@ -133,6 +136,8 @@ public class MainPage {
             btnFinish.setDisable(true);
             btnDfs.setVisible(true);
             btnBfs.setVisible(true);
+            btnShortestPath.setVisible(true);
+
             finished = true;
         }
     }
@@ -260,7 +265,7 @@ public class MainPage {
         if (node1.getLayoutY()<node2.getLayoutY()) arrow = new Arrow(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() , Arrow.defaultArrowHeadSize);
 
         nodesList.get(node1.getIndex()).add(node2);
-//        nodesList.get(node2.getIndex()).add(node1);
+        nodesList.get(node2.getIndex()).add(node1);
 
         node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
         node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
@@ -354,7 +359,7 @@ public class MainPage {
     }
 
     @FXML
-    public void DIJ_Handler() {
+    public void shortestPath_Handler() {
         // reset the colours of vertexes :
         for (LinkedList<Node> nodes : nodesList) {
             nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
