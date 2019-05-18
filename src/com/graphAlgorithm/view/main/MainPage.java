@@ -7,15 +7,12 @@ import com.graphAlgorithm.view.other.Pair;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -45,8 +42,11 @@ public class MainPage {
     @FXML
     private Button btnDfs;
     @FXML
+    private Button btnDJT;
+    @FXML
     private Pane customPane;
 
+    private Thread thread = new Thread();
     private boolean waitingForPlacement = false;
     private int index = 0;
     private ChoiceDialog choiceDialog;
@@ -58,6 +58,17 @@ public class MainPage {
     private LinkedList<Double> yDir = new LinkedList<>();
     private LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
+
+    void setAlgoButtDisble(boolean f){
+        btnDfs.setDisable(f);
+        btnBfs.setDisable(f);
+        btnDJT.setDisable(f);
+    }
+    void setAlgoButtVsible(boolean f){
+        btnDfs.setVisible(f);
+        btnBfs.setVisible(f);
+        btnDJT.setVisible(f);
+    }
 
     @FXML
     void initialize() {
@@ -76,8 +87,7 @@ public class MainPage {
         });
 
 
-        btnDfs.setVisible(false);
-        btnBfs.setVisible(false);
+        setAlgoButtDisble(true);
 
         waitingForPlacement = true;
         customPane.setOnMouseClicked(event -> {
@@ -122,8 +132,7 @@ public class MainPage {
     private void restartHandler() {
         waitingForPlacement = false;
         btnFinish.setDisable(true);
-        btnDfs.setVisible(false);
-        btnBfs.setVisible(false);
+        setAlgoButtDisble(true);
         nodesList.clear();
         nodeLine.clear();
         xDir.clear();
@@ -139,8 +148,7 @@ public class MainPage {
         if (!nodesList.isEmpty()) {
             waitingForPlacement = false;
             btnFinish.setDisable(true);
-            btnDfs.setVisible(true);
-            btnBfs.setVisible(true);
+            setAlgoButtDisble(false);
             finished = true;
         }
     }
@@ -166,16 +174,12 @@ public class MainPage {
 
     @FXML
     private void BFS_Handler() {
-
-        //set Choice Dialog >>
-        LinkedList<String> options = new LinkedList<>();
-        options.add("random vertex");
-        for (LinkedList<Node> nodes : nodesList) {
-            options.add(String.valueOf(nodes.get(0).getIndex()));
+        if (isThreadRunning()) {
+            resetThread();
+            return;
         }
-        setChoiceDialog("Getting source vertex",
-                "please select the source vertex : ",options);
-        // << set Choice Dialog
+
+        dfs_bfsShowDialog();
 
         if (!choiceDialog.showAndWait().isPresent()) return;
         else if (choiceDialog.getSelectedItem() == "random vertex") {
@@ -188,16 +192,12 @@ public class MainPage {
 
     @FXML
     private void DFS_Handler() {
-
-        //set Choice Dialog >>
-        LinkedList<String> options = new LinkedList<>();
-        options.add("random vertex");
-        for (LinkedList<Node> nodes : nodesList) {
-            options.add(String.valueOf(nodes.get(0).getIndex()));
+        if (isThreadRunning()) {
+            resetThread();
+            return;
         }
-        setChoiceDialog("Getting source vertex",
-                "please select the source vertex : ",options);
-        // << set Choice Dialog
+
+        dfs_bfsShowDialog();
 
         if (!choiceDialog.showAndWait().isPresent()) return;
         else if (choiceDialog.getSelectedItem() == "random vertex") {
@@ -210,6 +210,11 @@ public class MainPage {
 
     @FXML
     public void DIJ_Handler() {
+        if (isThreadRunning()) {
+            resetThread();
+            return;
+        }
+
         // reset the colours of vertexes :
         for (LinkedList<Node> nodes : nodesList) {
             nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
@@ -250,8 +255,9 @@ public class MainPage {
         else destinationVertex = Integer.parseInt(choiceDialogVertex.getSelectedItem().toString());
 
 
-        Thread dijkstraThread;
-        dijkstraThread = new Thread(() -> {
+        thread = new Thread(() -> {
+            setAlgoButtDisble(true);
+            btnDJT.setDisable(false);
 
             DijkstraAlgorithm dijkstrasAlgorithm = new DijkstraAlgorithm();
             dijkstrasAlgorithm.algorithm(adjList, sourceVertex);
@@ -269,9 +275,34 @@ public class MainPage {
                     e.printStackTrace();
                 }
             }
-        });
 
-        dijkstraThread.start();
+            setAlgoButtDisble(false);
+        });
+        thread.start();
+    }
+
+    private void dfs_bfsShowDialog(){
+        //set Choice Dialog >>
+        LinkedList<String> options = new LinkedList<>();
+        options.add("random vertex");
+        for (LinkedList<Node> nodes : nodesList) {
+            options.add(String.valueOf(nodes.get(0).getIndex()));
+        }
+        setChoiceDialog("Getting source vertex",
+                "please select the source vertex : ",options);
+        // << set Choice Dialog
+    }
+
+    private boolean isThreadRunning(){
+        if (thread.getState() != Thread.State.TERMINATED && thread.getState() != Thread.State.NEW) {
+            return true;
+        }else return false;
+    }
+
+    private void resetThread(){
+        thread.stop();
+        setAlgoButtDisble(false);
+        setNodesDefaultColor();
     }
 
     private void drawLine() {
@@ -370,14 +401,12 @@ public class MainPage {
     }
 
     private void BFS_Algorithm(int s) {
-
-        Thread thread;
-
         int[] finalS = new int[1];
         finalS[0] = s;
 
         thread = new Thread(() -> {
-            btnDfs.setVisible(false);
+            setAlgoButtDisble(true);
+            btnBfs.setDisable(false);
 
             boolean[] visited = new boolean[nodesList.size()];
 
@@ -413,21 +442,28 @@ public class MainPage {
                     e.printStackTrace();
                 }
             }
-            btnDfs.setVisible(true);
+
+            setAlgoButtDisble(false);
         });
+
         thread.start();
     }
 
     private void DFS_Algorithm(int v) {
+
         boolean[] visited = new boolean[nodesList.size()];
-        Thread dfsThread;
-        dfsThread = new Thread(() -> {
-            btnBfs.setVisible(false);
+
+        thread = new Thread(() -> {
+            setAlgoButtDisble(true);
+            btnDfs.setDisable(false);
+
             DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
-            btnBfs.setVisible(true);
+
+            setAlgoButtDisble(false);
         });
 
-        dfsThread.start();
+        thread.start();
+
     }
 
     private void DFSUtil(int v, boolean[] visited) {
@@ -438,7 +474,6 @@ public class MainPage {
 
         try {
             Thread.sleep((long) (1000 * (1 / slider.getValue())));
-            System.out.println(1 / slider.getValue());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
