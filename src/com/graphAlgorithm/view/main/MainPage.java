@@ -1,21 +1,18 @@
 package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
+import com.graphAlgorithm.view.other.Arrow;
 import com.graphAlgorithm.view.other.Node;
 import com.graphAlgorithm.view.other.Pair;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -24,6 +21,15 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Random;
+
+import static java.lang.Math.*;
+
+
+//todo
+//خودش را نباید بتواند انتخاب کند
+// اصلاح نحوه ی نمایش خط ها
+// نمیتواند سورس و دیستنیشن را یکی انتخاب کند
+
 
 public class MainPage {
 
@@ -36,11 +42,11 @@ public class MainPage {
     @FXML
     private Button btnDfs;
     @FXML
-    private Button btnShortestPath;
+    private Button btnDJT;
     @FXML
     private Pane customPane;
 
-
+    private Thread thread = new Thread();
     private boolean waitingForPlacement = false;
     private int index = 0;
     private ChoiceDialog choiceDialog;
@@ -52,6 +58,17 @@ public class MainPage {
     private LinkedList<Double> yDir = new LinkedList<>();
     private LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
+
+    void setAlgoButtDisble(boolean f){
+        btnDfs.setDisable(f);
+        btnBfs.setDisable(f);
+        btnDJT.setDisable(f);
+    }
+    void setAlgoButtVsible(boolean f){
+        btnDfs.setVisible(f);
+        btnBfs.setVisible(f);
+        btnDJT.setVisible(f);
+    }
 
     @FXML
     void initialize() {
@@ -70,8 +87,7 @@ public class MainPage {
         });
 
 
-        btnDfs.setVisible(false);
-        btnBfs.setVisible(false);
+        setAlgoButtDisble(true);
 
         waitingForPlacement = true;
         customPane.setOnMouseClicked(event -> {
@@ -116,9 +132,7 @@ public class MainPage {
     private void restartHandler() {
         waitingForPlacement = false;
         btnFinish.setDisable(true);
-        btnDfs.setVisible(false);
-        btnBfs.setVisible(false);
-        btnShortestPath.setVisible(false);
+        setAlgoButtDisble(true);
         nodesList.clear();
         nodeLine.clear();
         xDir.clear();
@@ -134,10 +148,7 @@ public class MainPage {
         if (!nodesList.isEmpty()) {
             waitingForPlacement = false;
             btnFinish.setDisable(true);
-            btnDfs.setVisible(true);
-            btnBfs.setVisible(true);
-            btnShortestPath.setVisible(true);
-
+            setAlgoButtDisble(false);
             finished = true;
         }
     }
@@ -161,31 +172,15 @@ public class MainPage {
         alert.showAndWait();
     }
 
-    private void stillDontKnow() {
-        for (LinkedList<Node> nodes : nodesList) {
-            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        }
-        LinkedList<String> options = new LinkedList<>();
-        options.add("random vertex");
-        for (LinkedList<Node> nodes : nodesList) {
-            options.add(String.valueOf(nodes.get(0).getIndex()));
-        }
-        choiceDialog = new ChoiceDialog(options.get(0), options);
-        choiceDialog.setTitle("options");
-        choiceDialog.setHeaderText("Getting start vertex");
-        choiceDialog.setContentText("please select to start from which vertex : ");
-        choiceDialog.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        choiceDialog.setX(customPane.getWidth() / 2 + 320);
-        choiceDialog.setY(customPane.getHeight() / 2 - 50);
-        Stage stage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
-        stage.getIcons().add(image);
-    }
-
     @FXML
     private void BFS_Handler() {
-        //todo
-        stillDontKnow();
+        if (isThreadRunning()) {
+            resetThread();
+            return;
+        }
+
+        dfs_bfsShowDialog();
+
         if (!choiceDialog.showAndWait().isPresent()) return;
         else if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
@@ -197,8 +192,13 @@ public class MainPage {
 
     @FXML
     private void DFS_Handler() {
-        //todo
-        stillDontKnow();
+        if (isThreadRunning()) {
+            resetThread();
+            return;
+        }
+
+        dfs_bfsShowDialog();
+
         if (!choiceDialog.showAndWait().isPresent()) return;
         else if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
@@ -208,158 +208,13 @@ public class MainPage {
         }
     }
 
-    private void drawLine() {
-        if (nodeLine.size() != 2) return;
-        TextInputDialog dialog = new TextInputDialog("0");
-        dialog.setTitle(" ");
-        dialog.setContentText("Enter the edge weight:");
-        Optional<String> result = dialog.showAndWait();
-
-        Node node1 = nodeLine.pop();
-        Node node2 = nodeLine.pop();
-
-        Pair<Integer, Integer> temp = new Pair<>(node2.getIndex(), Integer.parseInt(result.get()));
-        adjList.get(node1.getIndex()).add(temp);
-        Label w = new Label(String.valueOf(Integer.parseInt(result.get())));
-
-        w.setLayoutX((node1.getLayoutX() + 20 + node2.getLayoutX() + 20)/2) ;
-        w.setLayoutY((node1.getLayoutY() + 20 + node2.getLayoutY() + 20)/2);
-//        Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 20);
-//        line.setStrokeWidth(4);
-//        line.setSmooth(true);
-//        line.setStroke(Color.rgb(24, 17, 140));
-        class Arrow extends Path {
-            private static final double defaultArrowHeadSize = 5.0;
-
-            public Arrow(double startX, double startY, double endX, double endY, double arrowHeadSize){
-                super();
-                strokeProperty().bind(fillProperty());
-                setFill(Color.BLACK);
-
-                //Line
-                getElements().add(new MoveTo(startX , startY ));
-                getElements().add(new LineTo(endX , endY ));
-
-                //ArrowHead
-                double angle = Math.atan2((endY - startY), (endX - startX)) - Math.PI / 2.0;
-                double sin = Math.sin(angle);
-                double cos = Math.cos(angle);
-                //point1
-                double x1 = (- 1.0 / 2.0 * cos + Math.sqrt(3) / 2 * sin) * arrowHeadSize + endX;
-                double y1 = (- 1.0 / 2.0 * sin - Math.sqrt(3) / 2 * cos) * arrowHeadSize + endY;
-                //point2
-                double x2 = (1.0 / 2.0 * cos + Math.sqrt(3) / 2 * sin) * arrowHeadSize + endX;
-                double y2 = (1.0 / 2.0 * sin - Math.sqrt(3) / 2 * cos) * arrowHeadSize + endY;
-
-                getElements().add(new LineTo(x1, y1));
-                getElements().add(new LineTo(x2, y2));
-                getElements().add(new LineTo(endX, endY));
-            }
-
-            public Arrow(double startX, double startY, double endX, double endY){
-                this(startX, startY, endX, endY, defaultArrowHeadSize);
-            }
-        }
-        Arrow arrow = null;
-        if (node1.getLayoutY()>node2.getLayoutY()) arrow = new Arrow(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 50, Arrow.defaultArrowHeadSize);
-        if (node1.getLayoutY()<node2.getLayoutY()) arrow = new Arrow(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() , Arrow.defaultArrowHeadSize);
-
-        nodesList.get(node1.getIndex()).add(node2);
-        nodesList.get(node2.getIndex()).add(node1);
-
-        node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
-//        customPane.getChildren().add(line);
-        customPane.getChildren().add(arrow);
-        customPane.getChildren().add(w);
-//        line.toBack();
-        arrow.toFront();
-        node1.toFront();
-        node2.toFront();
-    }
-
-    private void BFS_Algorithm(int s) {
-
-        Thread thread;
-
-        int[] finalS = new int[1];
-        finalS[0] = s;
-
-        thread = new Thread(() -> {
-            btnDfs.setVisible(false);
-
-            boolean[] visited = new boolean[nodesList.size()];
-
-            LinkedList<Node> queue = new LinkedList<>();
-
-            visited[nodesList.get(finalS[0]).get(0).getIndex()] = true;
-            queue.add(nodesList.get(finalS[0]).get(0));
-
-            LinkedList<Integer> lineColor = new LinkedList<>();
-            lineColor.add(finalS[0]);
-            lineColor.add(finalS[0]);
-
-            while (queue.size() != 0) {
-                finalS[0] = queue.poll().getIndex();
-                System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
-                nodesList.get(finalS[0]).get(0)
-                        .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
-                                " -fx-text-fill: #fff ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-
-                Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
-                while (i.hasNext()) {
-                    Node n = i.next();
-                    if (!visited[n.getIndex()]) {
-                        visited[n.getIndex()] = true;
-                        queue.add(n);
-                    }
-                }
-                // delay
-                try {
-                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
-                    System.out.println((long) (1000 * (1 / slider.getValue())));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            btnDfs.setVisible(true);
-        });
-        thread.start();
-    }
-
-    private void DFS_Algorithm(int v) {
-        boolean[] visited = new boolean[nodesList.size()];
-        Thread dfsThread;
-        dfsThread = new Thread(() -> {
-            btnBfs.setVisible(false);
-            DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
-            btnBfs.setVisible(true);
-        });
-
-        dfsThread.start();
-    }
-
-    private void DFSUtil(int v, boolean[] visited) {
-        visited[nodesList.get(v).get(0).getIndex()] = true;
-        System.out.print(nodesList.get(v).get(0).getIndex() + " ");
-        nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
-                " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
-
-        try {
-            Thread.sleep((long) (1000 * (1 / slider.getValue())));
-            System.out.println(1 / slider.getValue());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        for (Node n : nodesList.get(v)) {
-            if (!visited[n.getIndex()])
-                DFSUtil(n.getIndex(), visited);
-        }
-    }
-
     @FXML
-    public void shortestPath_Handler() {
+    public void DIJ_Handler() {
+        if (isThreadRunning()) {
+            resetThread();
+            return;
+        }
+
         // reset the colours of vertexes :
         for (LinkedList<Node> nodes : nodesList) {
             nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
@@ -399,8 +254,10 @@ public class MainPage {
         if (!choiceDialogVertex.showAndWait().isPresent()) return;
         else destinationVertex = Integer.parseInt(choiceDialogVertex.getSelectedItem().toString());
 
-        Thread dijkstraThread;
-        dijkstraThread = new Thread(() -> {
+
+        thread = new Thread(() -> {
+            setAlgoButtDisble(true);
+            btnDJT.setDisable(false);
 
             DijkstraAlgorithm dijkstrasAlgorithm = new DijkstraAlgorithm();
             dijkstrasAlgorithm.algorithm(adjList, sourceVertex);
@@ -418,9 +275,213 @@ public class MainPage {
                     e.printStackTrace();
                 }
             }
+
+            setAlgoButtDisble(false);
+        });
+        thread.start();
+    }
+
+    private void dfs_bfsShowDialog(){
+        //set Choice Dialog >>
+        LinkedList<String> options = new LinkedList<>();
+        options.add("random vertex");
+        for (LinkedList<Node> nodes : nodesList) {
+            options.add(String.valueOf(nodes.get(0).getIndex()));
+        }
+        setChoiceDialog("Getting source vertex",
+                "please select the source vertex : ",options);
+        // << set Choice Dialog
+    }
+
+    private boolean isThreadRunning(){
+        if (thread.getState() != Thread.State.TERMINATED && thread.getState() != Thread.State.NEW) {
+            return true;
+        }else return false;
+    }
+
+    private void resetThread(){
+        thread.stop();
+        setAlgoButtDisble(false);
+        setNodesDefaultColor();
+    }
+
+    private void drawLine() {
+        Arrow arrow = null;
+
+        if (nodeLine.size() != 2) return;
+        TextInputDialog dialog = new TextInputDialog("0");
+        dialog.setTitle(" ");
+        dialog.setContentText("Enter the edge weight:");
+        Optional<String> result = dialog.showAndWait();
+
+        Node node1 = nodeLine.pop();
+        Node node2 = nodeLine.pop();
+
+        double node1X = node1.getLayoutX()+25, node1Y =node1.getLayoutY()+25;
+        double node2X =node2.getLayoutX()+25,node2Y=node2.getLayoutY()+25;
+
+        Pair<Integer, Integer> temp = new Pair<>(node2.getIndex(), Integer.parseInt(result.get()));
+        adjList.get(node1.getIndex()).add(temp);
+        Label w = new Label(String.valueOf(Integer.parseInt(result.get())));
+
+        if(node1Y >= node2Y){
+            //todo
+            w.setLayoutX(((node1.getLayoutX()+25 + node2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
+            w.setLayoutY(((node1.getLayoutY()+25 + node2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
+        }else if (node1Y < node2Y){
+            //todo
+            w.setLayoutX(((node1.getLayoutX()+25 + node2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
+            w.setLayoutY(((node1.getLayoutY()+25 + node2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
+        }
+
+        //find alfa degree
+        double alfa = Math.atan( abs(node1.getLayoutX() - node2.getLayoutX())  /
+                abs(node1.getLayoutY() - node2.getLayoutY()) );
+        if(Math.toDegrees(alfa) > 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+        else if(Math.toDegrees(alfa) < 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+        System.out.println(Math.toDegrees(alfa));
+
+        //set x and y for arrow
+        double desX =(node2X ) + cos(alfa)*25;
+        double desY =(node2Y) + sin(alfa)*25;
+
+        double desX2 =(node2X) + cos(alfa)*25;
+        double desY2 =(node2Y) - sin(alfa)*25;
+
+        double desX3 =(node2X) - cos(alfa)*25;
+        double desY3 =(node2Y) - sin(alfa)*25;
+
+        double desX4 =(node2X) - cos(alfa)*25;
+        double desY4 =(node2Y) + sin(alfa)*25;
+
+
+        //draw line base on position
+        if      (node1Y >= node2Y && node1X >= node2X)
+            arrow = new Arrow(node1X, node1Y, desX , desY  , Arrow.defaultArrowHeadSize);
+        else if (node1Y <= node2Y  && node1X >=node2X)
+            arrow = new Arrow(node1X, node1Y, desX2, desY2 , Arrow.defaultArrowHeadSize);
+        else if (node1Y <= node2Y  && node1X <= node2X)
+            arrow = new Arrow(node1X, node1Y, desX3, desY3 , Arrow.defaultArrowHeadSize);
+        else if (node1Y >= node2Y  && node1X <= node2X)
+            arrow = new Arrow(node1X, node1Y, desX4, desY4 , Arrow.defaultArrowHeadSize);
+
+
+        nodesList.get(node1.getIndex()).add(node2);
+//        nodesList.get(node2.getIndex()).add(node1);
+
+        node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
+//        customPane.getChildren().add(line);
+        customPane.getChildren().add(arrow);
+        customPane.getChildren().add(w);
+//        line.toBack();
+        arrow.toFront();
+        node1.toFront();
+        node2.toFront();
+    }
+
+    private void setNodesDefaultColor(){
+        for (LinkedList<Node> nodes : nodesList) {
+            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
+    }
+
+    private void setChoiceDialog(String headerText, String contentText, LinkedList<String> options) {
+        setNodesDefaultColor();
+        choiceDialog = new ChoiceDialog(options.get(0), options);
+        choiceDialog.setTitle("options");
+        choiceDialog.setHeaderText(headerText);
+        choiceDialog.setContentText(contentText);
+        choiceDialog.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialog.setX(customPane.getWidth() / 2 + 320);
+        choiceDialog.setY(customPane.getHeight() / 2 - 50);
+        Stage stage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
+        stage.getIcons().add(image);
+    }
+
+    private void BFS_Algorithm(int s) {
+        int[] finalS = new int[1];
+        finalS[0] = s;
+
+        thread = new Thread(() -> {
+            setAlgoButtDisble(true);
+            btnBfs.setDisable(false);
+
+            boolean[] visited = new boolean[nodesList.size()];
+
+            LinkedList<Node> queue = new LinkedList<>();
+
+            visited[nodesList.get(finalS[0]).get(0).getIndex()] = true;
+            queue.add(nodesList.get(finalS[0]).get(0));
+
+            LinkedList<Integer> lineColor = new LinkedList<>();
+            lineColor.add(finalS[0]);
+            lineColor.add(finalS[0]);
+
+            while (queue.size() != 0) {
+                finalS[0] = queue.poll().getIndex();
+                System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
+                nodesList.get(finalS[0]).get(0)
+                        .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
+                                " -fx-text-fill: #fff ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+
+                Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
+                while (i.hasNext()) {
+                    Node n = i.next();
+                    if (!visited[n.getIndex()]) {
+                        visited[n.getIndex()] = true;
+                        queue.add(n);
+                    }
+                }
+                // delay
+                try {
+                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
+                    System.out.println((long) (1000 * (1 / slider.getValue())));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            setAlgoButtDisble(false);
         });
 
-        dijkstraThread.start();
+        thread.start();
+    }
+
+    private void DFS_Algorithm(int v) {
+
+        boolean[] visited = new boolean[nodesList.size()];
+
+        thread = new Thread(() -> {
+            setAlgoButtDisble(true);
+            btnDfs.setDisable(false);
+
+            DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
+
+            setAlgoButtDisble(false);
+        });
+
+        thread.start();
+
+    }
+
+    private void DFSUtil(int v, boolean[] visited) {
+        visited[nodesList.get(v).get(0).getIndex()] = true;
+        System.out.print(nodesList.get(v).get(0).getIndex() + " ");
+        nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+
+        try {
+            Thread.sleep((long) (1000 * (1 / slider.getValue())));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        for (Node n : nodesList.get(v)) {
+            if (!visited[n.getIndex()])
+                DFSUtil(n.getIndex(), visited);
+        }
     }
 
 

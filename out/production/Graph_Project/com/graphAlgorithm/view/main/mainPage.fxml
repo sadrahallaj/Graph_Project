@@ -44,7 +44,7 @@
                             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </VBox.margin>
                     </JFXButton>
-               <JFXButton fx:id="btnShortestPath" onAction="#shortestPath_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Shortest Path" visible="false">
+               <JFXButton fx:id="btnShortestPath" onAction="#DIJ_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Shortest Path">
                   <VBox.margin>
                      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                   </VBox.margin>
