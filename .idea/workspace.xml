@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Arrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graph_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Graph_Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/com/graphAlgorithm/view/main/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Graph_Project/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="6648">
+              <caret line="299" column="5" lean-forward="true" selection-start-line="299" selection-start-column="5" selection-end-line="299" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -211,13 +204,13 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558154083564" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558155758925" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="D:/Users/Amir/Downloads/jfoenix-8.0.8.jar!/" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/javalibs/jfoenix-8.0.8.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -530,7 +523,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146177000" />
+    <option name="totallyTimeSpent" value="146790000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -543,6 +536,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="999" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18409818" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -553,16 +547,16 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49530202" weight="0.23937677" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49530202" visible="true" weight="0.23913044" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.4631728" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32837528" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32719547" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32837528" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32837528" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.504698" side_tool="true" weight="0.23937677" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.32577905" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.3249428" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -830,8 +824,8 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Thread.java" />
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="6648">
+          <caret line="299" column="5" lean-forward="true" selection-start-line="299" selection-start-column="5" selection-end-line="299" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -866,7 +860,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>jfoenix-8.0.8</last-edited>
+          <last-edited>Python 3.6 (tamrin_2_kasra) interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
