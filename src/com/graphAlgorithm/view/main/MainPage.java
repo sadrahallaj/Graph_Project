@@ -24,6 +24,8 @@ import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Random;
 
+import static java.lang.Math.*;
+
 
 //todo
 //خودش را نباید بتواند انتخاب کند
@@ -281,23 +283,53 @@ public class MainPage {
         Node node1 = nodeLine.pop();
         Node node2 = nodeLine.pop();
 
+        double node1X = node1.getLayoutX()+25, node1Y =node1.getLayoutY()+25;
+        double node2X =node2.getLayoutX()+25,node2Y=node2.getLayoutY()+25;
+
         Pair<Integer, Integer> temp = new Pair<>(node2.getIndex(), Integer.parseInt(result.get()));
         adjList.get(node1.getIndex()).add(temp);
         Label w = new Label(String.valueOf(Integer.parseInt(result.get())));
 
-        w.setLayoutX((node1.getLayoutX() + 20 + node2.getLayoutX() + 20)/2) ;
-        w.setLayoutY((node1.getLayoutY() + 20 + node2.getLayoutY() + 20)/2);
+        if(node1Y > node2Y){
+            w.setLayoutX((node1.getLayoutX() + 25 + node2.getLayoutX() + 25)/2 -5);
+            w.setLayoutY((node1.getLayoutY() + 25 + node2.getLayoutY() + 25)/2 - 15);
+        }else if (node1Y <= node2Y){
+            w.setLayoutX((node1.getLayoutX() + 25 + node2.getLayoutX() + 25)/2 + 5);
+            w.setLayoutY((node1.getLayoutY() + 25 + node2.getLayoutY() + 25)/2 + 15);
+        }
 //        Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 20);
 //        line.setStrokeWidth(4);
 //        line.setSmooth(true);
 //        line.setStroke(Color.rgb(24, 17, 140));
+
+        double alfa = Math.atan( abs(node1.getLayoutX() - node2.getLayoutX())  /
+                abs(node1.getLayoutY() - node2.getLayoutY()) );
+        double alfa2 = alfa;
+        if(Math.toDegrees(alfa) > 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+        else if(Math.toDegrees(alfa) < 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+        System.out.println(Math.toDegrees(alfa));
+
+
+
+        double desX =(node2X ) + cos(alfa)*25;
+        double desY =(node2Y) + sin(alfa)*25;
+
+        double desX2 =(node2X) + cos(alfa)*25;
+        double desY2 =(node2Y) - sin(alfa)*25;
+
+        double desX3 =(node2X) - cos(alfa)*25;
+        double desY3 =(node2Y) - sin(alfa)*25;
+
+        double desX4 =(node2X) - cos(alfa)*25;
+        double desY4 =(node2Y) + sin(alfa)*25;
+
         class Arrow extends Path {
-            private static final double defaultArrowHeadSize = 5.0;
+            private static final double defaultArrowHeadSize = 12.0;
 
             public Arrow(double startX, double startY, double endX, double endY, double arrowHeadSize){
                 super();
                 strokeProperty().bind(fillProperty());
-                setFill(Color.BLACK);
+                setFill(Color.BLUE);
 
                 //Line
                 getElements().add(new MoveTo(startX , startY ));
@@ -324,8 +356,19 @@ public class MainPage {
             }
         }
         Arrow arrow = null;
-        if (node1.getLayoutY()>node2.getLayoutY()) arrow = new Arrow(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 50, Arrow.defaultArrowHeadSize);
-        if (node1.getLayoutY()<node2.getLayoutY()) arrow = new Arrow(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() , Arrow.defaultArrowHeadSize);
+
+        if (node1Y>node2Y && node1X>node2X) {
+            arrow = new Arrow(node1X, node1Y, desX , desY  , Arrow.defaultArrowHeadSize);
+        }
+        else if (node1Y<node2Y  && node1X>node2X) {
+            arrow = new Arrow(node1X, node1Y, desX2, desY2 , Arrow.defaultArrowHeadSize);
+        }
+        else if (node1Y<node2Y  && node1X<node2X) {
+            arrow = new Arrow(node1X, node1Y, desX3, desY3 , Arrow.defaultArrowHeadSize);
+        }
+        else if (node1Y>node2Y  && node1X<node2X) {
+            arrow = new Arrow(node1X, node1Y, desX4, desY4 , Arrow.defaultArrowHeadSize);
+        }
 
         nodesList.get(node1.getIndex()).add(node2);
 //        nodesList.get(node2.getIndex()).add(node1);
