@@ -1,6 +1,7 @@
 package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
+import com.graphAlgorithm.view.other.Arrow;
 import com.graphAlgorithm.view.other.Node;
 import com.graphAlgorithm.view.other.Pair;
 import com.jfoenix.controls.JFXSlider;
@@ -274,6 +275,8 @@ public class MainPage {
     }
 
     private void drawLine() {
+        Arrow arrow = null;
+
         if (nodeLine.size() != 2) return;
         TextInputDialog dialog = new TextInputDialog("0");
         dialog.setTitle(" ");
@@ -290,27 +293,24 @@ public class MainPage {
         adjList.get(node1.getIndex()).add(temp);
         Label w = new Label(String.valueOf(Integer.parseInt(result.get())));
 
-        if(node1Y > node2Y){
-            w.setLayoutX((node1.getLayoutX() + 25 + node2.getLayoutX() + 25)/2 -5);
-            w.setLayoutY((node1.getLayoutY() + 25 + node2.getLayoutY() + 25)/2 - 15);
-        }else if (node1Y <= node2Y){
-            w.setLayoutX((node1.getLayoutX() + 25 + node2.getLayoutX() + 25)/2 + 5);
-            w.setLayoutY((node1.getLayoutY() + 25 + node2.getLayoutY() + 25)/2 + 15);
+        if(node1Y >= node2Y){
+            //todo
+            w.setLayoutX(((node1.getLayoutX()+25 + node2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
+            w.setLayoutY(((node1.getLayoutY()+25 + node2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
+        }else if (node1Y < node2Y){
+            //todo
+            w.setLayoutX(((node1.getLayoutX()+25 + node2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
+            w.setLayoutY(((node1.getLayoutY()+25 + node2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
         }
-//        Line line = new Line(node1.getLayoutX() + 20, node1.getLayoutY() + 20, node2.getLayoutX() + 20, node2.getLayoutY() + 20);
-//        line.setStrokeWidth(4);
-//        line.setSmooth(true);
-//        line.setStroke(Color.rgb(24, 17, 140));
 
+        //find alfa degree
         double alfa = Math.atan( abs(node1.getLayoutX() - node2.getLayoutX())  /
                 abs(node1.getLayoutY() - node2.getLayoutY()) );
-        double alfa2 = alfa;
         if(Math.toDegrees(alfa) > 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
         else if(Math.toDegrees(alfa) < 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
         System.out.println(Math.toDegrees(alfa));
 
-
-
+        //set x and y for arrow
         double desX =(node2X ) + cos(alfa)*25;
         double desY =(node2Y) + sin(alfa)*25;
 
@@ -323,52 +323,17 @@ public class MainPage {
         double desX4 =(node2X) - cos(alfa)*25;
         double desY4 =(node2Y) + sin(alfa)*25;
 
-        class Arrow extends Path {
-            private static final double defaultArrowHeadSize = 12.0;
 
-            public Arrow(double startX, double startY, double endX, double endY, double arrowHeadSize){
-                super();
-                strokeProperty().bind(fillProperty());
-                setFill(Color.BLUE);
-
-                //Line
-                getElements().add(new MoveTo(startX , startY ));
-                getElements().add(new LineTo(endX , endY ));
-
-                //ArrowHead
-                double angle = Math.atan2((endY - startY), (endX - startX)) - Math.PI / 2.0;
-                double sin = Math.sin(angle);
-                double cos = Math.cos(angle);
-                //point1
-                double x1 = (- 1.0 / 2.0 * cos + Math.sqrt(3) / 2 * sin) * arrowHeadSize + endX;
-                double y1 = (- 1.0 / 2.0 * sin - Math.sqrt(3) / 2 * cos) * arrowHeadSize + endY;
-                //point2
-                double x2 = (1.0 / 2.0 * cos + Math.sqrt(3) / 2 * sin) * arrowHeadSize + endX;
-                double y2 = (1.0 / 2.0 * sin - Math.sqrt(3) / 2 * cos) * arrowHeadSize + endY;
-
-                getElements().add(new LineTo(x1, y1));
-                getElements().add(new LineTo(x2, y2));
-                getElements().add(new LineTo(endX, endY));
-            }
-
-            public Arrow(double startX, double startY, double endX, double endY){
-                this(startX, startY, endX, endY, defaultArrowHeadSize);
-            }
-        }
-        Arrow arrow = null;
-
-        if (node1Y>node2Y && node1X>node2X) {
+        //draw line base on position
+        if      (node1Y >= node2Y && node1X >= node2X)
             arrow = new Arrow(node1X, node1Y, desX , desY  , Arrow.defaultArrowHeadSize);
-        }
-        else if (node1Y<node2Y  && node1X>node2X) {
+        else if (node1Y <= node2Y  && node1X >=node2X)
             arrow = new Arrow(node1X, node1Y, desX2, desY2 , Arrow.defaultArrowHeadSize);
-        }
-        else if (node1Y<node2Y  && node1X<node2X) {
+        else if (node1Y <= node2Y  && node1X <= node2X)
             arrow = new Arrow(node1X, node1Y, desX3, desY3 , Arrow.defaultArrowHeadSize);
-        }
-        else if (node1Y>node2Y  && node1X<node2X) {
+        else if (node1Y >= node2Y  && node1X <= node2X)
             arrow = new Arrow(node1X, node1Y, desX4, desY4 , Arrow.defaultArrowHeadSize);
-        }
+
 
         nodesList.get(node1.getIndex()).add(node2);
 //        nodesList.get(node2.getIndex()).add(node1);
