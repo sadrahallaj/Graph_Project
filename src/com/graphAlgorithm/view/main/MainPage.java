@@ -12,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -24,6 +23,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Random;
+
+
+//todo
+//خودش را نباید بتواند انتخاب کند
+// اصلاح نحوه ی نمایش خط ها
+// نمیتواند سورس و دیستنیشن را یکی انتخاب کند
+
 
 public class MainPage {
 
@@ -37,7 +43,6 @@ public class MainPage {
     private Button btnDfs;
     @FXML
     private Pane customPane;
-
 
     private boolean waitingForPlacement = false;
     private int index = 0;
@@ -156,31 +161,19 @@ public class MainPage {
         alert.showAndWait();
     }
 
-    private void stillDontKnow() {
-        for (LinkedList<Node> nodes : nodesList) {
-            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        }
+    @FXML
+    private void BFS_Handler() {
+
+        //set Choice Dialog >>
         LinkedList<String> options = new LinkedList<>();
         options.add("random vertex");
         for (LinkedList<Node> nodes : nodesList) {
             options.add(String.valueOf(nodes.get(0).getIndex()));
         }
-        choiceDialog = new ChoiceDialog(options.get(0), options);
-        choiceDialog.setTitle("options");
-        choiceDialog.setHeaderText("Getting start vertex");
-        choiceDialog.setContentText("please select to start from which vertex : ");
-        choiceDialog.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        choiceDialog.setX(customPane.getWidth() / 2 + 320);
-        choiceDialog.setY(customPane.getHeight() / 2 - 50);
-        Stage stage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
-        stage.getIcons().add(image);
-    }
+        setChoiceDialog("Getting source vertex",
+                "please select the source vertex : ",options);
+        // << set Choice Dialog
 
-    @FXML
-    private void BFS_Handler() {
-        //todo
-        stillDontKnow();
         if (!choiceDialog.showAndWait().isPresent()) return;
         else if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
@@ -192,8 +185,17 @@ public class MainPage {
 
     @FXML
     private void DFS_Handler() {
-        //todo
-        stillDontKnow();
+
+        //set Choice Dialog >>
+        LinkedList<String> options = new LinkedList<>();
+        options.add("random vertex");
+        for (LinkedList<Node> nodes : nodesList) {
+            options.add(String.valueOf(nodes.get(0).getIndex()));
+        }
+        setChoiceDialog("Getting source vertex",
+                "please select the source vertex : ",options);
+        // << set Choice Dialog
+
         if (!choiceDialog.showAndWait().isPresent()) return;
         else if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
@@ -201,6 +203,72 @@ public class MainPage {
         } else {
             DFS_Algorithm(Integer.parseInt(choiceDialog.getSelectedItem().toString()));
         }
+    }
+
+    @FXML
+    public void DIJ_Handler() {
+        // reset the colours of vertexes :
+        for (LinkedList<Node> nodes : nodesList) {
+            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
+                    " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
+
+        int sourceVertex, destinationVertex;
+
+        // getting the source vertex :
+        LinkedList<String> options = new LinkedList<>();
+        for (LinkedList<Node> nodes : nodesList) {
+            options.add(String.valueOf(nodes.get(0).getIndex()));
+        }
+        choiceDialogSource = new ChoiceDialog(options.get(0), options);
+        choiceDialogSource.setTitle("options");
+        choiceDialogSource.setHeaderText("Getting source vertex");
+        choiceDialogSource.setContentText("please select the source vertex : ");
+        choiceDialogSource.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialogSource.setX(customPane.getWidth() / 2 + 320);
+        choiceDialogSource.setY(customPane.getHeight() / 2 - 50);
+        Stage stage = (Stage) choiceDialogSource.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
+        stage.getIcons().add(image);
+        if (!choiceDialogSource.showAndWait().isPresent()) return;
+        else sourceVertex = Integer.parseInt(choiceDialogSource.getSelectedItem().toString());
+
+        // getting the destination vertex  :
+        choiceDialogVertex = new ChoiceDialog(options.get(0), options);
+        choiceDialogVertex.setTitle("options");
+        choiceDialogVertex.setHeaderText("Getting destination Vertex");
+        choiceDialogVertex.setContentText("please select the destination vertex : ");
+        choiceDialogVertex.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialogVertex.setX(customPane.getWidth() / 2 + 320);
+        choiceDialogVertex.setY(customPane.getHeight() / 2 - 50);
+        Stage stage2 = (Stage) choiceDialogVertex.getDialogPane().getScene().getWindow();
+        stage2.getIcons().add(image);
+        if (!choiceDialogVertex.showAndWait().isPresent()) return;
+        else destinationVertex = Integer.parseInt(choiceDialogVertex.getSelectedItem().toString());
+
+
+        Thread dijkstraThread;
+        dijkstraThread = new Thread(() -> {
+
+            DijkstraAlgorithm dijkstrasAlgorithm = new DijkstraAlgorithm();
+            dijkstrasAlgorithm.algorithm(adjList, sourceVertex);
+            LinkedList<Integer> path = dijkstrasAlgorithm.shortestPath(destinationVertex);
+            for (int i = 0; i < path.size(); i++) {
+                System.out.println(path.get(i));
+                nodesList.get(path.get(i)).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                        " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+
+                // delay
+                try {
+                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
+                    //                System.out.println((long)(1000*(1/slider.getValue())));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        dijkstraThread.start();
     }
 
     private void drawLine() {
@@ -271,6 +339,26 @@ public class MainPage {
         arrow.toFront();
         node1.toFront();
         node2.toFront();
+    }
+
+    private void setNodesDefaultColor(){
+        for (LinkedList<Node> nodes : nodesList) {
+            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
+    }
+
+    private void setChoiceDialog(String headerText, String contentText, LinkedList<String> options) {
+        setNodesDefaultColor();
+        choiceDialog = new ChoiceDialog(options.get(0), options);
+        choiceDialog.setTitle("options");
+        choiceDialog.setHeaderText(headerText);
+        choiceDialog.setContentText(contentText);
+        choiceDialog.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialog.setX(customPane.getWidth() / 2 + 320);
+        choiceDialog.setY(customPane.getHeight() / 2 - 50);
+        Stage stage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
+        stage.getIcons().add(image);
     }
 
     private void BFS_Algorithm(int s) {
@@ -351,71 +439,6 @@ public class MainPage {
             if (!visited[n.getIndex()])
                 DFSUtil(n.getIndex(), visited);
         }
-    }
-
-    @FXML
-    public void DIJ_Handler() {
-        // reset the colours of vertexes :
-        for (LinkedList<Node> nodes : nodesList) {
-            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
-                    " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        }
-
-        int sourceVertex, destinationVertex;
-
-        // getting the source vertex :
-        LinkedList<String> options = new LinkedList<>();
-        for (LinkedList<Node> nodes : nodesList) {
-            options.add(String.valueOf(nodes.get(0).getIndex()));
-        }
-        choiceDialogSource = new ChoiceDialog(options.get(0), options);
-        choiceDialogSource.setTitle("options");
-        choiceDialogSource.setHeaderText("Getting source vertex");
-        choiceDialogSource.setContentText("please select the source vertex : ");
-        choiceDialogSource.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        choiceDialogSource.setX(customPane.getWidth() / 2 + 320);
-        choiceDialogSource.setY(customPane.getHeight() / 2 - 50);
-        Stage stage = (Stage) choiceDialogSource.getDialogPane().getScene().getWindow();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
-        stage.getIcons().add(image);
-        if (!choiceDialogSource.showAndWait().isPresent()) return;
-        else sourceVertex = Integer.parseInt(choiceDialogSource.getSelectedItem().toString());
-
-        // getting the destination vertex  :
-        choiceDialogVertex = new ChoiceDialog(options.get(0), options);
-        choiceDialogVertex.setTitle("options");
-        choiceDialogVertex.setHeaderText("Getting destination Vertex");
-        choiceDialogVertex.setContentText("please select the destination vertex : ");
-        choiceDialogVertex.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        choiceDialogVertex.setX(customPane.getWidth() / 2 + 320);
-        choiceDialogVertex.setY(customPane.getHeight() / 2 - 50);
-        Stage stage2 = (Stage) choiceDialogVertex.getDialogPane().getScene().getWindow();
-        stage2.getIcons().add(image);
-        if (!choiceDialogVertex.showAndWait().isPresent()) return;
-        else destinationVertex = Integer.parseInt(choiceDialogVertex.getSelectedItem().toString());
-
-        Thread dijkstraThread;
-        dijkstraThread = new Thread(() -> {
-
-            DijkstraAlgorithm dijkstrasAlgorithm = new DijkstraAlgorithm();
-            dijkstrasAlgorithm.algorithm(adjList, sourceVertex);
-            LinkedList<Integer> path = dijkstrasAlgorithm.shortestPath(destinationVertex);
-            for (int i = 0; i < path.size(); i++) {
-                System.out.println(path.get(i));
-                nodesList.get(path.get(i)).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
-                        " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
-
-                // delay
-                try {
-                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
-                    //                System.out.println((long)(1000*(1/slider.getValue())));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        dijkstraThread.start();
     }
 
 
