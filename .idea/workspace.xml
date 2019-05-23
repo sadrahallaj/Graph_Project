@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graph_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Graph_Project.iml" afterDir="false" />
-    </list>
+    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,8 +16,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6648">
-              <caret line="299" column="5" lean-forward="true" selection-start-line="299" selection-start-column="5" selection-end-line="299" selection-end-column="5" />
+            <state relative-caret-position="238">
+              <caret line="455" lean-forward="true" selection-start-line="455" selection-end-line="455" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="582">
+              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+              <folding>
+                <element signature="e#414#415#0" expanded="true" />
+                <element signature="e#447#448#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="216">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -77,18 +85,9 @@
       <find>png</find>
       <find>delay</find>
       <find>sleep</find>
-      <find>node1.getLayoutX()</find>
-      <find>node1.getLayoutY()</find>
-      <find>node2.getLayoutX()</find>
-      <find>node2.getLayoutY()</find>
-      <find>node2Y</find>
     </findStrings>
     <replaceStrings>
       <replace>private</replace>
-      <replace>node1X</replace>
-      <replace>node1Y</replace>
-      <replace>node2X</replace>
-      <replace>node2Y</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -106,19 +105,20 @@
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/ui/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/algo.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/ShortestPath.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithmTest.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage2.fxml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstrasAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/TestAlgo.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstraAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Arrow.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/ShortestPathDp.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
       </list>
     </option>
@@ -130,10 +130,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="610" />
-    <option name="y" value="82" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
+    <option name="x" value="-9" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -142,7 +141,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -195,6 +193,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -204,17 +203,17 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558155758925" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558612878349" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/javalibs/jfoenix-8.0.8.jar!/" />
+    <property name="last_opened_file_path" value="D:/Users/Amir/Downloads/jfoenix-8.0.8.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet.css" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -352,11 +351,9 @@
       <workItem from="1556524457634" duration="9664000" />
       <workItem from="1556612071808" duration="11720000" />
       <workItem from="1556628530314" duration="4456000" />
-      <workItem from="1557916127992" duration="648000" />
-      <workItem from="1557968022699" duration="601000" />
-      <workItem from="1558017613089" duration="601000" />
-      <workItem from="1558131882920" duration="651000" />
-      <workItem from="1558132674356" duration="16169000" />
+      <workItem from="1557916127992" duration="322000" />
+      <workItem from="1558345035970" duration="82000" />
+      <workItem from="1558610482027" duration="2293000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -484,46 +481,11 @@
       <option name="project" value="LOCAL" />
       <updated>1556645420673</updated>
     </task>
-    <task id="LOCAL-00019" summary="master">
-      <created>1557916476141</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1557916476142</updated>
-    </task>
-    <task id="LOCAL-00020" summary="none">
-      <created>1558141769325</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1558141769326</updated>
-    </task>
-    <task id="LOCAL-00021" summary="arrow modify">
-      <created>1558147115285</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1558147115285</updated>
-    </task>
-    <task id="LOCAL-00022" summary="label modify">
-      <created>1558149409576</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1558149409576</updated>
-    </task>
-    <task id="LOCAL-00023" summary="label modify">
-      <created>1558149463371</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1558149463371</updated>
-    </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146790000" />
+    <option name="totallyTimeSpent" value="130272000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,27 +498,27 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="999" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18409818" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1814301" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Image Layers" order="6" />
+      <window_info anchor="bottom" id="Duplicate detector" weight="0.32951945" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49530202" visible="true" weight="0.23913044" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.4631728" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49530202" weight="0.23913044" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.4641834" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32837528" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32719547" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32798165" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32798165" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32837528" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.5732266" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.504698" side_tool="true" weight="0.23937677" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.3249428" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.32577905" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -607,30 +569,6 @@
     <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -658,29 +596,7 @@
     <MESSAGE value="add slider &#10;change view structure" />
     <MESSAGE value="algo" />
     <MESSAGE value="algo, modify" />
-    <MESSAGE value="master" />
-    <MESSAGE value="none" />
-    <MESSAGE value="arrow modify" />
-    <MESSAGE value="label modify" />
-    <option name="LAST_COMMIT_MESSAGE" value="label modify" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TestAlgo.java</url>
-          <line>32</line>
-          <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java</url>
-          <line>354</line>
-          <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="LAST_COMMIT_MESSAGE" value="algo, modify" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -688,26 +604,6 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>node1.getLayoutX()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>node2.getLayoutX()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>node2.getLayoutY()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>node1.getLayoutY()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
       <expression>
         <expression-string>adjList</expression-string>
         <language-id>JAVA</language-id>
@@ -727,6 +623,16 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/javafx-src.zip!/javafx/event/EventHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/sd.java" />
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage2.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="13" column="109" selection-start-line="13" selection-start-column="109" selection-end-line="13" selection-end-column="109" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/source/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -734,32 +640,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+        </state>
+      </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" />
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/Graph_Project_jar.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TestAlgo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="312">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding>
             <element signature="e#215#216#0" expanded="true" />
             <element signature="e#243#244#0" expanded="true" />
             <element signature="e#271#272#0" expanded="true" />
             <element signature="e#300#301#0" expanded="true" />
             <element signature="e#337#338#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
             <element signature="e#410#411#0" expanded="true" />
             <element signature="e#446#447#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TestAlgo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
@@ -781,51 +693,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="216">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Math.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/shape/LineTo.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Arrow.java">
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        <state relative-caret-position="582">
+          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Arrow#0;class#Arrow#0" />
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/event/Event.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/Scene.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/jre/lib/rt.jar!/sun/misc/VM.class" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Thread.java" />
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6648">
-          <caret line="299" column="5" lean-forward="true" selection-start-line="299" selection-start-column="5" selection-end-line="299" selection-end-column="5" />
+        <state relative-caret-position="238">
+          <caret line="455" lean-forward="true" selection-start-line="455" selection-end-line="455" />
         </state>
       </provider>
     </entry>
