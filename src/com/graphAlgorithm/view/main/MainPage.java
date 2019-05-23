@@ -1,6 +1,7 @@
 package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
+import com.graphAlgorithm.model.TspDynamicProgrammingRecursive;
 import com.graphAlgorithm.view.other.Node;
 import com.graphAlgorithm.view.other.Pair;
 import com.jfoenix.controls.JFXSlider;
@@ -418,5 +419,37 @@ public class MainPage {
         dijkstraThread.start();
     }
 
+    // convert adjlist to distance matrix :
+    public double[][] convertAdjListToMatrix(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList){
+        double[][] dataMatrix  = new double[adjList.size()][adjList.size()];
 
+        //initialise
+        for (int i=0; i<adjList.size(); i++){
+            for (int j = 0; j < adjList.size(); j++) {
+                dataMatrix[i][j] = 0 ;
+            }
+        }
+
+        // filling the values of matrix with adjList :
+        for (int i = 0; i < adjList.size() ; i++) {
+            for (int j = 0; j < adjList.get(i).size(); j++) {
+                Pair<Integer , Integer> tmp = adjList.get(i).get(j);
+                dataMatrix[i][tmp.getFirst()] = tmp.getSecond();
+            }
+        }
+
+        return dataMatrix ;
+    }
+
+    public void tsp_Dp_Handler(){
+        double [][] distanceMatrix = convertAdjListToMatrix(adjList);
+        TspDynamicProgrammingRecursive tsp = new TspDynamicProgrammingRecursive(  0 , distanceMatrix);
+        LinkedList<Integer> tspResultList = (LinkedList<Integer>) tsp.getTour();
+
+        // colouring the nodes :
+        for (int i = 0; i < tspResultList.size(); i++) {
+            nodesList.get(tspResultList.get(i)).getFirst().setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                    " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
+    }
 }
