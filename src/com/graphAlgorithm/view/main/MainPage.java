@@ -18,10 +18,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.text.DecimalFormat;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 import static java.lang.Math.*;
 
@@ -45,6 +42,8 @@ public class MainPage {
     @FXML
     private Button btnDJT;
     @FXML
+    private Button btnTSP;
+    @FXML
     private Pane customPane;
 
     private Thread thread = new Thread();
@@ -64,11 +63,14 @@ public class MainPage {
         btnDfs.setDisable(f);
         btnBfs.setDisable(f);
         btnDJT.setDisable(f);
+        btnTSP.setDisable(f);
     }
     void setAlgoButtVsible(boolean f){
         btnDfs.setVisible(f);
         btnBfs.setVisible(f);
         btnDJT.setVisible(f);
+        btnTSP.setVisible(f);
+
     }
 
     @FXML
@@ -509,14 +511,59 @@ public class MainPage {
     }
 
     public void tsp_Dp_Handler(){
-        double [][] distanceMatrix = convertAdjListToMatrix(adjList);
-        TspDynamicProgrammingRecursive tsp = new TspDynamicProgrammingRecursive(  0 , distanceMatrix);
-        LinkedList<Integer> tspResultList = (LinkedList<Integer>) tsp.getTour();
-
-        // colouring the nodes :
-        for (int i = 0; i < tspResultList.size(); i++) {
-            nodesList.get(tspResultList.get(i)).getFirst().setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
-                    " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        int sourceVertex;
+        if (isThreadRunning()) {
+            resetThread();
+            return;
         }
+
+        // reset the colours of vertexes :
+        for (LinkedList<Node> nodes : nodesList) {
+            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
+                    " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
+
+        // getting the source vertex :
+        LinkedList<String> options = new LinkedList<>();
+        for (LinkedList<Node> nodes : nodesList) {
+            options.add(String.valueOf(nodes.get(0).getIndex()));
+        }
+        choiceDialogSource = new ChoiceDialog(options.get(0), options);
+        choiceDialogSource.setTitle("options");
+        choiceDialogSource.setHeaderText("Getting source vertex");
+        choiceDialogSource.setContentText("please select the source vertex : ");
+        choiceDialogSource.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialogSource.setX(customPane.getWidth() / 2 + 320);
+        choiceDialogSource.setY(customPane.getHeight() / 2 - 50);
+        Stage stage = (Stage) choiceDialogSource.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
+        stage.getIcons().add(image);
+        if (!choiceDialogSource.showAndWait().isPresent()) return;
+        else sourceVertex = Integer.parseInt(choiceDialogSource.getSelectedItem().toString());
+
+
+        double [][] distanceMatrix = convertAdjListToMatrix(adjList);
+        TspDynamicProgrammingRecursive tsp = new TspDynamicProgrammingRecursive(  sourceVertex , distanceMatrix);
+        List<Integer> tspResultList =  tsp.getTour();
+
+        thread = new Thread(() -> {
+            setAlgoButtDisble(true);
+            btnTSP.setDisable(false);
+
+            // colouring the nodes :
+            for (int i = 0; i < tspResultList.size(); i++) {
+                nodesList.get(tspResultList.get(i)).getFirst().setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                        " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                // delay
+                try {
+                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            setAlgoButtDisble(false);
+        });
+        thread.start();
     }
 }
