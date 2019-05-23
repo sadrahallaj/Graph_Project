@@ -157,25 +157,6 @@ public class MainPage {
     }
 
     @FXML
-    private void helpHandler() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Help");
-        alert.setHeaderText("Information");
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/inf.png"));
-        stage.getIcons().add(image);
-        alert.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/help.png"))));
-        alert.setContentText("Create new vertex: In order to create first new vertex click on start button and for more vertices just click on screen.\n" +
-                "\n" +
-                "Create new connection: If you want to create first new connection between two vertices , first click on the desired vertex and then select the second.\n" +
-                "\n" +
-                "When your graph is completed, click on the finish button and then choose the type of search (dfs or bfs).\n" +
-                "\n" +
-                "Additionally, you can restart the process any time you want by clicking on the restart button.");
-        alert.showAndWait();
-    }
-
-    @FXML
     private void BFS_Handler() {
         if (isThreadRunning()) {
             resetThread();
@@ -271,12 +252,7 @@ public class MainPage {
                         " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
                 // delay
-                try {
-                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
-                    //                System.out.println((long)(1000*(1/slider.getValue())));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                delay();
             }
 
             setAlgoButtDisble(false);
@@ -438,12 +414,7 @@ public class MainPage {
                     }
                 }
                 // delay
-                try {
-                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
-                    System.out.println((long) (1000 * (1 / slider.getValue())));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+               delay();
             }
 
             setAlgoButtDisble(false);
@@ -475,11 +446,8 @@ public class MainPage {
         nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
                 " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
-        try {
-            Thread.sleep((long) (1000 * (1 / slider.getValue())));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //delay
+        delay();
 
         for (Node n : nodesList.get(v)) {
             if (!visited[n.getIndex()])
@@ -518,10 +486,7 @@ public class MainPage {
         }
 
         // reset the colours of vertexes :
-        for (LinkedList<Node> nodes : nodesList) {
-            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
-                    " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        }
+        setNodesDefaultColor();
 
         // getting the source vertex :
         LinkedList<String> options = new LinkedList<>();
@@ -552,18 +517,24 @@ public class MainPage {
 
             // colouring the nodes :
             for (int i = 0; i < tspResultList.size(); i++) {
-                nodesList.get(tspResultList.get(i)).getFirst().setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                System.out.println(tspResultList.get(i));
+                nodesList.get(tspResultList.get(i)).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
                         " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+
                 // delay
-                try {
-                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                delay();
             }
 
             setAlgoButtDisble(false);
         });
         thread.start();
+    }
+
+    public void delay(){
+        try {
+            Thread.sleep((long) (1000 * (1 / slider.getValue())));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
