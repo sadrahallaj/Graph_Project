@@ -1,7 +1,7 @@
 package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
-import com.graphAlgorithm.view.other.Arrow;
+import com.graphAlgorithm.model.TspDynamicProgrammingRecursive;
 import com.graphAlgorithm.view.other.Node;
 import com.graphAlgorithm.view.other.Pair;
 import com.jfoenix.controls.JFXSlider;
@@ -484,5 +484,102 @@ public class MainPage {
         }
     }
 
+    @FXML
+    public void DIJ_Handler() {
+        // reset the colours of vertexes :
+        for (LinkedList<Node> nodes : nodesList) {
+            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
+                    " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
 
+        int sourceVertex, destinationVertex;
+
+        // getting the source vertex :
+        LinkedList<String> options = new LinkedList<>();
+        for (LinkedList<Node> nodes : nodesList) {
+            options.add(String.valueOf(nodes.get(0).getIndex()));
+        }
+        choiceDialogSource = new ChoiceDialog(options.get(0), options);
+        choiceDialogSource.setTitle("options");
+        choiceDialogSource.setHeaderText("Getting source vertex");
+        choiceDialogSource.setContentText("please select the source vertex : ");
+        choiceDialogSource.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialogSource.setX(customPane.getWidth() / 2 + 320);
+        choiceDialogSource.setY(customPane.getHeight() / 2 - 50);
+        Stage stage = (Stage) choiceDialogSource.getDialogPane().getScene().getWindow();
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
+        stage.getIcons().add(image);
+        if (!choiceDialogSource.showAndWait().isPresent()) return;
+        else sourceVertex = Integer.parseInt(choiceDialogSource.getSelectedItem().toString());
+
+        // getting the destination vertex  :
+        choiceDialogVertex = new ChoiceDialog(options.get(0), options);
+        choiceDialogVertex.setTitle("options");
+        choiceDialogVertex.setHeaderText("Getting destination Vertex");
+        choiceDialogVertex.setContentText("please select the destination vertex : ");
+        choiceDialogVertex.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
+        choiceDialogVertex.setX(customPane.getWidth() / 2 + 320);
+        choiceDialogVertex.setY(customPane.getHeight() / 2 - 50);
+        Stage stage2 = (Stage) choiceDialogVertex.getDialogPane().getScene().getWindow();
+        stage2.getIcons().add(image);
+        if (!choiceDialogVertex.showAndWait().isPresent()) return;
+        else destinationVertex = Integer.parseInt(choiceDialogVertex.getSelectedItem().toString());
+
+        Thread dijkstraThread;
+        dijkstraThread = new Thread(() -> {
+
+            DijkstraAlgorithm dijkstrasAlgorithm = new DijkstraAlgorithm();
+            dijkstrasAlgorithm.algorithm(adjList, sourceVertex);
+            LinkedList<Integer> path = dijkstrasAlgorithm.shortestPath(destinationVertex);
+            for (int i = 0; i < path.size(); i++) {
+                System.out.println(path.get(i));
+                nodesList.get(path.get(i)).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                        " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+
+                // delay
+                try {
+                    Thread.sleep((long) (1000 * (1 / slider.getValue())));
+                    //                System.out.println((long)(1000*(1/slider.getValue())));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        dijkstraThread.start();
+    }
+
+    // convert adjlist to distance matrix :
+    public double[][] convertAdjListToMatrix(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList){
+        double[][] dataMatrix  = new double[adjList.size()][adjList.size()];
+
+        //initialise
+        for (int i=0; i<adjList.size(); i++){
+            for (int j = 0; j < adjList.size(); j++) {
+                dataMatrix[i][j] = 0 ;
+            }
+        }
+
+        // filling the values of matrix with adjList :
+        for (int i = 0; i < adjList.size() ; i++) {
+            for (int j = 0; j < adjList.get(i).size(); j++) {
+                Pair<Integer , Integer> tmp = adjList.get(i).get(j);
+                dataMatrix[i][tmp.getFirst()] = tmp.getSecond();
+            }
+        }
+
+        return dataMatrix ;
+    }
+
+    public void tsp_Dp_Handler(){
+        double [][] distanceMatrix = convertAdjListToMatrix(adjList);
+        TspDynamicProgrammingRecursive tsp = new TspDynamicProgrammingRecursive(  0 , distanceMatrix);
+        LinkedList<Integer> tspResultList = (LinkedList<Integer>) tsp.getTour();
+
+        // colouring the nodes :
+        for (int i = 0; i < tspResultList.size(); i++) {
+            nodesList.get(tspResultList.get(i)).getFirst().setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+                    " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        }
+    }
 }
