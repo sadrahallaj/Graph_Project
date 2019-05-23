@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/model/ShortestPathDp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
-    </list>
+    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="405" column="50" lean-forward="true" selection-start-line="405" selection-start-column="50" selection-end-line="406" selection-end-column="113" />
+            <state relative-caret-position="664">
+              <caret line="455" lean-forward="true" selection-start-line="455" selection-end-line="455" />
             </state>
           </provider>
         </entry>
@@ -208,7 +203,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558612257640" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558612472744" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="D:/Users/Amir/Downloads/jfoenix-8.0.8.jar!/" />
@@ -358,7 +353,7 @@
       <workItem from="1556628530314" duration="4456000" />
       <workItem from="1557916127992" duration="322000" />
       <workItem from="1558345035970" duration="82000" />
-      <workItem from="1558610482027" duration="1743000" />
+      <workItem from="1558610482027" duration="1985000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -490,7 +485,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129722000" />
+    <option name="totallyTimeSpent" value="129964000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -503,9 +498,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="999" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1814301" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1814301" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -522,7 +516,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32798165" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32798165" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.16361555" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.16361555" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.504698" side_tool="true" weight="0.23937677" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.32577905" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -603,18 +597,6 @@
     <MESSAGE value="algo" />
     <MESSAGE value="algo, modify" />
     <option name="LAST_COMMIT_MESSAGE" value="algo, modify" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TestAlgo.java</url>
-          <line>32</line>
-          <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -731,8 +713,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="405" column="50" lean-forward="true" selection-start-line="405" selection-start-column="50" selection-end-line="406" selection-end-column="113" />
+        <state relative-caret-position="664">
+          <caret line="455" lean-forward="true" selection-start-line="455" selection-end-line="455" />
         </state>
       </provider>
     </entry>
