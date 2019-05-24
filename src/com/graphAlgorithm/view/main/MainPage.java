@@ -346,7 +346,7 @@ public class MainPage {
 
 
         nodesList.get(node1.getIndex()).add(node2);
-        nodesList.get(node2.getIndex()).add(node1);
+//        nodesList.get(node2.getIndex()).add(node1);
 
         node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
         node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");

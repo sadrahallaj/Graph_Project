@@ -44,13 +44,13 @@
                             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </VBox.margin>
                     </JFXButton>
-               <JFXButton fx:id="btnDJT" onAction="#DIJ_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Dijkstra algorithm">
+               <JFXButton fx:id="btnDJT" onAction="#DIJ_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Shortest Path">
                   <VBox.margin>
                      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                   </VBox.margin>
                </JFXButton>
 
-                <JFXButton fx:id="btnTSP" onAction="#tsp_Dp_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="TSP algorithm">
+                <JFXButton fx:id="btnTSP" onAction="#tsp_Dp_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Traveling SalesMan Problem ">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin>
