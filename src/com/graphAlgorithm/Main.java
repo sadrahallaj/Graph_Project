@@ -6,6 +6,7 @@ import javafx.scene.*;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -15,7 +16,8 @@ public class Main extends Application {
         primaryStage.setTitle("Breadth First Search or Depth First Search for first Graph");
         Image image = new Image(getClass().getResourceAsStream("/source/graph.png"));
         primaryStage.getIcons().add(image);
-        primaryStage.setScene(new Scene(root, 1000, 960));
+//        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(true);
         primaryStage.show();
     }
