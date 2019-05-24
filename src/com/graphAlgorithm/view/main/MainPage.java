@@ -20,12 +20,12 @@ import javafx.util.Callback;
 import java.text.DecimalFormat;
 import java.util.*;
 
+import static java.lang.Double.NaN;
 import static java.lang.Math.*;
 
 
 //todo
 //خودش را نباید بتواند انتخاب کند
-// اصلاح نحوه ی نمایش خط ها
 // نمیتواند سورس و دیستنیشن را یکی انتخاب کند
 
 
@@ -463,7 +463,7 @@ public class MainPage {
         //initialise
         for (int i=0; i<adjList.size(); i++){
             for (int j = 0; j < adjList.size(); j++) {
-                dataMatrix[i][j] = 0 ;
+                dataMatrix[i][j] = Double.MAX_VALUE ;
             }
         }
 
@@ -509,7 +509,14 @@ public class MainPage {
 
         double [][] distanceMatrix = convertAdjListToMatrix(adjList);
         TspDynamicProgrammingRecursive tsp = new TspDynamicProgrammingRecursive(  sourceVertex , distanceMatrix);
-        List<Integer> tspResultList =  tsp.getTour();
+
+        List<Integer> tspResultList;
+        try {
+            tspResultList =  tsp.getTour();
+        }catch(Exception e){
+            System.out.println("can't be!!!"); //todo
+            return;
+        }
 
         thread = new Thread(() -> {
             setAlgoButtDisble(true);
