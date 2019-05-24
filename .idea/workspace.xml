@@ -4,6 +4,7 @@
     <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -123,8 +124,8 @@
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstraAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/ShortestPathDp.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" />
       </list>
     </option>
   </component>
@@ -146,51 +147,50 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
@@ -200,6 +200,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -360,6 +361,7 @@
       <workItem from="1557916127992" duration="322000" />
       <workItem from="1558345035970" duration="82000" />
       <workItem from="1558610482027" duration="2293000" />
+      <workItem from="1558695380416" duration="272000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -513,7 +515,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.15033557" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18783352" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -522,16 +524,16 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49530202" weight="0.23796034" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49530202" weight="0.35125858" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4986577" weight="0.4631728" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32719547" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.1784897" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.1784897" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013423" side_tool="true" weight="0.4631728" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.32577905" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.3249428" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Duplicate detector" order="13" weight="0.32951945" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -686,14 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/java/jdk-8u211-linux-x64/jdk1.8.0_211/src.zip!/java/util/LinkedList.java" />
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstraAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -705,13 +699,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TSP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TSP.java" />
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
