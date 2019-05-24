@@ -8,7 +8,6 @@ import com.graphAlgorithm.view.other.Pair;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
-import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -20,7 +19,6 @@ import javafx.util.Callback;
 import java.text.DecimalFormat;
 import java.util.*;
 
-import static java.lang.Double.NaN;
 import static java.lang.Math.*;
 
 
@@ -50,14 +48,13 @@ public class MainPage {
     private boolean waitingForPlacement = false;
     private int index = 0;
     private ChoiceDialog choiceDialog;
-    private ChoiceDialog choiceDialogSource;
-    private ChoiceDialog choiceDialogVertex;
     private boolean finished = false;
     private LinkedList<Node> nodeLine = new LinkedList<>();
     private LinkedList<Double> xDir = new LinkedList<>();
     private LinkedList<Double> yDir = new LinkedList<>();
     private LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
+    private LinkedList<String> choiseDialogeOptions = new LinkedList<>();
 
     void setAlgoButtDisble(boolean f){
         btnDfs.setDisable(f);
@@ -70,7 +67,6 @@ public class MainPage {
         btnBfs.setVisible(f);
         btnDJT.setVisible(f);
         btnTSP.setVisible(f);
-
     }
 
     @FXML
@@ -89,10 +85,9 @@ public class MainPage {
             }
         });
 
-
         setAlgoButtDisble(true);
-
         waitingForPlacement = true;
+
         customPane.setOnMouseClicked(event -> {
             btnFinish.setDisable(false);
             double centerX = event.getX() - 20;
@@ -165,8 +160,8 @@ public class MainPage {
 
         dfs_bfsShowDialog();
 
-        if (!choiceDialog.showAndWait().isPresent()) return;
-        else if (choiceDialog.getSelectedItem() == "random vertex") {
+
+        if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
             BFS_Algorithm(rand.nextInt(nodesList.size()));
         } else {
@@ -183,11 +178,10 @@ public class MainPage {
 
         dfs_bfsShowDialog();
 
-        if (!choiceDialog.showAndWait().isPresent()) return;
-        else if (choiceDialog.getSelectedItem() == "random vertex") {
+        if (choiceDialog.getSelectedItem() == "random vertex") {
             Random rand = new Random();
             DFS_Algorithm(rand.nextInt(nodesList.size()));
-        } else {
+        }else{
             DFS_Algorithm(Integer.parseInt(choiceDialog.getSelectedItem().toString()));
         }
     }
@@ -200,43 +194,13 @@ public class MainPage {
         }
 
         // reset the colours of vertexes :
-        for (LinkedList<Node> nodes : nodesList) {
-            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
-                    " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        }
+        setNodesDefaultColor();
 
-        int sourceVertex, destinationVertex;
+        int sourceVertex = showFullOptionChoiceDialog(
+                "options","Getting source vertex","please select the source vertex : ");
+        int destinationVertex = showFullOptionChoiceDialog(
+                "options","Getting destination vertex","please select the destination vertex : ");
 
-        // getting the source vertex :
-        LinkedList<String> options = new LinkedList<>();
-        for (LinkedList<Node> nodes : nodesList) {
-            options.add(String.valueOf(nodes.get(0).getIndex()));
-        }
-        choiceDialogSource = new ChoiceDialog(options.get(0), options);
-        choiceDialogSource.setTitle("options");
-        choiceDialogSource.setHeaderText("Getting source vertex");
-        choiceDialogSource.setContentText("please select the source vertex : ");
-        choiceDialogSource.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        choiceDialogSource.setX(customPane.getWidth() / 2 + 320);
-        choiceDialogSource.setY(customPane.getHeight() / 2 - 50);
-        Stage stage = (Stage) choiceDialogSource.getDialogPane().getScene().getWindow();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
-        stage.getIcons().add(image);
-        if (!choiceDialogSource.showAndWait().isPresent()) return;
-        else sourceVertex = Integer.parseInt(choiceDialogSource.getSelectedItem().toString());
-
-        // getting the destination vertex  :
-        choiceDialogVertex = new ChoiceDialog(options.get(0), options);
-        choiceDialogVertex.setTitle("options");
-        choiceDialogVertex.setHeaderText("Getting destination Vertex");
-        choiceDialogVertex.setContentText("please select the destination vertex : ");
-        choiceDialogVertex.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        choiceDialogVertex.setX(customPane.getWidth() / 2 + 320);
-        choiceDialogVertex.setY(customPane.getHeight() / 2 - 50);
-        Stage stage2 = (Stage) choiceDialogVertex.getDialogPane().getScene().getWindow();
-        stage2.getIcons().add(image);
-        if (!choiceDialogVertex.showAndWait().isPresent()) return;
-        else destinationVertex = Integer.parseInt(choiceDialogVertex.getSelectedItem().toString());
 
 
         thread = new Thread(() -> {
@@ -262,20 +226,18 @@ public class MainPage {
 
     private void dfs_bfsShowDialog(){
         //set Choice Dialog >>
-        LinkedList<String> options = new LinkedList<>();
-        options.add("random vertex");
+        choiseDialogeOptions.clear();
+        choiseDialogeOptions.add("random vertex");
         for (LinkedList<Node> nodes : nodesList) {
-            options.add(String.valueOf(nodes.get(0).getIndex()));
+            choiseDialogeOptions.add(String.valueOf(nodes.get(0).getIndex()));
         }
-        setChoiceDialog("Getting source vertex",
-                "please select the source vertex : ",options);
+        showChoiceDialog("Getting source vertex",
+                "please select the source vertex : ","");
         // << set Choice Dialog
     }
 
     private boolean isThreadRunning(){
-        if (thread.getState() != Thread.State.TERMINATED && thread.getState() != Thread.State.NEW) {
-            return true;
-        }else return false;
+        return thread.getState() != Thread.State.TERMINATED && thread.getState() != Thread.State.NEW;
     }
 
     private void resetThread(){
@@ -365,18 +327,40 @@ public class MainPage {
         }
     }
 
-    private void setChoiceDialog(String headerText, String contentText, LinkedList<String> options) {
+    private void showInfoDialog(String Header, String ContentText){
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setHeaderText(Header);
+        a.setContentText(ContentText);
+        a.showAndWait();
+    }
+
+    private int showChoiceDialog(String Title, String headerText, String contentText) {
         setNodesDefaultColor();
-        choiceDialog = new ChoiceDialog(options.get(0), options);
-        choiceDialog.setTitle("options");
+        choiceDialog = new ChoiceDialog(choiseDialogeOptions.get(0), choiseDialogeOptions);
+
+        choiceDialog.setTitle(Title);
         choiceDialog.setHeaderText(headerText);
         choiceDialog.setContentText(contentText);
+
         choiceDialog.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
         choiceDialog.setX(customPane.getWidth() / 2 + 320);
         choiceDialog.setY(customPane.getHeight() / 2 - 50);
         Stage stage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
         stage.getIcons().add(image);
+
+        if (!choiceDialog.showAndWait().isPresent()) return -1;
+        return Integer.parseInt(choiceDialog.getSelectedItem().toString());
+    }
+
+    private int showFullOptionChoiceDialog(String Title, String headerText, String contentText){
+        setFullChoiceOption();
+        return showChoiceDialog(Title, headerText, contentText);
+    }
+
+    private void setFullChoiceOption(){
+        for (LinkedList<Node> nodes : nodesList)
+            choiseDialogeOptions.add(String.valueOf(nodes.get(0).getIndex()));
     }
 
     private void BFS_Algorithm(int s) {
@@ -455,9 +439,8 @@ public class MainPage {
         }
     }
 
-
     // convert adjList to distance matrix :
-    public double[][] convertAdjListToMatrix(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList){
+    private double[][] convertAdjListToMatrix(LinkedList<LinkedList<Pair<Integer, Integer>>> adjList){
         double[][] dataMatrix  = new double[adjList.size()][adjList.size()];
 
         //initialise
@@ -479,42 +462,24 @@ public class MainPage {
     }
 
     public void tsp_Dp_Handler(){
-        int sourceVertex;
         if (isThreadRunning()) {
             resetThread();
             return;
         }
-
         // reset the colours of vertexes :
         setNodesDefaultColor();
-
-        // getting the source vertex :
-        LinkedList<String> options = new LinkedList<>();
-        for (LinkedList<Node> nodes : nodesList) {
-            options.add(String.valueOf(nodes.get(0).getIndex()));
-        }
-        choiceDialogSource = new ChoiceDialog(options.get(0), options);
-        choiceDialogSource.setTitle("options");
-        choiceDialogSource.setHeaderText("Getting source vertex");
-        choiceDialogSource.setContentText("please select the source vertex : ");
-        choiceDialogSource.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/source/choice.png"))));
-        choiceDialogSource.setX(customPane.getWidth() / 2 + 320);
-        choiceDialogSource.setY(customPane.getHeight() / 2 - 50);
-        Stage stage = (Stage) choiceDialogSource.getDialogPane().getScene().getWindow();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResourceAsStream("/source/options.png"));
-        stage.getIcons().add(image);
-        if (!choiceDialogSource.showAndWait().isPresent()) return;
-        else sourceVertex = Integer.parseInt(choiceDialogSource.getSelectedItem().toString());
-
+        //dialoge
+        int sourceVertex = showFullOptionChoiceDialog("select","select source","select source");
+        //stop if nothing selected
+        if (sourceVertex == -1) return;
 
         double [][] distanceMatrix = convertAdjListToMatrix(adjList);
         TspDynamicProgrammingRecursive tsp = new TspDynamicProgrammingRecursive(  sourceVertex , distanceMatrix);
 
         List<Integer> tspResultList;
-        try {
-            tspResultList =  tsp.getTour();
-        }catch(Exception e){
-            System.out.println("can't be!!!"); //todo
+        try { tspResultList = tsp.getTour(); }
+        catch(Exception e){
+            showInfoDialog("Can't be!","there is't a hamiltoni cycle!");
             return;
         }
 
@@ -523,12 +488,9 @@ public class MainPage {
             btnTSP.setDisable(false);
 
             // colouring the nodes :
-            for (int i = 0; i < tspResultList.size(); i++) {
-                System.out.println(tspResultList.get(i));
-                nodesList.get(tspResultList.get(i)).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
+            for (Integer integer : tspResultList) {
+                nodesList.get(integer).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
                         " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
-
-                // delay
                 delay();
             }
 
@@ -537,7 +499,7 @@ public class MainPage {
         thread.start();
     }
 
-    public void delay(){
+    private void delay(){
         try {
             Thread.sleep((long) (1000 * (1 / slider.getValue())));
         } catch (InterruptedException e) {

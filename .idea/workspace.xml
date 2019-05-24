@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="Tsp, fix bug&#10;fix massage">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
     </list>
@@ -20,78 +19,51 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="514" column="43" lean-forward="true" selection-start-line="514" selection-start-column="43" selection-end-line="514" selection-end-column="43" />
+            <state relative-caret-position="357">
+              <caret line="112" column="22" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
               <folding>
                 <element signature="method#setAlgoButtDisble#0;class#MainPage#0" />
                 <element signature="method#setAlgoButtVsible#0;class#MainPage#0" />
-                <element signature="method#initialize#0;class#MainPage#0" />
                 <element signature="class#2204:2727" />
-                <element signature="method#call#0;class#2204:2727" />
                 <element signature="class#2377:2677" />
                 <element signature="method#call#0;class#2377:2677" />
-                <element signature="e#2839#4533#0" />
-                <element signature="e#3037#3238#1" />
-                <element signature="e#3452#4523#1" />
-                <element signature="e#3913#4455#0" />
-                <element signature="e#3960#4437#1" />
-                <element signature="e#3990#4270#0" />
-                <element signature="e#4291#4415#0" />
                 <element signature="method#restartHandler#0;class#MainPage#0" />
                 <element signature="method#finishHandler#0;class#MainPage#0" />
                 <element signature="e#4987#5146#1" />
-                <element signature="method#BFS_Handler#0;class#MainPage#0" />
                 <element signature="e#5228#5286#1" />
-                <element signature="e#5447#5557#1" />
-                <element signature="e#5563#5662#1" />
                 <element signature="method#DFS_Handler#0;class#MainPage#0" />
                 <element signature="e#5744#5802#1" />
-                <element signature="e#5963#6073#1" />
-                <element signature="e#6079#6178#1" />
-                <element signature="method#DIJ_Handler#0;class#MainPage#0" />
                 <element signature="e#6259#6317#1" />
-                <element signature="e#6411#6604#1" />
-                <element signature="e#6797#6874#1" />
                 <element signature="e#8708#9474#0" />
                 <element signature="e#9074#9425#1" />
-                <element signature="method#dfs_bfsShowDialog#0;class#MainPage#0" />
-                <element signature="e#9721#9798#1" />
                 <element signature="method#isThreadRunning#0;class#MainPage#0" />
-                <element signature="e#10088#10124#1" />
                 <element signature="method#resetThread#0;class#MainPage#0" />
                 <element signature="method#drawLine#0;class#MainPage#0" />
                 <element signature="e#11066#11317#1" />
                 <element signature="e#11342#11597#1" />
                 <element signature="method#setNodesDefaultColor#0;class#MainPage#0" />
                 <element signature="e#13805#13973#1" />
-                <element signature="method#setChoiceDialog#0;class#MainPage#0" />
-                <element signature="method#BFS_Algorithm#0;class#MainPage#0" />
+                <element signature="method#showInfoDialog#0;class#MainPage#0" />
+                <element signature="method#showChoiceDialog#0;class#MainPage#0" />
+                <element signature="method#showFullOptionChoiseDialoge#0;class#MainPage#0" />
+                <element signature="method#setFullChoiseOption#0;class#MainPage#0" />
                 <element signature="e#14934#16299#0" />
-                <element signature="e#15448#16250#1" />
-                <element signature="e#15965#16187#1" />
-                <element signature="e#16054#16169#1" />
                 <element signature="method#DFS_Algorithm#0;class#MainPage#0" />
                 <element signature="e#16463#16661#0" />
                 <element signature="method#DFSUtil#0;class#MainPage#0" />
                 <element signature="e#17163#17262#1" />
-                <element signature="e#18415#18492#1" />
+                <element signature="method#convertAdjListToMatrix#0;class#MainPage#0" />
                 <element signature="method#delay#0;class#MainPage#0" />
-                <element signature="e#20364#20442#0" />
-                <element signature="e#20474#20518#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Thread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
-              <folding>
-                <element signature="e#449#450#0" expanded="true" />
-                <element signature="e#482#483#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="110">
+              <caret line="747" selection-start-line="747" selection-end-line="747" />
             </state>
           </provider>
         </entry>
@@ -126,7 +98,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -237,7 +209,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558692218231" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558695273481" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="D:/Users/Amir/Downloads/jfoenix-8.0.8.jar!/" />
@@ -515,13 +487,20 @@
       <option name="project" value="LOCAL" />
       <updated>1556645420673</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Tsp, fix bug&#10;fix massage">
+      <created>1558692227714</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1558692227714</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10597000" />
+    <option name="totallyTimeSpent" value="13573000" />
   </component>
-  <component name="TodoView" selected-index="4">
+  <component name="TodoView" selected-index="5">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -532,6 +511,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.15033557" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -546,7 +526,7 @@
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4986577" weight="0.4631728" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.32719547" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32719547" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.1784897" />
@@ -640,6 +620,11 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>choiseDialogeOptions</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>adjList</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -710,13 +695,6 @@
       </provider>
     </entry>
     <entry file="jar:///usr/java/jdk-8u211-linux-x64/jdk1.8.0_211/src.zip!/java/util/LinkedList.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/DijkstraAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -745,66 +723,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/util/Optional.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="140" column="25" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="25" />
+          <folding>
+            <element signature="e#4242#4243#0" expanded="true" />
+            <element signature="e#4278#4279#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#624#625#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
+          <folding>
+            <element signature="e#66921#66922#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="8411" selection-start-line="8411" selection-end-line="8411" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/control/Button.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/event/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="198" selection-start-line="198" selection-end-line="198" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="3779" selection-start-line="3779" selection-end-line="3779" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="747" selection-start-line="747" selection-end-line="747" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="514" column="43" lean-forward="true" selection-start-line="514" selection-start-column="43" selection-end-line="514" selection-end-column="43" />
+        <state relative-caret-position="357">
+          <caret line="112" column="22" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
           <folding>
             <element signature="method#setAlgoButtDisble#0;class#MainPage#0" />
             <element signature="method#setAlgoButtVsible#0;class#MainPage#0" />
-            <element signature="method#initialize#0;class#MainPage#0" />
             <element signature="class#2204:2727" />
-            <element signature="method#call#0;class#2204:2727" />
             <element signature="class#2377:2677" />
             <element signature="method#call#0;class#2377:2677" />
-            <element signature="e#2839#4533#0" />
-            <element signature="e#3037#3238#1" />
-            <element signature="e#3452#4523#1" />
-            <element signature="e#3913#4455#0" />
-            <element signature="e#3960#4437#1" />
-            <element signature="e#3990#4270#0" />
-            <element signature="e#4291#4415#0" />
             <element signature="method#restartHandler#0;class#MainPage#0" />
             <element signature="method#finishHandler#0;class#MainPage#0" />
             <element signature="e#4987#5146#1" />
-            <element signature="method#BFS_Handler#0;class#MainPage#0" />
             <element signature="e#5228#5286#1" />
-            <element signature="e#5447#5557#1" />
-            <element signature="e#5563#5662#1" />
             <element signature="method#DFS_Handler#0;class#MainPage#0" />
             <element signature="e#5744#5802#1" />
-            <element signature="e#5963#6073#1" />
-            <element signature="e#6079#6178#1" />
-            <element signature="method#DIJ_Handler#0;class#MainPage#0" />
             <element signature="e#6259#6317#1" />
-            <element signature="e#6411#6604#1" />
-            <element signature="e#6797#6874#1" />
             <element signature="e#8708#9474#0" />
             <element signature="e#9074#9425#1" />
-            <element signature="method#dfs_bfsShowDialog#0;class#MainPage#0" />
-            <element signature="e#9721#9798#1" />
             <element signature="method#isThreadRunning#0;class#MainPage#0" />
-            <element signature="e#10088#10124#1" />
             <element signature="method#resetThread#0;class#MainPage#0" />
             <element signature="method#drawLine#0;class#MainPage#0" />
             <element signature="e#11066#11317#1" />
             <element signature="e#11342#11597#1" />
             <element signature="method#setNodesDefaultColor#0;class#MainPage#0" />
             <element signature="e#13805#13973#1" />
-            <element signature="method#setChoiceDialog#0;class#MainPage#0" />
-            <element signature="method#BFS_Algorithm#0;class#MainPage#0" />
+            <element signature="method#showInfoDialog#0;class#MainPage#0" />
+            <element signature="method#showChoiceDialog#0;class#MainPage#0" />
+            <element signature="method#showFullOptionChoiseDialoge#0;class#MainPage#0" />
+            <element signature="method#setFullChoiseOption#0;class#MainPage#0" />
             <element signature="e#14934#16299#0" />
-            <element signature="e#15448#16250#1" />
-            <element signature="e#15965#16187#1" />
-            <element signature="e#16054#16169#1" />
             <element signature="method#DFS_Algorithm#0;class#MainPage#0" />
             <element signature="e#16463#16661#0" />
             <element signature="method#DFSUtil#0;class#MainPage#0" />
             <element signature="e#17163#17262#1" />
-            <element signature="e#18415#18492#1" />
+            <element signature="method#convertAdjListToMatrix#0;class#MainPage#0" />
             <element signature="method#delay#0;class#MainPage#0" />
-            <element signature="e#20364#20442#0" />
-            <element signature="e#20474#20518#0" />
           </folding>
         </state>
       </provider>
