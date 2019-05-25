@@ -3,21 +3,26 @@ package com.graphAlgorithm.view.main;
 import com.graphAlgorithm.model.DijkstraAlgorithm;
 import com.graphAlgorithm.model.TspDynamicProgrammingRecursive;
 import com.graphAlgorithm.view.other.Arrow;
-import com.graphAlgorithm.view.other.Node;
+import com.graphAlgorithm.view.other.ZoomableScrollPane;
+import com.graphAlgorithm.view.other.graphNode;
 import com.graphAlgorithm.view.other.Pair;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
+import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -45,21 +50,20 @@ public class MainPage {
     private Button btnTSP;
     @FXML
     private Pane customPane;
-
-    private double xOffset = 0;
-    private double yOffset = 0;
+    @FXML
+    private BorderPane borderPane;
 
     private Thread thread = new Thread();
     private boolean waitingForPlacement = false;
     private int index = 0;
     private ChoiceDialog choiceDialog;
     private boolean finished = false;
-    private LinkedList<Node> nodeLine = new LinkedList<>();
+    private LinkedList<graphNode> graphNodeLine = new LinkedList<>();
     private LinkedList<Double> xDir = new LinkedList<>();
     private LinkedList<Double> yDir = new LinkedList<>();
-    private LinkedList<LinkedList<Node>> nodesList = new LinkedList<>();
+    private LinkedList<LinkedList<graphNode>> nodesList = new LinkedList<>();
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
-    private LinkedList<String> choiseDialogeOptions = new LinkedList<>();
+    private LinkedList<String> choiceDialogsOptions = new LinkedList<>();
 
     void setAlgoButtDisble(boolean f){
         btnDfs.setDisable(f);
@@ -79,11 +83,15 @@ public class MainPage {
         setAlgoButtDisble(true);
         waitingForPlacement = true;
 
+        ZoomableScrollPane zoomableScrollPane  = new ZoomableScrollPane(customPane);
+        borderPane.setCenter(zoomableScrollPane);
+
         //slider custom text
         setSliderStyle();
         addNode();
-
     }
+
+
 
     private void setSliderStyle(){
         slider.setValueFactory(new Callback<JFXSlider, StringBinding>() {
@@ -116,17 +124,17 @@ public class MainPage {
                 btnFinish.setVisible(true);
                 xDir.add(centerX);
                 yDir.add(centerY);
-                Node node = new Node(index++, centerX, centerY);
-                LinkedList<Node> tmp = new LinkedList<>();
+                graphNode graphNode = new graphNode(index++, centerX, centerY);
+                LinkedList<graphNode> tmp = new LinkedList<>();
                 LinkedList<Pair<Integer, Integer>> tmp_2 = new LinkedList<>();
                 adjList.add(tmp_2);
-                tmp.add(node);
+                tmp.add(graphNode);
                 nodesList.add(tmp);
-                node.setOnMouseClicked(event1 -> {
+                graphNode.setOnMouseClicked(event1 -> {
                     if (!finished) {
                         try {
-                            node.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-                            nodeLine.add(node);
+                            graphNode.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                            graphNodeLine.add(graphNode);
                             drawLine();
                         } catch (Exception e) {
                             //todo
@@ -134,7 +142,7 @@ public class MainPage {
                         }
                     }
                 });
-                customPane.getChildren().add(node);
+                customPane.getChildren().add(graphNode);
             }
         });
     }
@@ -145,7 +153,7 @@ public class MainPage {
         btnFinish.setDisable(true);
         setAlgoButtDisble(true);
         nodesList.clear();
-        nodeLine.clear();
+        graphNodeLine.clear();
         xDir.clear();
         yDir.clear();
         index = 0;
@@ -244,11 +252,11 @@ public class MainPage {
 
     private void dfs_bfsShowDialog(){
         //set Choice Dialog >>
-        choiseDialogeOptions.clear();
-        choiseDialogeOptions.clear();
-        choiseDialogeOptions.add("random vertex");
-        for (LinkedList<Node> nodes : nodesList) {
-            choiseDialogeOptions.add(String.valueOf(nodes.get(0).getIndex()));
+        choiceDialogsOptions.clear();
+        choiceDialogsOptions.clear();
+        choiceDialogsOptions.add("random vertex");
+        for (LinkedList<graphNode> graphNodes : nodesList) {
+            choiceDialogsOptions.add(String.valueOf(graphNodes.get(0).getIndex()));
         }
         showChoiceDialog("Getting source vertex",
                 "please select the source vertex : ","");
@@ -268,35 +276,35 @@ public class MainPage {
     private void drawLine() {
         Arrow arrow = null;
 
-        if (nodeLine.size() != 2) return;
+        if (graphNodeLine.size() != 2) return;
         TextInputDialog dialog = new TextInputDialog("0");
         dialog.setTitle(" ");
         dialog.setContentText("Enter the edge weight:");
         Optional<String> result = dialog.showAndWait();
 
-        Node node1 = nodeLine.pop();
-        Node node2 = nodeLine.pop();
+        graphNode graphNode1 = graphNodeLine.pop();
+        graphNode graphNode2 = graphNodeLine.pop();
 
-        double node1X = node1.getLayoutX()+25, node1Y =node1.getLayoutY()+25;
-        double node2X =node2.getLayoutX()+25,node2Y=node2.getLayoutY()+25;
+        double node1X = graphNode1.getLayoutX()+25, node1Y = graphNode1.getLayoutY()+25;
+        double node2X = graphNode2.getLayoutX()+25,node2Y= graphNode2.getLayoutY()+25;
 
-        Pair<Integer, Integer> temp = new Pair<>(node2.getIndex(), Integer.parseInt(result.get()));
-        adjList.get(node1.getIndex()).add(temp);
+        Pair<Integer, Integer> temp = new Pair<>(graphNode2.getIndex(), Integer.parseInt(result.get()));
+        adjList.get(graphNode1.getIndex()).add(temp);
         Label w = new Label(String.valueOf(Integer.parseInt(result.get())));
 
         if(node1Y >= node2Y){
             //todo
-            w.setLayoutX(((node1.getLayoutX()+25 + node2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
-            w.setLayoutY(((node1.getLayoutY()+25 + node2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
+            w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
+            w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
         }else if (node1Y < node2Y){
             //todo
-            w.setLayoutX(((node1.getLayoutX()+25 + node2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
-            w.setLayoutY(((node1.getLayoutY()+25 + node2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
+            w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
+            w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
         }
 
         //find alfa degree
-        double alfa = Math.atan( abs(node1.getLayoutX() - node2.getLayoutX())  /
-                abs(node1.getLayoutY() - node2.getLayoutY()) );
+        double alfa = Math.atan( abs(graphNode1.getLayoutX() - graphNode2.getLayoutX())  /
+                abs(graphNode1.getLayoutY() - graphNode2.getLayoutY()) );
         if(Math.toDegrees(alfa) > 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
         else if(Math.toDegrees(alfa) < 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
         System.out.println(Math.toDegrees(alfa));
@@ -326,23 +334,23 @@ public class MainPage {
             arrow = new Arrow(node1X, node1Y, desX4, desY4 , Arrow.defaultArrowHeadSize);
 
 
-        nodesList.get(node1.getIndex()).add(node2);
-//        nodesList.get(node2.getIndex()).add(node1);
+        nodesList.get(graphNode1.getIndex()).add(graphNode2);
+//        nodesList.get(graphNode2.getIndex()).add(graphNode1);
 
-        node1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-        node2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
+        graphNode1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        graphNode2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
 //        customPane.getChildren().add(line);
         customPane.getChildren().add(arrow);
         customPane.getChildren().add(w);
 //        line.toBack();
         arrow.toFront();
-        node1.toFront();
-        node2.toFront();
+        graphNode1.toFront();
+        graphNode2.toFront();
     }
 
     private void setNodesDefaultColor(){
-        for (LinkedList<Node> nodes : nodesList) {
-            nodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        for (LinkedList<graphNode> graphNodes : nodesList) {
+            graphNodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
         }
     }
 
@@ -355,7 +363,7 @@ public class MainPage {
 
     private void showChoiceDialog(String Title, String headerText, String contentText) {
         setNodesDefaultColor();
-        choiceDialog = new ChoiceDialog(choiseDialogeOptions.get(0), choiseDialogeOptions);
+        choiceDialog = new ChoiceDialog(choiceDialogsOptions.get(0), choiceDialogsOptions);
 
         choiceDialog.setTitle(Title);
         choiceDialog.setHeaderText(headerText);
@@ -370,14 +378,14 @@ public class MainPage {
     }
 
     private void showFullOptionChoiceDialog(String Title, String headerText, String contentText){
-        choiseDialogeOptions.clear();
+        choiceDialogsOptions.clear();
         setFullChoiceOption();
         showChoiceDialog(Title, headerText, contentText);
     }
 
     private void setFullChoiceOption(){
-        for (LinkedList<Node> nodes : nodesList)
-            choiseDialogeOptions.add(String.valueOf(nodes.get(0).getIndex()));
+        for (LinkedList<graphNode> graphNodes : nodesList)
+            choiceDialogsOptions.add(String.valueOf(graphNodes.get(0).getIndex()));
     }
 
     private void BFS_Algorithm(int s) {
@@ -390,7 +398,7 @@ public class MainPage {
 
             boolean[] visited = new boolean[nodesList.size()];
 
-            LinkedList<Node> queue = new LinkedList<>();
+            LinkedList<graphNode> queue = new LinkedList<>();
 
             visited[nodesList.get(finalS[0]).get(0).getIndex()] = true;
             queue.add(nodesList.get(finalS[0]).get(0));
@@ -406,9 +414,9 @@ public class MainPage {
                         .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
                                 " -fx-text-fill: #fff ; -fx-pref-height: 50 ; -fx-pref-width: 50");
 
-                Iterator<Node> i = nodesList.get(finalS[0]).listIterator();
+                Iterator<graphNode> i = nodesList.get(finalS[0]).listIterator();
                 while (i.hasNext()) {
-                    Node n = i.next();
+                    graphNode n = i.next();
                     if (!visited[n.getIndex()]) {
                         visited[n.getIndex()] = true;
                         queue.add(n);
@@ -450,7 +458,7 @@ public class MainPage {
         //delay
         delay();
 
-        for (Node n : nodesList.get(v)) {
+        for (graphNode n : nodesList.get(v)) {
             if (!visited[n.getIndex()])
                 DFSUtil(n.getIndex(), visited);
         }
@@ -488,7 +496,7 @@ public class MainPage {
         //dialoge
 
         int sourceVertex;
-        choiseDialogeOptions.clear();
+        choiceDialogsOptions.clear();
         showFullOptionChoiceDialog("select","select source","select source");
         if (!choiceDialog.showAndWait().isPresent()) return;
         else sourceVertex = Integer.parseInt(choiceDialog.getSelectedItem().toString());
