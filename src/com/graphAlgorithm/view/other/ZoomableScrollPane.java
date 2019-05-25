@@ -9,7 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class ZoomableScrollPane extends ScrollPane {
-    private double scaleValue = 0.7;
+    private double scaleValue = 1.0;
     private double zoomIntensity = 0.02;
     private Node target;
     private Node zoomNode;
@@ -55,11 +55,19 @@ public class ZoomableScrollPane extends ScrollPane {
         Bounds innerBounds = zoomNode.getLayoutBounds();
         Bounds viewportBounds = getViewportBounds();
 
+        scaleValue = scaleValue * zoomFactor;
+        //bounce for scale
+        System.out.println(scaleValue);
+        if (scaleValue >= 1.8) {scaleValue = 1.8; return;}
+        else if (scaleValue <= 0.4){ scaleValue = 0.4; return;}
+
+
         // calculate pixel offsets from [0, 1] range
         double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
+
         double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
-        scaleValue = scaleValue * zoomFactor;
+
         updateScale();
         this.layout(); // refresh ScrollPane scroll positions & target bounds
 
