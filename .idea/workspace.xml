@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/ZoomableScrollPane.java" afterDir="false" />
+    <list default="true" id="503d99df-3d77-410c-aed7-658ac9cea190" name="Default Changelist" comment="fix bug&#10;clean code">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Graph_Project/com/graphAlgorithm/view/main/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Graph_Project/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/graphNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/ZoomableScrollPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/ZoomableScrollPane.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,75 +26,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="90" column="18" lean-forward="true" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
+            <state relative-caret-position="315">
+              <caret line="115" column="23" lean-forward="true" selection-start-line="115" selection-start-column="23" selection-end-line="115" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1838#1998#0" />
-                <element signature="e#2003#2163#0" />
-                <element signature="e#2355#2952#0" />
-                <element signature="class#2421:2944" />
-                <element signature="method#call#0;class#2421:2944" />
-                <element signature="class#2594:2894" />
-                <element signature="method#call#0;class#2594:2894" />
-                <element signature="e#4974#6737#0" />
-                <element signature="e#5035#6729#0" />
-                <element signature="e#5233#5434#1" />
-                <element signature="e#5648#6719#1" />
-                <element signature="e#6109#6651#0" />
-                <element signature="e#6156#6633#1" />
-                <element signature="e#6186#6466#0" />
-                <element signature="e#6487#6611#0" />
-                <element signature="e#4727#5086#0" />
-                <element signature="e#5092#5332#0" />
-                <element signature="e#5167#5326#1" />
-                <element signature="e#5338#5843#0" />
-                <element signature="e#5408#5466#1" />
-                <element signature="e#5622#5732#1" />
-                <element signature="e#5738#5837#1" />
-                <element signature="e#5849#6352#0" />
-                <element signature="e#5919#5977#1" />
-                <element signature="e#6133#6243#1" />
-                <element signature="e#6247#6346#1" />
-                <element signature="e#6358#7980#0" />
-                <element signature="e#6427#6485#1" />
-                <element signature="e#7182#7948#0" />
-                <element signature="e#7548#7899#1" />
-                <element signature="e#7986#8463#0" />
-                <element signature="e#8227#8317#1" />
-                <element signature="e#8469#8611#0" />
-                <element signature="e#8617#8739#0" />
-                <element signature="e#8745#12178#0" />
-                <element signature="e#9529#9780#1" />
-                <element signature="e#9805#10060#1" />
-                <element signature="e#12184#12444#0" />
-                <element signature="e#12270#12438#1" />
-                <element signature="e#12450#12674#0" />
-                <element signature="e#12680#13511#0" />
-                <element signature="e#13517#13743#0" />
-                <element signature="e#13749#13918#0" />
-                <element signature="e#13924#15445#0" />
-                <element signature="e#14047#15412#0" />
-                <element signature="e#14561#15363#1" />
-                <element signature="e#15078#15300#1" />
-                <element signature="e#15167#15282#1" />
-                <element signature="e#15451#15808#0" />
-                <element signature="e#15576#15774#0" />
-                <element signature="e#15814#16381#0" />
-                <element signature="e#16276#16375#1" />
-                <element signature="e#16387#17170#0" />
-                <element signature="e#16673#16807#1" />
-                <element signature="e#16728#16797#1" />
-                <element signature="e#16914#17135#1" />
-                <element signature="e#16976#17125#1" />
-                <element signature="e#17176#18712#0" />
-                <element signature="e#17237#17295#1" />
-                <element signature="e#18054#18158#0" />
-                <element signature="e#18188#18680#0" />
-                <element signature="e#18359#18631#1" />
-                <element signature="e#18718#18912#0" />
-                <element signature="e#18752#18830#0" />
-                <element signature="e#18862#18906#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="97" column="31" lean-forward="true" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
+              <folding>
+                <element signature="e#449#450#0" expanded="true" />
+                <element signature="e#482#483#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,15 +51,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/ZoomableScrollPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+            <state relative-caret-position="795">
+              <caret line="59" column="86" selection-start-line="59" selection-start-column="86" selection-end-line="59" selection-end-column="86" />
               <folding>
-                <element signature="method#outerNode#0;class#ZoomableScrollPane#0" />
-                <element signature="e#834#961#0" />
                 <element signature="method#centeredNode#0;class#ZoomableScrollPane#0" />
                 <element signature="method#updateScale#0;class#ZoomableScrollPane#0" />
-                <element signature="method#onScroll#0;class#ZoomableScrollPane#0" />
-                <element signature="e#2350#2381#0" />
+                <element signature="e#3013#3014#0" expanded="true" />
+                <element signature="e#3054#3055#0" expanded="true" />
+                <element signature="e#3105#3106#0" expanded="true" />
+                <element signature="e#3147#3148#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,11 +68,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/graphNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
+            <state relative-caret-position="39">
               <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
               <folding>
-                <element signature="e#596#597#0" expanded="true" />
-                <element signature="e#624#625#0" expanded="true" />
+                <element signature="e#215#216#0" expanded="true" />
+                <element signature="e#243#244#0" expanded="true" />
+                <element signature="e#271#272#0" expanded="true" />
+                <element signature="e#300#301#0" expanded="true" />
+                <element signature="e#337#338#0" expanded="true" />
+                <element signature="e#371#372#0" expanded="true" />
+                <element signature="e#410#411#0" expanded="true" />
+                <element signature="e#446#447#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,8 +96,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
+            <state relative-caret-position="96">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="e#916#917#0" expanded="true" />
+                <element signature="e#944#945#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,6 +125,10 @@
       <find>png</find>
       <find>delay</find>
       <find>sleep</find>
+      <find>on</find>
+      <find>event</find>
+      <find>zoomable</find>
+      <find>initial</find>
     </findStrings>
     <replaceStrings>
       <replace>private</replace>
@@ -199,8 +167,8 @@
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/Main.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Node.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/graphNode.java" />
-        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
         <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/other/ZoomableScrollPane.java" />
+        <option value="$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java" />
       </list>
     </option>
   </component>
@@ -228,49 +196,51 @@
         <subPane>
           <expand>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Graph_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Graph_Project2" type="462c0819:PsiDirectoryNode" />
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Graph_Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graphAlgorithm" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="other" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="Graph_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="jfoenix-8.0.8" type="70bed36:NamedLibraryElementNode" />
             </path>
           </expand>
           <select />
@@ -285,7 +255,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558747217781" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558864412574" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="D:/Users/Amir/Downloads/jfoenix-8.0.8.jar!/" />
@@ -295,7 +265,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet.css" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -437,6 +407,10 @@
       <workItem from="1558345035970" duration="82000" />
       <workItem from="1558610482027" duration="2293000" />
       <workItem from="1558710030369" duration="5201000" />
+      <workItem from="1558766658574" duration="565000" />
+      <workItem from="1558780981578" duration="326000" />
+      <workItem from="1558807797328" duration="2311000" />
+      <workItem from="1558861673177" duration="1741000" />
     </task>
     <task id="LOCAL-00001" summary="title changed">
       <created>1551173820319</created>
@@ -589,7 +563,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23153000" />
+    <option name="totallyTimeSpent" value="28096000" />
   </component>
   <component name="TodoView" selected-index="5">
     <todo-panel id="selected-file">
@@ -601,10 +575,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="27" width="1920" height="999" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.14966443" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.15581644" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -613,16 +586,16 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49530202" weight="0.23796034" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49530202" visible="true" weight="0.23684211" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4986577" weight="0.4631728" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32719547" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.1784897" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.1780822" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013423" side_tool="true" weight="0.4631728" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.32577905" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932885" weight="0.3249428" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Duplicate detector" order="13" weight="0.32951945" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -711,7 +684,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java</url>
-          <line>439</line>
+          <line>445</line>
           <properties />
           <option name="timeStamp" value="56" />
         </line-breakpoint>
@@ -772,102 +745,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TSP.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
-          <folding>
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/util/Optional.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="140" column="25" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="25" />
-          <folding>
-            <element signature="e#4242#4243#0" expanded="true" />
-            <element signature="e#4278#4279#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="747" selection-start-line="747" selection-end-line="747" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="e#215#216#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-            <element signature="e#271#272#0" expanded="true" />
-            <element signature="e#300#301#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
-          <folding>
-            <element signature="e#66921#66922#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="8411" selection-start-line="8411" selection-end-line="8411" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/control/Button.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="186" selection-start-line="186" selection-end-line="186" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/event/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="2494" selection-start-line="2494" selection-end-line="2494" />
-          <folding>
-            <element signature="e#66572#66573#0" expanded="true" />
-            <element signature="e#66618#66619#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/util/Optional.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Thread.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/fxml/FXMLLoader.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/Node.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/control/Button.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/event/Event.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/javafx-src.zip!/javafx/scene/Scene.java" />
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -882,110 +766,81 @@
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/model/TspDynamicProgrammingRecursive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="97" column="31" lean-forward="true" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
+          <folding>
+            <element signature="e#449#450#0" expanded="true" />
+            <element signature="e#482#483#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/mainPage.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1208">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="96">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="e#916#917#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/graphNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
+        <state relative-caret-position="39">
           <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/Pair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding>
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#624#625#0" expanded="true" />
+            <element signature="e#215#216#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#337#338#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/other/ZoomableScrollPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        <state relative-caret-position="795">
+          <caret line="59" column="86" selection-start-line="59" selection-start-column="86" selection-end-line="59" selection-end-column="86" />
           <folding>
-            <element signature="method#outerNode#0;class#ZoomableScrollPane#0" />
-            <element signature="e#834#961#0" />
             <element signature="method#centeredNode#0;class#ZoomableScrollPane#0" />
             <element signature="method#updateScale#0;class#ZoomableScrollPane#0" />
-            <element signature="method#onScroll#0;class#ZoomableScrollPane#0" />
-            <element signature="e#2350#2381#0" />
+            <element signature="e#3013#3014#0" expanded="true" />
+            <element signature="e#3054#3055#0" expanded="true" />
+            <element signature="e#3105#3106#0" expanded="true" />
+            <element signature="e#3147#3148#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/graphAlgorithm/view/main/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="90" column="18" lean-forward="true" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
+        <state relative-caret-position="315">
+          <caret line="115" column="23" lean-forward="true" selection-start-line="115" selection-start-column="23" selection-end-line="115" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1838#1998#0" />
-            <element signature="e#2003#2163#0" />
-            <element signature="e#2355#2952#0" />
-            <element signature="class#2421:2944" />
-            <element signature="method#call#0;class#2421:2944" />
-            <element signature="class#2594:2894" />
-            <element signature="method#call#0;class#2594:2894" />
-            <element signature="e#4974#6737#0" />
-            <element signature="e#5035#6729#0" />
-            <element signature="e#5233#5434#1" />
-            <element signature="e#5648#6719#1" />
-            <element signature="e#6109#6651#0" />
-            <element signature="e#6156#6633#1" />
-            <element signature="e#6186#6466#0" />
-            <element signature="e#6487#6611#0" />
-            <element signature="e#4727#5086#0" />
-            <element signature="e#5092#5332#0" />
-            <element signature="e#5167#5326#1" />
-            <element signature="e#5338#5843#0" />
-            <element signature="e#5408#5466#1" />
-            <element signature="e#5622#5732#1" />
-            <element signature="e#5738#5837#1" />
-            <element signature="e#5849#6352#0" />
-            <element signature="e#5919#5977#1" />
-            <element signature="e#6133#6243#1" />
-            <element signature="e#6247#6346#1" />
-            <element signature="e#6358#7980#0" />
-            <element signature="e#6427#6485#1" />
-            <element signature="e#7182#7948#0" />
-            <element signature="e#7548#7899#1" />
-            <element signature="e#7986#8463#0" />
-            <element signature="e#8227#8317#1" />
-            <element signature="e#8469#8611#0" />
-            <element signature="e#8617#8739#0" />
-            <element signature="e#8745#12178#0" />
-            <element signature="e#9529#9780#1" />
-            <element signature="e#9805#10060#1" />
-            <element signature="e#12184#12444#0" />
-            <element signature="e#12270#12438#1" />
-            <element signature="e#12450#12674#0" />
-            <element signature="e#12680#13511#0" />
-            <element signature="e#13517#13743#0" />
-            <element signature="e#13749#13918#0" />
-            <element signature="e#13924#15445#0" />
-            <element signature="e#14047#15412#0" />
-            <element signature="e#14561#15363#1" />
-            <element signature="e#15078#15300#1" />
-            <element signature="e#15167#15282#1" />
-            <element signature="e#15451#15808#0" />
-            <element signature="e#15576#15774#0" />
-            <element signature="e#15814#16381#0" />
-            <element signature="e#16276#16375#1" />
-            <element signature="e#16387#17170#0" />
-            <element signature="e#16673#16807#1" />
-            <element signature="e#16728#16797#1" />
-            <element signature="e#16914#17135#1" />
-            <element signature="e#16976#17125#1" />
-            <element signature="e#17176#18712#0" />
-            <element signature="e#17237#17295#1" />
-            <element signature="e#18054#18158#0" />
-            <element signature="e#18188#18680#0" />
-            <element signature="e#18359#18631#1" />
-            <element signature="e#18718#18912#0" />
-            <element signature="e#18752#18830#0" />
-            <element signature="e#18862#18906#0" />
           </folding>
         </state>
       </provider>
@@ -1021,7 +876,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>jfoenix-8.0.8</last-edited>
+          <last-edited>Python 3.6 (tamrin_2_kasra) interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

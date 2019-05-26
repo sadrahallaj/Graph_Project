@@ -65,6 +65,8 @@ public class MainPage {
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
     private LinkedList<String> choiceDialogsOptions = new LinkedList<>();
 
+    private ZoomableScrollPane zoomableScrollPane;
+
     void setAlgoButtDisble(boolean f){
         btnDfs.setDisable(f);
         btnBfs.setDisable(f);
@@ -83,7 +85,7 @@ public class MainPage {
         setAlgoButtDisble(true);
         waitingForPlacement = true;
 
-        ZoomableScrollPane zoomableScrollPane  = new ZoomableScrollPane(customPane);
+        zoomableScrollPane  = new ZoomableScrollPane(customPane);
         borderPane.setCenter(zoomableScrollPane);
 
         //slider custom text
@@ -110,6 +112,10 @@ public class MainPage {
 
     private void addNode(){
         customPane.setOnMouseClicked(event -> {
+            if(!event.isPrimaryButtonDown() || this.zoomableScrollPane.isMouseBeingDragged()){
+                return;
+            }
+
             btnFinish.setDisable(false);
             double centerX = event.getX() - 20;
             double centerY = event.getY() - 20;
