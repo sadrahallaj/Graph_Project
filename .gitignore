@@ -41,6 +41,7 @@ hs_err_pid*
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+.idea/**/description.html
 
 # Gradle
 .idea/**/gradle.xml
