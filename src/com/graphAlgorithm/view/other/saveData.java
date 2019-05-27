@@ -13,7 +13,7 @@ public class saveData {
     private LinkedList<LinkedList<graphNode>> nodesList ;
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ;
 
-    public saveData( LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ,LinkedList<Double> xDir, LinkedList<Double> yDir, LinkedList<LinkedList<graphNode>> nodesList , Thread thread , int index, boolean waitingForPlacement, boolean finished ) {
+    public saveData( LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ,LinkedList<Double> xDir, LinkedList<Double> yDir, LinkedList<LinkedList<graphNode>> nodesList , int index ) {
         this.thread = thread;
         this.waitingForPlacement = waitingForPlacement;
         this.index = index;
@@ -24,22 +24,6 @@ public class saveData {
         this.adjList = adjList;
     }
 
-    public Thread getThread() {
-        return thread;
-    }
-
-    public void setThread(Thread thread) {
-        this.thread = thread;
-    }
-
-    public boolean isWaitingForPlacement() {
-        return waitingForPlacement;
-    }
-
-    public void setWaitingForPlacement(boolean waitingForPlacement) {
-        this.waitingForPlacement = waitingForPlacement;
-    }
-
     public int getIndex() {
         return index;
     }
@@ -48,13 +32,6 @@ public class saveData {
         this.index = index;
     }
 
-    public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
-    }
 
     public LinkedList<Double> getxDir() {
         return xDir;

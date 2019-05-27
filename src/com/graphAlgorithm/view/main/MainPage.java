@@ -543,4 +543,13 @@ public class MainPage {
             e.printStackTrace();
         }
     }
+
+
+    public void saveGrapgh_Handler(){
+
+    }
+
+    public void loadGrapgh_Handler(){
+
+    }
 }
