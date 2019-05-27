@@ -2,10 +2,7 @@ package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
 import com.graphAlgorithm.model.TspDynamicProgrammingRecursive;
-import com.graphAlgorithm.view.other.Arrow;
-import com.graphAlgorithm.view.other.ZoomableScrollPane;
-import com.graphAlgorithm.view.other.graphNode;
-import com.graphAlgorithm.view.other.Pair;
+import com.graphAlgorithm.view.other.*;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
@@ -23,6 +20,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -546,10 +545,49 @@ public class MainPage {
 
 
     public void saveGrapgh_Handler(){
+        saveData saveData = new saveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
+        String fileName = "graph.bin";
 
+        try {
+            FileOutputStream fileOs = new FileOutputStream(fileName);
+            ObjectOutputStream oOs = new ObjectOutputStream(fileOs);
+            oOs.writeObject(saveData);
+            oOs.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Graph saved.");
     }
 
     public void loadGrapgh_Handler(){
+        String fileName = "graph.bin";
 
+        try {
+            FileInputStream fileOs = new FileInputStream(fileName);
+            ObjectInputStream oIs = new ObjectInputStream(fileOs);
+            saveData saveData = (com.graphAlgorithm.view.other.saveData) oIs.readObject();
+            oIs.close();
+            reloadGraph(saveData);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Graph saved.");
+    }
+
+    public void reloadGraph(saveData obj){
+         restartHandler();
+         this.adjList = obj.getAdjList();
+         this.xDir = obj.getxDir();
+         this.yDir = obj.getyDir();
+         this.nodesList = obj.getNodesList();
+         this.index = obj.getIndex();
     }
 }
