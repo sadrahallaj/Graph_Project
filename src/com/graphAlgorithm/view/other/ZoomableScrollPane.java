@@ -27,6 +27,7 @@ public class ZoomableScrollPane extends ScrollPane {
         setFitToWidth(true); //center
 
         updateScale();
+
     }
 
     private Node outerNode(Node node) {
@@ -36,17 +37,6 @@ public class ZoomableScrollPane extends ScrollPane {
             onScroll(e.getTextDeltaY(), new Point2D(e.getX(), e.getY()));
         });
         return outerNode;
-    }
-
-    private Node centeredNode(Node node) {
-        VBox vBox = new VBox(node);
-        vBox.setAlignment(Pos.CENTER);
-        return vBox;
-    }
-
-    private void updateScale() {
-        target.setScaleX(scaleValue);
-        target.setScaleY(scaleValue);
     }
 
     private void onScroll(double wheelDelta, Point2D mousePoint) {
@@ -60,7 +50,6 @@ public class ZoomableScrollPane extends ScrollPane {
         System.out.println(scaleValue);
         if (scaleValue >= 1.8) {scaleValue = 1.8; return;}
         else if (scaleValue <= 0.4){ scaleValue = 0.4; return;}
-
 
         // calculate pixel offsets from [0, 1] range
         double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
@@ -82,5 +71,16 @@ public class ZoomableScrollPane extends ScrollPane {
         Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
         this.setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
         this.setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
+    }
+
+    private Node centeredNode(Node node) {
+        VBox vBox = new VBox(node);
+        vBox.setAlignment(Pos.CENTER);
+        return vBox;
+    }
+
+    private void updateScale() {
+        target.setScaleX(scaleValue);
+        target.setScaleY(scaleValue);
     }
 }
