@@ -1,11 +1,9 @@
 package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
+import com.graphAlgorithm.model.SaveData;
 import com.graphAlgorithm.model.TspDynamicProgrammingRecursive;
-import com.graphAlgorithm.view.other.Arrow;
-import com.graphAlgorithm.view.other.ZoomableScrollPane;
-import com.graphAlgorithm.view.other.graphNode;
-import com.graphAlgorithm.view.other.Pair;
+import com.graphAlgorithm.view.other.*;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
@@ -23,6 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -65,6 +65,8 @@ public class MainPage {
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
     private LinkedList<String> choiceDialogsOptions = new LinkedList<>();
 
+    private ZoomableScrollPane zoomableScrollPane;
+
     void setAlgoButtDisble(boolean f){
         btnDfs.setDisable(f);
         btnBfs.setDisable(f);
@@ -83,7 +85,7 @@ public class MainPage {
         setAlgoButtDisble(true);
         waitingForPlacement = true;
 
-        ZoomableScrollPane zoomableScrollPane  = new ZoomableScrollPane(customPane);
+        zoomableScrollPane  = new ZoomableScrollPane(customPane);
         borderPane.setCenter(zoomableScrollPane);
 
         //slider custom text
@@ -110,6 +112,10 @@ public class MainPage {
 
     private void addNode(){
         customPane.setOnMouseClicked(event -> {
+            if(!event.isPrimaryButtonDown() || this.zoomableScrollPane.isMouseBeingDragged()){
+                return;
+            }
+
             btnFinish.setDisable(false);
             double centerX = event.getX() - 20;
             double centerY = event.getY() - 20;
@@ -536,5 +542,53 @@ public class MainPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void saveGrapgh_Handler(){
+        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
+        String fileName = "graph.bin";
+
+        try {
+            FileOutputStream fileOs = new FileOutputStream(fileName);
+            ObjectOutputStream oOs = new ObjectOutputStream(fileOs);
+            oOs.writeObject(saveData);
+            oOs.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Graph saved.");
+    }
+
+    public void loadGrapgh_Handler(){
+        String fileName = "graph.bin";
+
+        try {
+            FileInputStream fileOs = new FileInputStream(fileName);
+            ObjectInputStream oIs = new ObjectInputStream(fileOs);
+            SaveData SaveData = (SaveData) oIs.readObject();
+            oIs.close();
+            reloadGraph(SaveData);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Graph saved.");
+    }
+
+    public void reloadGraph(SaveData obj){
+         restartHandler();
+         this.adjList = obj.getAdjList();
+         this.xDir = obj.getxDir();
+         this.yDir = obj.getyDir();
+         this.nodesList = obj.getNodesList();
+         this.index = obj.getIndex();
     }
 }
