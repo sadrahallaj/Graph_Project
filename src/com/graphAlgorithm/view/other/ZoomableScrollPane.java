@@ -13,6 +13,7 @@ public class ZoomableScrollPane extends ScrollPane {
     private double zoomIntensity = 0.02;
     private Node target;
     private Node zoomNode;
+    private boolean mouseDragging = false;
 
     public ZoomableScrollPane(Node target) {
         super();
@@ -40,6 +41,13 @@ public class ZoomableScrollPane extends ScrollPane {
     }
 
     private void onScroll(double wheelDelta, Point2D mousePoint) {
+
+        this.mouseDragging = true;
+
+        /**
+         * @todo Set mouse dragging boolean to false as soon as scrolling is finished!
+         */
+
         double zoomFactor = Math.exp(wheelDelta * zoomIntensity);
 
         Bounds innerBounds = zoomNode.getLayoutBounds();
@@ -82,5 +90,12 @@ public class ZoomableScrollPane extends ScrollPane {
     private void updateScale() {
         target.setScaleX(scaleValue);
         target.setScaleY(scaleValue);
+    }
+    public boolean isMouseBeingDragged() {
+        return this.mouseDragging;
+    }
+
+    public void setMouseDragging(boolean value) {
+        this.mouseDragging = value;
     }
 }
