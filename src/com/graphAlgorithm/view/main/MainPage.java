@@ -108,11 +108,11 @@ public class MainPage {
         String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
         SaveData saveData = null;
         try {
-            btnFinish.setDisable(false);
             saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
             System.out.println("Graph saved.");
 
             restartHandler();
+            btnFinish.setDisable(false);
             this.adjList = saveData.getAdjList();
             this.xDir = saveData.getxDir();
             this.yDir = saveData.getyDir();
