@@ -137,30 +137,30 @@ public class MainPage {
 
             // load lines :
             for (int i = 0; i < adjList.size(); i++) {
-                for (int j = 0; j < adjList.get(j).size(); j++) {
+                for (int j = 0; j < adjList.get(i).size(); j++) {
                     Arrow arrow = null;
 
                     graphNode graphNode1 = nodesList.get(i).getFirst();
                     graphNode graphNode2 = nodesList.get(adjList.get(i).get(j).first).get(0);
 
-                    double node1X = graphNode1.getLayoutX()+25, node1Y = graphNode1.getLayoutY()+25;
-                    double node2X = graphNode2.getLayoutX()+25,node2Y= graphNode2.getLayoutY()+25;
+                    double node1X = xDir.get(graphNode1.getIndex())+25, node1Y = yDir.get(graphNode1.getIndex())+25;
+                    double node2X = xDir.get(graphNode2.getIndex())+25,node2Y= yDir.get(graphNode2.getIndex())+25;
 
                     Label w = new Label(String.valueOf(adjList.get(i).get(j).second));
 
                     if(node1Y >= node2Y){
                         //todo
-                        w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
-                        w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
+                        w.setLayoutX(((node1X + node2X)/2)  - (abs(node1Y - node2Y)/18) );
+                        w.setLayoutY(((node1Y + node2Y)/2)  - (abs(node1X - node2X)/18) -5 );
                     }else if (node1Y < node2Y){
                         //todo
-                        w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
-                        w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
+                        w.setLayoutX(((node1X + node2X)/2)    + (abs(node1Y - node2Y)/18) );
+                        w.setLayoutY(((node1Y + node2Y)/2)    + (abs(node1X - node2X)/18) -2 );
                     }
 
                     //find alfa degree
-                    double alfa = Math.atan( abs(graphNode1.getLayoutX() - graphNode2.getLayoutX())  /
-                            abs(graphNode1.getLayoutY() - graphNode2.getLayoutY()) );
+                    double alfa = Math.atan( abs(xDir.get(graphNode1.getIndex()) - xDir.get(graphNode2.getIndex()))  /
+                            abs(yDir.get(graphNode1.getIndex()) - yDir.get(graphNode2.getIndex())) );
                     if(Math.toDegrees(alfa) > 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
                     else if(Math.toDegrees(alfa) < 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
                     System.out.println(Math.toDegrees(alfa));
