@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -95,21 +96,20 @@ public class MainPage {
 
         String fileName = "./src/com/graphAlgorithm/view/main/graph.bin" ; // default path
 
-        // ask user where to save :
-        // parent component of the dialog
-        JFrame parentFrame = new JFrame();
+        // ask where to save file :
 
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify a file to save");
+        FileChooser fileChooser = new FileChooser();
 
-        int userSelection = fileChooser.showSaveDialog(parentFrame);
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
 
+        //Show save file dialog
+        Stage stage = new Stage();
+        File file = fileChooser.showSaveDialog(stage);
 
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
-
-            System.out.println("Save as file: " + fileToSave.getAbsolutePath());
-            fileName = fileToSave.getAbsolutePath()+".bin";
+        if(file != null){
+            fileName = file.getAbsolutePath()+ ".txt";
         }
 
         SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
@@ -128,14 +128,20 @@ public class MainPage {
 
         String fileName = "./src/com/graphAlgorithm/view/main/graph.bin";
 
-        JFileChooser fileChooser = new JFileChooser();
-        JFrame parentFrame = new JFrame();
-        if (fileChooser.showOpenDialog(parentFrame) == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            // load from file
-            fileName = file.getAbsolutePath();
+        // ask where to open file to load :
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage  = new Stage();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+//            mainStage.display(selectedFile);
+            fileName =  selectedFile.getAbsolutePath();
         }
-        
         SaveData saveData = null;
         try {
             saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
