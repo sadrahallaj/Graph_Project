@@ -9,11 +9,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class ZoomableScrollPane extends ScrollPane {
-    private double scaleValue = 1.0;
+    private boolean mouseDragging = false;
+
+    private double scaleValue = 0.7;
     private double zoomIntensity = 0.02;
     private Node target;
     private Node zoomNode;
-    private boolean mouseDragging = false;
 
     public ZoomableScrollPane(Node target) {
         super();
@@ -28,7 +29,6 @@ public class ZoomableScrollPane extends ScrollPane {
         setFitToWidth(true); //center
 
         updateScale();
-
     }
 
     private Node outerNode(Node node) {
@@ -40,8 +40,20 @@ public class ZoomableScrollPane extends ScrollPane {
         return outerNode;
     }
 
-    private void onScroll(double wheelDelta, Point2D mousePoint) {
+    private Node centeredNode(Node node) {
+        VBox vBox = new VBox(node);
+        vBox.setAlignment(Pos.CENTER);
+        return vBox;
+    }
 
+    private void updateScale() {
+        target.setScaleX(scaleValue);
+        target.setScaleY(scaleValue);
+    }
+
+
+
+    private void onScroll(double wheelDelta, Point2D mousePoint) {
         this.mouseDragging = true;
 
         /**
@@ -53,18 +65,11 @@ public class ZoomableScrollPane extends ScrollPane {
         Bounds innerBounds = zoomNode.getLayoutBounds();
         Bounds viewportBounds = getViewportBounds();
 
-        scaleValue = scaleValue * zoomFactor;
-        //bounce for scale
-        System.out.println(scaleValue);
-        if (scaleValue >= 1.8) {scaleValue = 1.8; return;}
-        else if (scaleValue <= 0.4){ scaleValue = 0.4; return;}
-
         // calculate pixel offsets from [0, 1] range
         double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
-
         double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
 
-
+        scaleValue = scaleValue * zoomFactor;
         updateScale();
         this.layout(); // refresh ScrollPane scroll positions & target bounds
 
@@ -81,16 +86,10 @@ public class ZoomableScrollPane extends ScrollPane {
         this.setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
     }
 
-    private Node centeredNode(Node node) {
-        VBox vBox = new VBox(node);
-        vBox.setAlignment(Pos.CENTER);
-        return vBox;
+    private void onScroll() {
+
     }
 
-    private void updateScale() {
-        target.setScaleX(scaleValue);
-        target.setScaleY(scaleValue);
-    }
     public boolean isMouseBeingDragged() {
         return this.mouseDragging;
     }

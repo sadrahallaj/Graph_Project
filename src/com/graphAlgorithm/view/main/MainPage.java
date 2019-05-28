@@ -1,7 +1,6 @@
 package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
-import com.graphAlgorithm.model.SaveData;
 import com.graphAlgorithm.model.TspDynamicProgrammingRecursive;
 import com.graphAlgorithm.view.other.*;
 import com.jfoenix.controls.JFXSlider;
@@ -112,9 +111,9 @@ public class MainPage {
 
     private void addNode(){
         customPane.setOnMouseClicked(event -> {
-//            if(!event.isPrimaryButtonDown() || this.zoomableScrollPane.isMouseBeingDragged()){
-//                return;
-//            }
+            if(!event.isPrimaryButtonDown() || this.zoomableScrollPane.isMouseBeingDragged()){
+                return;
+            }
 
             btnFinish.setDisable(false);
             double centerX = event.getX() - 20;
@@ -546,7 +545,7 @@ public class MainPage {
 
 
     public void saveGrapgh_Handler(){
-        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
+        saveData saveData = new saveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
         String fileName = "graph.bin";
 
         try {
@@ -569,9 +568,9 @@ public class MainPage {
         try {
             FileInputStream fileOs = new FileInputStream(fileName);
             ObjectInputStream oIs = new ObjectInputStream(fileOs);
-            SaveData SaveData = (SaveData) oIs.readObject();
+            saveData saveData = (com.graphAlgorithm.view.other.saveData) oIs.readObject();
             oIs.close();
-            reloadGraph(SaveData);
+            reloadGraph(saveData);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -583,7 +582,7 @@ public class MainPage {
         System.out.println("Graph saved.");
     }
 
-    public void reloadGraph(SaveData obj){
+    public void reloadGraph(saveData obj){
          restartHandler();
          this.adjList = obj.getAdjList();
          this.xDir = obj.getxDir();
