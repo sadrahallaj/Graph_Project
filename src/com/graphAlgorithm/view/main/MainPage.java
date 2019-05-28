@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import javax.swing.*;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -91,8 +92,28 @@ public class MainPage {
 
     @FXML
     private void saveGraph_Handler(){
+
+        String fileName = "./src/com/graphAlgorithm/view/main/graph.bin" ; // default path
+
+        // ask user where to save :
+        // parent component of the dialog
+        JFrame parentFrame = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+
+        int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+
+            System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            fileName = fileToSave.getAbsolutePath()+".bin";
+        }
+
         SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
-        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
+//        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
 
         try {
             FileIO.writeAnObjectToFile(fileName,saveData);
@@ -105,7 +126,16 @@ public class MainPage {
     @FXML
     private void loadGraph_Handler(){
 
-        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
+        String fileName = "./src/com/graphAlgorithm/view/main/graph.bin";
+
+        JFileChooser fileChooser = new JFileChooser();
+        JFrame parentFrame = new JFrame();
+        if (fileChooser.showOpenDialog(parentFrame) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            // load from file
+            fileName = file.getAbsolutePath();
+        }
+
         SaveData saveData = null;
         try {
             saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
