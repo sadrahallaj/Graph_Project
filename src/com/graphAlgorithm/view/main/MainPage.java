@@ -141,7 +141,7 @@ public class MainPage {
                     Arrow arrow = null;
 
                     graphNode graphNode1 = nodesList.get(i).getFirst();
-                    graphNode graphNode2 = nodesList.get(adjList.get(i).get(j).first).getFirst();
+                    graphNode graphNode2 = nodesList.get(adjList.get(i).get(j).first).get(0);
 
                     double node1X = graphNode1.getLayoutX()+25, node1Y = graphNode1.getLayoutY()+25;
                     double node2X = graphNode2.getLayoutX()+25,node2Y= graphNode2.getLayoutY()+25;
