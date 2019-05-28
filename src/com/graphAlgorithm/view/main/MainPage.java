@@ -104,9 +104,11 @@ public class MainPage {
 
     @FXML
     private void loadGraph_Handler(){
+
         String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
         SaveData saveData = null;
         try {
+            btnFinish.setDisable(false);
             saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
             System.out.println("Graph saved.");
 
@@ -193,7 +195,7 @@ public class MainPage {
                     graphNode2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
                     customPane.getChildren().add(arrow);
                     customPane.getChildren().add(w);
-                    arrow.toFront();
+                    arrow.toBack();
                     graphNode1.toFront();
                     graphNode2.toFront();
                 }
