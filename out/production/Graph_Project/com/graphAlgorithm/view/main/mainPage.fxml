@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="863.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphAlgorithm.view.main.MainPage">
+   <BorderPane fx:id="borderPane" prefHeight="863.0" prefWidth="1099.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <left>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="207.0" prefWidth="206.0" BorderPane.alignment="CENTER">
+                <children>
+                    <JFXButton onAction="#restartHandler" prefHeight="59.0" prefWidth="203.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Restart">
+                        <VBox.margin>
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                        </VBox.margin>
+                    </JFXButton>
+                    <JFXButton fx:id="btnFinish" disable="true" onAction="#finishHandler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Finish">
+                        <VBox.margin>
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                        </VBox.margin>
+                    </JFXButton>
+                    <JFXButton fx:id="btnBfs" onAction="#BFS_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="BFS algorithm">
+                        <VBox.margin>
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                        </VBox.margin>
+                    </JFXButton>
+                    <JFXButton fx:id="btnDfs" onAction="#DFS_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="DFS algorithm">
+                        <VBox.margin>
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                        </VBox.margin>
+                    </JFXButton>
+               <JFXButton fx:id="btnDJT" onAction="#DIJ_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Dijkstra algorithm">
+                  <VBox.margin>
+                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                  </VBox.margin>
+               </JFXButton>
+      
+                      <JFXButton fx:id="btnTSP" onAction="#tsp_Dp_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="TSP algorithm">
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                </JFXButton>
+               <JFXButton onAction="#saveGraph_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Save Data">
+                  <VBox.margin>
+                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                  </VBox.margin>
+               </JFXButton>
+               <JFXButton onAction="#loadGraph_Handler" prefHeight="59.0" prefWidth="500.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Load Data">
+                  <VBox.margin>
+                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                  </VBox.margin>
+               </JFXButton>
+                    <VBox fx:id="speedControl" prefHeight="70.0" prefWidth="206.0" style="-fx-background-color: red; -fx-background-radius: 0;">
+                        <children>
+                            <Label alignment="CENTER" prefHeight="21.0" prefWidth="364.0" text="preview speed:">
+                                <font>
+                                    <Font name="System Bold" size="20.0" />
+                                </font>
+                            </Label>
+                            <JFXSlider fx:id="slider" blockIncrement="1.0" majorTickUnit="0.5" max="4.0" min="0.1" prefHeight="43.0" prefWidth="206.0" value="1.0">
+                        <VBox.margin>
+                           <Insets left="5.0" right="5.0" />
+                        </VBox.margin>
+                     </JFXSlider>
+                        </children>
+                        <VBox.margin>
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                        </VBox.margin>
+                    </VBox>
+                </children>
+            </VBox>
+      </left>
+      <center>
+         <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <content>
+               <Pane fx:id="customPane" prefHeight="2000.0" prefWidth="2000.0" />
+            </content>
+         </ScrollPane>
+      </center>
+   </BorderPane>
+</AnchorPane>

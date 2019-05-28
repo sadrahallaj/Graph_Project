@@ -1,0 +1,26 @@
+package com.graphAlgorithm.view.other;
+
+import javafx.scene.control.Button;
+
+import java.io.Serializable;
+
+public class graphNode extends Button implements Serializable {
+    private int index;
+    private boolean isVisited;
+
+    public graphNode(int index, double centerX , double centerY){
+        super();
+        this.isVisited = false;
+        this.index = index;
+        this.setText(String.valueOf(index));
+        this.setLayoutX(centerX);
+        this.setLayoutY(centerY);
+        this.setStyle("-fx-background-color: #d0d0d0; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+}
+
