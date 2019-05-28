@@ -2,7 +2,9 @@ package com.graphAlgorithm.view.other;
 
 import javafx.scene.control.Button;
 
-public class graphNode extends Button {
+import java.io.Serializable;
+
+public class graphNode extends Button implements Serializable {
     private int index;
     private boolean isVisited;
 

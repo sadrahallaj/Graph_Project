@@ -1,6 +1,7 @@
 package com.graphAlgorithm.view.main;
 
 import com.graphAlgorithm.model.DijkstraAlgorithm;
+import com.graphAlgorithm.model.FileIO;
 import com.graphAlgorithm.model.TspDynamicProgrammingRecursive;
 import com.graphAlgorithm.model.SaveData;
 import com.graphAlgorithm.view.other.*;
@@ -20,6 +21,7 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
 
+import static com.graphAlgorithm.view.other.MouseClickNotDragDetector.clickNotDragDetectingOn;
 import static java.lang.Math.*;
 
 
@@ -87,64 +89,32 @@ public class MainPage {
         addNode();
     }
 
+    @FXML
+    private void saveGraph_Handler(){
+        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
+        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
 
-
-    private void setSliderStyle(){
-        slider.setValueFactory(new Callback<JFXSlider, StringBinding>() {
-            @Override
-            public StringBinding call(JFXSlider arg0) {
-                return Bindings.createStringBinding(new java.util.concurrent.Callable<String>() {
-                    @Override
-                    public String call() throws Exception {
-                        DecimalFormat df = new DecimalFormat("#x");
-                        return df.format(slider.getValue());
-                    }
-                }, slider.valueProperty());
-            }
-        });
+        try {
+            FileIO.writeAnObjectToFile(fileName,saveData);
+            System.out.println("Graph saved.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void addNode(){
-        customPane.setOnMouseClicked(event -> {
-//            if(!event.isPrimaryButtonDown() || this.zoomableScrollPane.isMouseBeingDragged()){
-//                return;
-//            }
+    @FXML
+    private void loadGraph_Handler(){
+        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
+        SaveData saveData = null;
+        try {
+            saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
+            System.out.println("Graph saved.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("ClassNotFoundException");
+        }
 
-            btnFinish.setDisable(false);
-            double centerX = event.getX() - 20;
-            double centerY = event.getY() - 20;
-            for (int i = 0; i < xDir.size(); i++) {
-                double x = xDir.get(i);
-                double y = yDir.get(i);
-                if (centerX < x + 50 && centerX > x - 50 && centerY < y + 50 && centerY > y - 50) return;
-            }
-            if (event.getX() < 25 || event.getY() > customPane.getHeight() - 25 || event.getX() > customPane.getWidth() - 25 || event.getY() < 25)
-                return;
-            else if (waitingForPlacement) {
-                btnFinish.setVisible(true);
-                xDir.add(centerX);
-                yDir.add(centerY);
-                graphNode graphNode = new graphNode(index++, centerX, centerY);
-                LinkedList<graphNode> tmp = new LinkedList<>();
-                LinkedList<Pair<Integer, Integer>> tmp_2 = new LinkedList<>();
-                adjList.add(tmp_2);
-                tmp.add(graphNode);
-                nodesList.add(tmp);
-                graphNode.setOnMouseClicked(event1 -> {
-                    if (!finished) {
-                        try {
-                            graphNode.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
-                            graphNodeLine.add(graphNode);
-                            drawLine();
-                        } catch (Exception e) {
-                            //todo
-                            System.out.println(e.toString());
-                        }
-                    }
-                });
-                customPane.getChildren().add(graphNode);
-            }
-        });
     }
 
     @FXML
@@ -248,6 +218,63 @@ public class MainPage {
             setAlgoButtDisble(false);
         });
         thread.start();
+    }
+
+    private void setSliderStyle(){
+        slider.setValueFactory(new Callback<JFXSlider, StringBinding>() {
+            @Override
+            public StringBinding call(JFXSlider arg0) {
+                return Bindings.createStringBinding(new java.util.concurrent.Callable<String>() {
+                    @Override
+                    public String call() throws Exception {
+                        DecimalFormat df = new DecimalFormat("#x");
+                        return df.format(slider.getValue());
+                    }
+                }, slider.valueProperty());
+            }
+        });
+    }
+
+    private void addNode(){
+        clickNotDragDetectingOn(customPane)
+                .withPressedDurationTreshold(2500)
+                .setOnMouseClickedNotDragged((mouseEvent) -> {
+
+                    btnFinish.setDisable(false);
+                    double centerX = mouseEvent.getX() - 20;
+                    double centerY = mouseEvent.getY() - 20;
+                    for (int i = 0; i < xDir.size(); i++) {
+                        double x = xDir.get(i);
+                        double y = yDir.get(i);
+                        if (centerX < x + 50 && centerX > x - 50 && centerY < y + 50 && centerY > y - 50) return;
+                    }
+                    if (mouseEvent.getX() < 25 || mouseEvent.getY() > customPane.getHeight() - 25 || mouseEvent.getX() > customPane.getWidth() - 25 || mouseEvent.getY() < 25)
+                        return;
+                    else if (waitingForPlacement) {
+                        btnFinish.setVisible(true);
+                        xDir.add(centerX);
+                        yDir.add(centerY);
+                        graphNode graphNode = new graphNode(index++, centerX, centerY);
+                        LinkedList<graphNode> tmp = new LinkedList<>();
+                        LinkedList<Pair<Integer, Integer>> tmp_2 = new LinkedList<>();
+                        adjList.add(tmp_2);
+                        tmp.add(graphNode);
+                        nodesList.add(tmp);
+                        graphNode.setOnMouseClicked(event1 -> {
+                            if (!finished) {
+                                try {
+                                    graphNode.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                                    graphNodeLine.add(graphNode);
+                                    drawLine();
+                                } catch (Exception e) {
+                                    //todo
+                                    System.out.println(e.toString());
+                                }
+                            }
+                        });
+                        customPane.getChildren().add(graphNode);
+                    }
+                });
     }
 
     private void dfs_bfsShowDialog(){
@@ -463,8 +490,8 @@ public class MainPage {
                 DFSUtil(n.getIndex(), visited);
         }
     }
-
     // convert adjList to distance matrix :
+
     private double[][] convertAdjListToMatrix(LinkedList<LinkedList<Pair<Integer, Integer>>> adjList){
         double[][] dataMatrix  = new double[adjList.size()][adjList.size()];
 
@@ -536,45 +563,6 @@ public class MainPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public void saveGrapgh_Handler(){
-        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
-        String fileName = "graph.bin";
-
-        try {
-            FileOutputStream fileOs = new FileOutputStream(fileName);
-            ObjectOutputStream oOs = new ObjectOutputStream(fileOs);
-            oOs.writeObject(saveData);
-            oOs.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Graph saved.");
-    }
-
-    public void loadGrapgh_Handler(){
-        String fileName = "graph.bin";
-
-        try {
-            FileInputStream fileOs = new FileInputStream(fileName);
-            ObjectInputStream oIs = new ObjectInputStream(fileOs);
-            SaveData saveData = (SaveData) oIs.readObject();
-            oIs.close();
-            reloadGraph(saveData);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Graph saved.");
     }
 
     public void reloadGraph(SaveData obj){

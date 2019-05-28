@@ -4,9 +4,10 @@ package com.graphAlgorithm.model;
 import com.graphAlgorithm.view.other.Pair;
 import com.graphAlgorithm.view.other.graphNode;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class SaveData {
+public class SaveData implements Serializable {
     private Thread thread ;
     private boolean waitingForPlacement ;
     private int index ;
@@ -15,6 +16,7 @@ public class SaveData {
     private LinkedList<Double> yDir ;
     private LinkedList<LinkedList<graphNode>> nodesList ;
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ;
+    private LinkedList<graphNode> nodePosition = new LinkedList<>();
 
     public SaveData(LinkedList<LinkedList<Pair<Integer, Integer>>> adjList , LinkedList<Double> xDir, LinkedList<Double> yDir, LinkedList<LinkedList<graphNode>> nodesList , int index ) {
         this.thread = thread;
