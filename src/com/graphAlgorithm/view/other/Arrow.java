@@ -5,7 +5,9 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
-public class Arrow extends Path {
+import java.io.Serializable;
+
+public class Arrow extends Path implements Serializable {
     public static final double defaultArrowHeadSize = 12.0;
 
     public Arrow(double startX, double startY, double endX, double endY, double arrowHeadSize){

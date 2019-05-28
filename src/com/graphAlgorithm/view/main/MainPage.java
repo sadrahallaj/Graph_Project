@@ -50,6 +50,7 @@ public class MainPage {
     private BorderPane borderPane;
 
     private Thread thread = new Thread();
+    SaveData saveData = null;
     private boolean waitingForPlacement = false;
     private int index = 0;
     private ChoiceDialog choiceDialog;
@@ -60,16 +61,16 @@ public class MainPage {
     private LinkedList<LinkedList<graphNode>> nodesList = new LinkedList<>();
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
     private LinkedList<String> choiceDialogsOptions = new LinkedList<>();
-
+    private LinkedList<Pair<Arrow,Label_serial>> lines = new LinkedList<>();
     private ZoomableScrollPane zoomableScrollPane;
 
-    void setAlgoButtDisble(boolean f){
+    private void setAlgoButtDisble(boolean f){
         btnDfs.setDisable(f);
         btnBfs.setDisable(f);
         btnDJT.setDisable(f);
         btnTSP.setDisable(f);
     }
-    void setAlgoButtVsible(boolean f){
+    private void setAlgoButtVsible(boolean f){
         btnDfs.setVisible(f);
         btnBfs.setVisible(f);
         btnDJT.setVisible(f);
@@ -91,7 +92,7 @@ public class MainPage {
 
     @FXML
     private void saveGraph_Handler(){
-        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
+        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index, this.lines);
         String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
 
         try {
@@ -114,7 +115,27 @@ public class MainPage {
         } catch (ClassNotFoundException e) {
             System.out.println("ClassNotFoundException");
         }
+    }
 
+    private void addLine(Pair<Arrow,Label_serial> input){
+        customPane.getChildren().add(input.first);
+        customPane.getChildren().add(input.second);
+    }
+
+    /**
+     * todo "not completed"
+     */
+    private void loadGraphToPane(){
+        if (saveData == null){return;}
+
+        restartHandler();
+        for (int i=0; i<saveData.getIndex(); i++){
+            graphNode gn = new graphNode(i,saveData.getxDir().get(i),saveData.getyDir().get(i));
+            customPane.getChildren().add(gn);
+        }
+        for (int i=0; i<saveData.getLines().size(); i++){
+            addLine(saveData.getLines().get(i));
+        }
     }
 
     @FXML
@@ -317,14 +338,12 @@ public class MainPage {
 
         Pair<Integer, Integer> temp = new Pair<>(graphNode2.getIndex(), Integer.parseInt(result.get()));
         adjList.get(graphNode1.getIndex()).add(temp);
-        Label w = new Label(String.valueOf(Integer.parseInt(result.get())));
+        Label_serial w = new Label_serial(String.valueOf(Integer.parseInt(result.get())));
 
         if(node1Y >= node2Y){
-            //todo
             w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
             w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
         }else if (node1Y < node2Y){
-            //todo
             w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
             w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
         }
@@ -366,11 +385,11 @@ public class MainPage {
 
         graphNode1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
         graphNode2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
-//        customPane.getChildren().add(line);
         customPane.getChildren().add(arrow);
         customPane.getChildren().add(w);
-//        line.toBack();
+
         arrow.toFront();
+        lines.add(new Pair<>(arrow,w));
         graphNode1.toFront();
         graphNode2.toFront();
     }
