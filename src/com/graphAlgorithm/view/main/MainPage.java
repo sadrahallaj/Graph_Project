@@ -135,7 +135,7 @@ public class MainPage {
             // load from file
             fileName = file.getAbsolutePath();
         }
-
+        
         SaveData saveData = null;
         try {
             saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
