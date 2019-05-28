@@ -112,9 +112,9 @@ public class MainPage {
 
     private void addNode(){
         customPane.setOnMouseClicked(event -> {
-            if(!event.isPrimaryButtonDown() || this.zoomableScrollPane.isMouseBeingDragged()){
-                return;
-            }
+//            if(!event.isPrimaryButtonDown() || this.zoomableScrollPane.isMouseBeingDragged()){
+//                return;
+//            }
 
             btnFinish.setDisable(false);
             double centerX = event.getX() - 20;
