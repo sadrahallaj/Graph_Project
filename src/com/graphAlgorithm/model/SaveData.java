@@ -1,21 +1,22 @@
 package com.graphAlgorithm.model;
 
+
 import com.graphAlgorithm.view.other.Pair;
 import com.graphAlgorithm.view.other.graphNode;
 
 import java.util.LinkedList;
 
 public class SaveData {
-    private Thread thread;
-    private boolean waitingForPlacement;
-    private int index;
-    private boolean finished;
-    private LinkedList<Double> xDir;
-    private LinkedList<Double> yDir;
-    private LinkedList<LinkedList<graphNode>> nodesList;
-    private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList;
+    private Thread thread ;
+    private boolean waitingForPlacement ;
+    private int index ;
+    private boolean finished  ;
+    private LinkedList<Double> xDir ;
+    private LinkedList<Double> yDir ;
+    private LinkedList<LinkedList<graphNode>> nodesList ;
+    private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ;
 
-    public SaveData(LinkedList<LinkedList<Pair<Integer, Integer>>> adjList, LinkedList<Double> xDir, LinkedList<Double> yDir, LinkedList<LinkedList<graphNode>> nodesList, int index) {
+    public SaveData(LinkedList<LinkedList<Pair<Integer, Integer>>> adjList , LinkedList<Double> xDir, LinkedList<Double> yDir, LinkedList<LinkedList<graphNode>> nodesList , int index ) {
         this.thread = thread;
         this.waitingForPlacement = waitingForPlacement;
         this.index = index;
@@ -25,7 +26,6 @@ public class SaveData {
         this.nodesList = nodesList;
         this.adjList = adjList;
     }
-
 
     public int getIndex() {
         return index;
