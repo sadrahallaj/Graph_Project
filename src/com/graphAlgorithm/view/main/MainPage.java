@@ -109,6 +109,95 @@ public class MainPage {
         try {
             saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
             System.out.println("Graph saved.");
+
+            restartHandler();
+            this.adjList = saveData.getAdjList();
+            this.xDir = saveData.getxDir();
+            this.yDir = saveData.getyDir();
+            this.nodesList = saveData.getNodesList();
+            this.index = saveData.getIndex();
+
+            // load vertexes :
+            for (int i = 0; i < xDir.size(); i++) {
+                graphNode node = new graphNode(i, xDir.get(i), yDir.get(i));
+                node.setOnMouseClicked(event1 -> {
+                    if (!finished) {
+                        try {
+                            node.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                            graphNodeLine.add(node);
+                            drawLine();
+                        } catch (Exception e) {
+                            //todo
+                            System.out.println(e.toString());
+                        }
+                    }
+                });
+                customPane.getChildren().add(node);
+            }
+
+            // load lines :
+            for (int i = 0; i < adjList.size(); i++) {
+                for (int j = 0; j < adjList.get(j).size(); j++) {
+                    Arrow arrow = null;
+
+                    graphNode graphNode1 = nodesList.get(i).getFirst();
+                    graphNode graphNode2 = nodesList.get(adjList.get(i).get(j).first).getFirst();
+
+                    double node1X = graphNode1.getLayoutX()+25, node1Y = graphNode1.getLayoutY()+25;
+                    double node2X = graphNode2.getLayoutX()+25,node2Y= graphNode2.getLayoutY()+25;
+
+                    Label w = new Label(String.valueOf(adjList.get(i).get(j).second));
+
+                    if(node1Y >= node2Y){
+                        //todo
+                        w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
+                        w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
+                    }else if (node1Y < node2Y){
+                        //todo
+                        w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
+                        w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
+                    }
+
+                    //find alfa degree
+                    double alfa = Math.atan( abs(graphNode1.getLayoutX() - graphNode2.getLayoutX())  /
+                            abs(graphNode1.getLayoutY() - graphNode2.getLayoutY()) );
+                    if(Math.toDegrees(alfa) > 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+                    else if(Math.toDegrees(alfa) < 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+                    System.out.println(Math.toDegrees(alfa));
+
+                    //set x and y for arrow
+                    double desX =(node2X ) + cos(alfa)*25;
+                    double desY =(node2Y) + sin(alfa)*25;
+
+                    double desX2 =(node2X) + cos(alfa)*25;
+                    double desY2 =(node2Y) - sin(alfa)*25;
+
+                    double desX3 =(node2X) - cos(alfa)*25;
+                    double desY3 =(node2Y) - sin(alfa)*25;
+
+                    double desX4 =(node2X) - cos(alfa)*25;
+                    double desY4 =(node2Y) + sin(alfa)*25;
+
+
+                    //draw line base on position
+                    if      (node1Y >= node2Y && node1X >= node2X)
+                        arrow = new Arrow(node1X, node1Y, desX , desY  , Arrow.defaultArrowHeadSize);
+                    else if (node1Y <= node2Y  && node1X >=node2X)
+                        arrow = new Arrow(node1X, node1Y, desX2, desY2 , Arrow.defaultArrowHeadSize);
+                    else if (node1Y <= node2Y  && node1X <= node2X)
+                        arrow = new Arrow(node1X, node1Y, desX3, desY3 , Arrow.defaultArrowHeadSize);
+                    else if (node1Y >= node2Y  && node1X <= node2X)
+                        arrow = new Arrow(node1X, node1Y, desX4, desY4 , Arrow.defaultArrowHeadSize);
+
+                    graphNode1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                    graphNode2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
+                    customPane.getChildren().add(arrow);
+                    customPane.getChildren().add(w);
+                    arrow.toFront();
+                    graphNode1.toFront();
+                    graphNode2.toFront();
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -564,13 +653,13 @@ public class MainPage {
             e.printStackTrace();
         }
     }
-
-    public void reloadGraph(SaveData obj){
-         restartHandler();
-         this.adjList = obj.getAdjList();
-         this.xDir = obj.getxDir();
-         this.yDir = obj.getyDir();
-         this.nodesList = obj.getNodesList();
-         this.index = obj.getIndex();
-    }
+//
+//    public void reloadGraph(SaveData obj){
+//         restartHandler();
+//         this.adjList = obj.getAdjList();
+//         this.xDir = obj.getxDir();
+//         this.yDir = obj.getyDir();
+//         this.nodesList = obj.getNodesList();
+//         this.index = obj.getIndex();
+//    }
 }
