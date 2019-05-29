@@ -2,6 +2,11 @@ package com.graphAlgorithm.view.other;
 
 import java.io.Serializable;
 
+/**
+ * save the pair of two parameters
+ * @param <T> first parameter
+ * @param <V> second parameter
+ */
 public class Pair<T,V> implements Serializable {
     public T first;
     public V second;
@@ -17,13 +22,5 @@ public class Pair<T,V> implements Serializable {
 
     public V getSecond() {
         return second;
-    }
-
-    public void setFirst(T first) {
-        this.first = first;
-    }
-
-    public void setSecond(V second) {
-        this.second = second;
     }
 }

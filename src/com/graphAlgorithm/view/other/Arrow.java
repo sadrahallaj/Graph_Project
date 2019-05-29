@@ -10,6 +10,10 @@ import java.io.Serializable;
 public class Arrow extends Path implements Serializable {
     public static final double defaultArrowHeadSize = 12.0;
 
+    /**
+     * a Arrow to show the direction of graph
+     * @param arrowHeadSize show the size of triangle of arrow
+     */
     public Arrow(double startX, double startY, double endX, double endY, double arrowHeadSize){
         super();
         strokeProperty().bind(fillProperty());
@@ -35,6 +39,9 @@ public class Arrow extends Path implements Serializable {
         getElements().add(new LineTo(endX, endY));
     }
 
+    /**
+     * a Arrow to show the direction of graph
+     */
     public Arrow(double startX, double startY, double endX, double endY){
         this(startX, startY, endX, endY, defaultArrowHeadSize);
     }

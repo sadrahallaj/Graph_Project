@@ -7,8 +7,6 @@ import java.util.function.Consumer;
 
 import static java.lang.System.currentTimeMillis;
 import static javafx.scene.input.MouseEvent.*;
-import static sun.plugin2.util.SystemUtil.debug;
-
 public class MouseClickNotDragDetector {
 
     private final Node node;
@@ -61,14 +59,11 @@ public class MouseClickNotDragDetector {
 
     private void fireEventIfWasClickedNotDragged(MouseEvent mouseEvent) {
         if ( this.wasDragged ) {
-            debug("[CLICK-NOT-DRAG] dragged!");
             return;
         }
         if ( this.mousePressedDuration() > this.pressedDurationTreshold ) {
-            debug("[CLICK-NOT-DRAG] pressed too long, not a click!");
             return;
         }
-        debug("[CLICK-NOT-DRAG] click!");
         this.onClickedNotDragged.accept(mouseEvent);
     }
 

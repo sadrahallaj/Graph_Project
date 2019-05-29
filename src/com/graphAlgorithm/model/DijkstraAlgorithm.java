@@ -8,7 +8,9 @@ public class DijkstraAlgorithm {
     private LinkedList<Pair<Integer,Integer>> data = new LinkedList<>();
     private int source;
 
-    public LinkedList<Pair<Integer,Integer>> algorithm(LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
+    public LinkedList<Pair<Integer,Integer>> algorithm(
+            LinkedList<LinkedList<Pair<Integer,Integer>>> adjList, int source){
+
         this.source = source;
 
         int s = source ,visNum = 0;
@@ -69,9 +71,9 @@ public class DijkstraAlgorithm {
         return reverseLinkedList(path);
     }
 
-    public static LinkedList<Integer> reverseLinkedList(LinkedList<Integer> llist)
+    private static LinkedList<Integer> reverseLinkedList(LinkedList<Integer> llist)
     {
-        LinkedList<Integer> revLinkedList = new LinkedList<Integer>();
+        LinkedList<Integer> revLinkedList = new LinkedList<>();
         for (int i = llist.size() - 1; i >= 0; i--) {
             revLinkedList.add(llist.get(i));
         }

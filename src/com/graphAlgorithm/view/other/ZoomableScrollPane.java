@@ -8,9 +8,17 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * a zoomable scroll pane
+ */
 public class ZoomableScrollPane extends ScrollPane {
-
+    /**
+     * scale value, first show scale
+     */
     private double scaleValue = 1.0;
+    /**
+     * zoom sensitivity
+     */
     private double zoomIntensity = 0.02;
     private Node target;
     private Node zoomNode;
@@ -50,8 +58,6 @@ public class ZoomableScrollPane extends ScrollPane {
         target.setScaleX(scaleValue);
         target.setScaleY(scaleValue);
     }
-
-
 
     private void onScroll(double wheelDelta, Point2D mousePoint) {
 
