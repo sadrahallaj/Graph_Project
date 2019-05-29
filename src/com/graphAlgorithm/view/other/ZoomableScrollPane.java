@@ -9,7 +9,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class ZoomableScrollPane extends ScrollPane {
-    private boolean mouseDragging = false;
 
     private double scaleValue = 1.0;
     private double zoomIntensity = 0.02;
@@ -55,11 +54,6 @@ public class ZoomableScrollPane extends ScrollPane {
 
 
     private void onScroll(double wheelDelta, Point2D mousePoint) {
-        this.mouseDragging = true;
-
-        /**
-         * @todo Set mouse dragging boolean to false as soon as scrolling is finished!
-         */
 
         double zoomFactor = Math.exp(wheelDelta * zoomIntensity);
 
@@ -68,7 +62,6 @@ public class ZoomableScrollPane extends ScrollPane {
 
         scaleValue = scaleValue * zoomFactor;
         //bounce for scale
-        System.out.println(scaleValue);
         if (scaleValue >= 1.8) {scaleValue = 1.8; return;}
         else if (scaleValue <= 0.4){ scaleValue = 0.4; return;}
 
@@ -90,17 +83,5 @@ public class ZoomableScrollPane extends ScrollPane {
         Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
         this.setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
         this.setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
-    }
-
-    private void onScroll() {
-
-    }
-
-    public boolean isMouseBeingDragged() {
-        return this.mouseDragging;
-    }
-
-    public void setMouseDragging(boolean value) {
-        this.mouseDragging = value;
     }
 }
