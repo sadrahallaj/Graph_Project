@@ -247,6 +247,18 @@ public class MainPage {
     }
 
     @FXML
+    private void saveAdjMatrix(){
+        int[][] adjMatrix = new int[adjList.size()][adjList.size()];
+        for (int i = 0; i<adjList.size();i++){
+            for (int j = 0; j<adjList.get(i).size();j++) {
+                adjMatrix[i][adjList.get(i).get(j).getFirst()] = adjList.get(i).get(j).getSecond();
+            }
+
+        }
+
+    }
+
+    @FXML
     private void restartHandler() {
         waitingForPlacement = false;
         btnFinish.setDisable(true);
