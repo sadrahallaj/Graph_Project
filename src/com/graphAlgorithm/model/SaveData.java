@@ -31,6 +31,11 @@ public class SaveData implements Serializable {
         return index;
     }
 
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+
     public LinkedList<Double> getxDir() {
         return xDir;
     }

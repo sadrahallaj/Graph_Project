@@ -12,9 +12,8 @@ import javafx.scene.layout.VBox;
  * a zoomable scroll pane
  */
 public class ZoomableScrollPane extends ScrollPane {
-    /**
-     * scale value, first show scale
-     */
+    private boolean mouseDragging = false;
+
     private double scaleValue = 1.0;
     /**
      * zoom sensitivity
