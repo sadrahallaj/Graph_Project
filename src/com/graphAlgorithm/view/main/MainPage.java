@@ -14,9 +14,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import javax.swing.*;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -50,7 +52,6 @@ public class MainPage {
     private BorderPane borderPane;
 
     private Thread thread = new Thread();
-    SaveData saveData = null;
     private boolean waitingForPlacement = false;
     private int index = 0;
     private ChoiceDialog choiceDialog;
@@ -61,16 +62,16 @@ public class MainPage {
     private LinkedList<LinkedList<graphNode>> nodesList = new LinkedList<>();
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
     private LinkedList<String> choiceDialogsOptions = new LinkedList<>();
-    private LinkedList<Pair<Arrow,Label_serial>> lines = new LinkedList<>();
+
     private ZoomableScrollPane zoomableScrollPane;
 
-    private void setAlgoButtDisble(boolean f){
+    void setAlgoButtDisble(boolean f){
         btnDfs.setDisable(f);
         btnBfs.setDisable(f);
         btnDJT.setDisable(f);
         btnTSP.setDisable(f);
     }
-    private void setAlgoButtVsible(boolean f){
+    void setAlgoButtVsible(boolean f){
         btnDfs.setVisible(f);
         btnBfs.setVisible(f);
         btnDJT.setVisible(f);
@@ -92,8 +93,27 @@ public class MainPage {
 
     @FXML
     private void saveGraph_Handler(){
-        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index, this.lines);
-        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
+
+        String fileName = "./src/com/graphAlgorithm/view/main/graph.bin" ; // default path
+
+        // ask where to save file :
+
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        Stage stage = new Stage();
+        File file = fileChooser.showSaveDialog(stage);
+
+        if(file != null){
+            fileName = file.getAbsolutePath()+ ".txt";
+        }
+
+        SaveData saveData = new SaveData(this.adjList, this.xDir, this.yDir, this.nodesList, this.index);
+//        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
 
         try {
             FileIO.writeAnObjectToFile(fileName,saveData);
@@ -105,37 +125,123 @@ public class MainPage {
 
     @FXML
     private void loadGraph_Handler(){
-        String fileName = "./src/com/graphAlgorithm/view/main/graph.gr";
+
+        String fileName = "./src/com/graphAlgorithm/view/main/graph.bin";
+
+        // ask where to open file to load :
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage  = new Stage();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+//            mainStage.display(selectedFile);
+            fileName =  selectedFile.getAbsolutePath();
+        }
         SaveData saveData = null;
         try {
             saveData =  (SaveData)FileIO.readAnObjectFromFile(fileName);
             System.out.println("Graph saved.");
+
+            restartHandler();
+            btnFinish.setDisable(false);
+            this.adjList = saveData.getAdjList();
+            this.xDir = saveData.getxDir();
+            this.yDir = saveData.getyDir();
+            this.nodesList = saveData.getNodesList();
+            this.index = saveData.getIndex();
+
+            // load vertexes :
+            for (int i = 0; i < xDir.size(); i++) {
+                graphNode node = new graphNode(i, xDir.get(i), yDir.get(i));
+                node.setOnMouseClicked(event1 -> {
+                    if (!finished) {
+                        try {
+                            node.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                            graphNodeLine.add(node);
+                            drawLine();
+                        } catch (Exception e) {
+                            //todo
+                            System.out.println(e.toString());
+                        }
+                    }
+                });
+                customPane.getChildren().add(node);
+            }
+
+            // load lines :
+            for (int i = 0; i < adjList.size(); i++) {
+                for (int j = 0; j < adjList.get(i).size(); j++) {
+                    Arrow arrow = null;
+
+                    graphNode graphNode1 = nodesList.get(i).getFirst();
+                    graphNode graphNode2 = nodesList.get(adjList.get(i).get(j).first).get(0);
+
+                    double node1X = xDir.get(graphNode1.getIndex())+25, node1Y = yDir.get(graphNode1.getIndex())+25;
+                    double node2X = xDir.get(graphNode2.getIndex())+25,node2Y= yDir.get(graphNode2.getIndex())+25;
+
+                    Label w = new Label(String.valueOf(adjList.get(i).get(j).second));
+
+                    if(node1Y >= node2Y){
+                        //todo
+                        w.setLayoutX(((node1X + node2X)/2)  - (abs(node1Y - node2Y)/18) );
+                        w.setLayoutY(((node1Y + node2Y)/2)  - (abs(node1X - node2X)/18) -5 );
+                    }else if (node1Y < node2Y){
+                        //todo
+                        w.setLayoutX(((node1X + node2X)/2)    + (abs(node1Y - node2Y)/18) );
+                        w.setLayoutY(((node1Y + node2Y)/2)    + (abs(node1X - node2X)/18) -2 );
+                    }
+
+                    //find alfa degree
+                    double alfa = Math.atan( abs(xDir.get(graphNode1.getIndex()) - xDir.get(graphNode2.getIndex()))  /
+                            abs(yDir.get(graphNode1.getIndex()) - yDir.get(graphNode2.getIndex())) );
+                    if(Math.toDegrees(alfa) > 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+                    else if(Math.toDegrees(alfa) < 45) alfa = Math.toRadians(90 - Math.toDegrees(alfa));
+                    System.out.println(Math.toDegrees(alfa));
+
+                    //set x and y for arrow
+                    double desX =(node2X ) + cos(alfa)*25;
+                    double desY =(node2Y) + sin(alfa)*25;
+
+                    double desX2 =(node2X) + cos(alfa)*25;
+                    double desY2 =(node2Y) - sin(alfa)*25;
+
+                    double desX3 =(node2X) - cos(alfa)*25;
+                    double desY3 =(node2Y) - sin(alfa)*25;
+
+                    double desX4 =(node2X) - cos(alfa)*25;
+                    double desY4 =(node2Y) + sin(alfa)*25;
+
+
+                    //draw line base on position
+                    if      (node1Y >= node2Y && node1X >= node2X)
+                        arrow = new Arrow(node1X, node1Y, desX , desY  , Arrow.defaultArrowHeadSize);
+                    else if (node1Y <= node2Y  && node1X >=node2X)
+                        arrow = new Arrow(node1X, node1Y, desX2, desY2 , Arrow.defaultArrowHeadSize);
+                    else if (node1Y <= node2Y  && node1X <= node2X)
+                        arrow = new Arrow(node1X, node1Y, desX3, desY3 , Arrow.defaultArrowHeadSize);
+                    else if (node1Y >= node2Y  && node1X <= node2X)
+                        arrow = new Arrow(node1X, node1Y, desX4, desY4 , Arrow.defaultArrowHeadSize);
+
+                    graphNode1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                    graphNode2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
+                    customPane.getChildren().add(arrow);
+                    customPane.getChildren().add(w);
+                    arrow.toBack();
+                    graphNode1.toFront();
+                    graphNode2.toFront();
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("ClassNotFoundException");
         }
-    }
 
-    private void addLine(Pair<Arrow,Label_serial> input){
-        customPane.getChildren().add(input.first);
-        customPane.getChildren().add(input.second);
-    }
-
-    /**
-     * todo "not completed"
-     */
-    private void loadGraphToPane(){
-        if (saveData == null){return;}
-
-        restartHandler();
-        for (int i=0; i<saveData.getIndex(); i++){
-            graphNode gn = new graphNode(i,saveData.getxDir().get(i),saveData.getyDir().get(i));
-            customPane.getChildren().add(gn);
-        }
-        for (int i=0; i<saveData.getLines().size(); i++){
-            addLine(saveData.getLines().get(i));
-        }
     }
 
     @FXML
@@ -338,12 +444,14 @@ public class MainPage {
 
         Pair<Integer, Integer> temp = new Pair<>(graphNode2.getIndex(), Integer.parseInt(result.get()));
         adjList.get(graphNode1.getIndex()).add(temp);
-        Label_serial w = new Label_serial(String.valueOf(Integer.parseInt(result.get())));
+        Label w = new Label(String.valueOf(Integer.parseInt(result.get())));
 
         if(node1Y >= node2Y){
+            //todo
             w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)  - (abs(node1Y - node2Y)/18) );
             w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)  - (abs(node1X - node2X)/18) -5 );
         }else if (node1Y < node2Y){
+            //todo
             w.setLayoutX(((graphNode1.getLayoutX()+25 + graphNode2.getLayoutX()+25)/2)    + (abs(node1Y - node2Y)/18) );
             w.setLayoutY(((graphNode1.getLayoutY()+25 + graphNode2.getLayoutY()+25)/2)    + (abs(node1X - node2X)/18) -2 );
         }
@@ -385,11 +493,11 @@ public class MainPage {
 
         graphNode1.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
         graphNode2.setStyle("-fx-border-color: #d0d0d0 ;  -fx-font-size: 16; -fx-border-radius: 50 ; -fx-background-radius: 50 ;-fx-pref-height: 50 ; -fx-pref-width: 50");
+//        customPane.getChildren().add(line);
         customPane.getChildren().add(arrow);
         customPane.getChildren().add(w);
-
+//        line.toBack();
         arrow.toFront();
-        lines.add(new Pair<>(arrow,w));
         graphNode1.toFront();
         graphNode2.toFront();
     }
@@ -469,7 +577,7 @@ public class MainPage {
                     }
                 }
                 // delay
-               delay();
+                delay();
             }
 
             setAlgoButtDisble(false);
@@ -583,13 +691,13 @@ public class MainPage {
             e.printStackTrace();
         }
     }
-
-    public void reloadGraph(SaveData obj){
-         restartHandler();
-         this.adjList = obj.getAdjList();
-         this.xDir = obj.getxDir();
-         this.yDir = obj.getyDir();
-         this.nodesList = obj.getNodesList();
-         this.index = obj.getIndex();
-    }
+//
+//    public void reloadGraph(SaveData obj){
+//         restartHandler();
+//         this.adjList = obj.getAdjList();
+//         this.xDir = obj.getxDir();
+//         this.yDir = obj.getyDir();
+//         this.nodesList = obj.getNodesList();
+//         this.index = obj.getIndex();
+//    }
 }
