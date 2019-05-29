@@ -128,6 +128,8 @@ public class MainPage {
 
         String fileName = "./src/com/graphAlgorithm/view/main/graph.bin";
 
+        restartHandler();
+        btnFinish.setDisable(false);
         // ask where to open file to load :
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
