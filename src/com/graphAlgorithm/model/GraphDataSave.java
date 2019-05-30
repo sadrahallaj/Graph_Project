@@ -2,23 +2,23 @@ package com.graphAlgorithm.model;
 
 
 import com.graphAlgorithm.view.other.Pair;
-import com.graphAlgorithm.view.other.graphNode;
+import com.graphAlgorithm.view.componenets.GraphNode;
 
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class SaveData implements Serializable {
+public class GraphDataSave implements Serializable {
 
     private int index ;
     private LinkedList<Double> xDir ;
     private LinkedList<Double> yDir ;
-    private LinkedList<LinkedList<graphNode>> nodesList ;
+    private LinkedList<LinkedList<GraphNode>> nodesList ;
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ;
 
-    public SaveData(
+    public GraphDataSave(
             LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ,
             LinkedList<Double> xDir, LinkedList<Double> yDir,
-            LinkedList<LinkedList<graphNode>> nodesList , int index ) {
+            LinkedList<LinkedList<GraphNode>> nodesList , int index ) {
 
         this.index = index;
         this.xDir = xDir;
@@ -44,7 +44,7 @@ public class SaveData implements Serializable {
         return yDir;
     }
 
-    public LinkedList<LinkedList<graphNode>> getNodesList() {
+    public LinkedList<LinkedList<GraphNode>> getNodesList() {
         return nodesList;
     }
 

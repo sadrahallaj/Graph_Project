@@ -2,7 +2,7 @@ package com.graphAlgorithm.model;
 
 import java.util.*;
 
-public class TspDynamicProgrammingRecursive {
+public class TspAlgorithmDP {
 
     private final int N;
     private final int START_NODE;
@@ -14,11 +14,11 @@ public class TspDynamicProgrammingRecursive {
     private List<Integer> tour = new ArrayList<>();
     private boolean ranSolver = false;
 
-    public TspDynamicProgrammingRecursive(double[][] distance) {
+    public TspAlgorithmDP(double[][] distance) {
         this(0, distance);
     }
 
-    public TspDynamicProgrammingRecursive(int startNode, double[][] distance) {
+    public TspAlgorithmDP(int startNode, double[][] distance) {
 
         this.distance = distance;
         N = distance.length;
