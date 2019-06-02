@@ -34,7 +34,7 @@ public class Dialog {
     public int getSelectedItem_Integer(){
         if (choiceDialog.getSelectedItem() == "Random Vertex") {
             Random rand = new Random();
-            return rand.nextInt(choiceDialogsOptions.size());
+            return rand.nextInt(choiceDialogsOptions.size()-1);
         }else{
             return Integer.parseInt(choiceDialog.getSelectedItem().toString());
         }

@@ -48,6 +48,8 @@ public class MainPage {
             " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50";
     private String NODE_STYLE_BLUE = "-fx-background-color: #0000ff ;-fx-background-radius: 50 ;" +
             " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50";
+    private String NODE_STYLE_DEFULT = "-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
+            " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50";
 
     private int indexOfGraph = 0;
     private boolean waitingForPlacement = false;
@@ -75,16 +77,16 @@ public class MainPage {
 
     @FXML
     private void BFSButtonHandler() {
-        isRunning=true;
         if(dfsBfsButtonHandler())
             BFS_Algorithm(dialog.getSelectedItem_Integer());
-        isRunning = false;
+        setNodesDefaultColor();
     }
 
     @FXML
     private void DFSButtonHandler() {
         if (dfsBfsButtonHandler())
             DFS_Algorithm(dialog.getSelectedItem_Integer());
+        setNodesDefaultColor();
     }
 
     @FXML
@@ -94,8 +96,8 @@ public class MainPage {
             resetThread();
             return;
         }
-        // reset the colours of vertexes:
-        setNodesDefaultColor();
+//        // reset the colours of vertexes:
+//        setNodesDefaultColor();
 
         final int sourceVertex;
         sourceVertex = tspAlgorithmGetSource();
@@ -114,6 +116,7 @@ public class MainPage {
         }
 
         TSP_Algorithm(tspResultList);
+        setNodesDefaultColor();
     }
 
     @FXML
@@ -124,8 +127,8 @@ public class MainPage {
         }
         isRunning = true;
 
-        // reset the colours of vertexes:
-        setNodesDefaultColor();
+//        // reset the colours of vertexes:
+//        setNodesDefaultColor();
 
         final int sourceVertex, destinationVertex;
 
@@ -138,6 +141,7 @@ public class MainPage {
 
         DIJ_Algorithm(sourceVertex, destinationVertex);
         isRunning = false;
+        setNodesDefaultColor();
     }
 
     @FXML
@@ -209,9 +213,22 @@ public class MainPage {
                 } catch (Exception e) {
                     //todo
                     System.out.println(e.toString());
+                    graphNodeLinesList.clear();
+                    setNodesDefaultColor();
                 }
             }
         });
+    }
+
+    private void drawLine() {
+        if (graphNodeLinesList.size() != 2) return;
+        int result = dialog.NumberInputDialogShow("Enter the edge weight:");
+
+        GraphNode graphNode1 = graphNodeLinesList.pop();
+        GraphNode graphNode2 = graphNodeLinesList.pop();
+
+        _drawLine(graphNode1, graphNode2, result);
+        setNodesDefaultColor();
     }
 
     private void _drawLine(GraphNode graphNode1, GraphNode graphNode2, int weight){
@@ -240,16 +257,6 @@ public class MainPage {
         arrow.toFront();
         graphNode1.toFront();
         graphNode2.toFront();
-    }
-
-    private void drawLine() {
-        if (graphNodeLinesList.size() != 2) return;
-        int result = dialog.NumberInputDialogShow("Enter the edge weight:");
-
-        GraphNode graphNode1 = graphNodeLinesList.pop();
-        GraphNode graphNode2 = graphNodeLinesList.pop();
-
-        _drawLine(graphNode1, graphNode2, result);
     }
 
     private Label makeLabel(String weight, GraphNode graphNode1, GraphNode graphNode2,
@@ -429,11 +436,14 @@ public class MainPage {
     private void resetThread(){
         thread.stop();
         setNodesDefaultColor();
+        setAlgorithmButtonsDisable(false);
     }
 
     private void setNodesDefaultColor(){
         for (LinkedList<GraphNode> graphNodes : nodesList) {
-            graphNodes.get(0).setStyle("-fx-background-color: #cfcfcf; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+            for (GraphNode graphNode : graphNodes) {
+                graphNode.setStyle(NODE_STYLE_DEFULT);
+            }
         }
     }
 
@@ -496,7 +506,6 @@ public class MainPage {
             setAlgorithmButtonsDisable(false);
             isRunning =false;
         });
-
         thread.start();
     }
 
@@ -514,9 +523,7 @@ public class MainPage {
             setAlgorithmButtonsDisable(false);
             isRunning = false;
         });
-
         thread.start();
-
     }
 
     private void DFSUtil(int v, boolean[] visited) {
