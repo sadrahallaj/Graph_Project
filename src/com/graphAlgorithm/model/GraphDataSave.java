@@ -1,9 +1,7 @@
 package com.graphAlgorithm.model;
 
 
-import com.graphAlgorithm.view.componenets.Arrow;
-import com.graphAlgorithm.view.componenets.LabelSerializable;
-import com.graphAlgorithm.view.main.MainPage;
+import com.graphAlgorithm.view.componenets.Line;
 import com.graphAlgorithm.view.other.Pair;
 import com.graphAlgorithm.view.componenets.GraphNode;
 
@@ -11,21 +9,25 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 public class GraphDataSave implements Serializable {
-
     private int index ;
+
     private LinkedList<Double> xDir ;
     private LinkedList<Double> yDir ;
     private LinkedList<LinkedList<GraphNode>> nodesList ;
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ;
-    private LinkedList<LinkedList<Pair<GraphNode, MainPage.Line>>> allGraphState = new LinkedList<>();
-
+    private LinkedList<LinkedList<Pair<GraphNode, Line>>> allGraphState;
+    private LinkedList<LinkedList<Pair<GraphNode,Line>>>
+            allInNode = new LinkedList<>(), allOutNode = new LinkedList<>();
     public GraphDataSave(
             LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ,
             LinkedList<Double> xDir, LinkedList<Double> yDir,
             LinkedList<LinkedList<GraphNode>> nodesList,
-            LinkedList<LinkedList<Pair<GraphNode, MainPage.Line>>> allGraphState
-            , int index ) {
+            LinkedList<LinkedList<Pair<GraphNode, Line>>> allGraphState
+            ,LinkedList<LinkedList<Pair<GraphNode,Line>>> allInNode,
+            LinkedList<LinkedList<Pair<GraphNode,Line>>> allOutNode, int index ) {
 
+        this.allInNode = allInNode;
+        this.allOutNode = allOutNode;
         this.index = index;
         this.xDir = xDir;
         this.yDir = yDir;
@@ -34,7 +36,15 @@ public class GraphDataSave implements Serializable {
         this.allGraphState = allGraphState;
     }
 
-    public LinkedList<LinkedList<Pair<GraphNode, MainPage.Line>>> getAllGraphState() {
+    public LinkedList<LinkedList<Pair<GraphNode, Line>>> getAllInNode() {
+        return allInNode;
+    }
+
+    public LinkedList<LinkedList<Pair<GraphNode, Line>>> getAllOutNode() {
+        return allOutNode;
+    }
+
+    public LinkedList<LinkedList<Pair<GraphNode, Line>>> getAllGraphState() {
         return allGraphState;
     }
 

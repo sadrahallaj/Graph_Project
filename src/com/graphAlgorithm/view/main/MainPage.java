@@ -50,6 +50,7 @@ public class MainPage {
     private String NODE_STYLE_DEFULT = "-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
             " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50";
 
+    int[][] adjMatrix;
     private int indexOfGraph = 0;
     private boolean waitingForPlacement = false;
     private boolean isRunning = false, waitForLine = false;
@@ -60,24 +61,17 @@ public class MainPage {
     private LinkedList<Double> yDirList = new LinkedList<>();
     private LinkedList<LinkedList<GraphNode>> nodesList = new LinkedList<>();
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList = new LinkedList<>();
-    private LinkedList<LinkedList<Pair<GraphNode,Line>>> allInNode = new LinkedList<>();
-    private LinkedList<LinkedList<Pair<GraphNode,Line>>> allOutNode = new LinkedList<>();
+    private LinkedList<LinkedList<Pair<GraphNode,Line>>> allInNode
+            = new LinkedList<>(), allOutNode = new LinkedList<>();
     private ZoomableScrollPane zoomableScrollPane;
+    private boolean deleteMode = false;
     final Delta dragDelta = new Delta();
     private LinkedList<LinkedList<Pair<GraphNode,Line>>> allGraphState = new LinkedList<>();
     class Delta {
         double x, y;
         int index;
     }
-    public class Line implements Serializable{
-        LabelSerializable label;
-        Arrow arrow;
 
-        public Line( Arrow arrow, LabelSerializable label) {
-            this.label = label;
-            this.arrow = arrow;
-        }
-    }
 
     @FXML
     void initialize() {
@@ -87,7 +81,7 @@ public class MainPage {
 
         //slider custom text
         setSliderStyle();
-        addNode();
+        addNodeLisner();
     }
 
     @FXML
@@ -178,17 +172,56 @@ public class MainPage {
 
     @FXML
     private void saveAdjMatrix(){
-        int[][] adjMatrix = new int[adjList.size()][adjList.size()];
+        adjMatrix = new int[adjList.size()][adjList.size()];
         for (int i = 0; i<adjList.size();i++){
-            for (int j = 0; j<adjList.get(i).size();j++) {
+            for (int j = 0; j<adjList.get(i).size();j++){
                 adjMatrix[i][adjList.get(i).get(j).getFirst()] = adjList.get(i).get(j).getSecond();
             }
         }
+        String string = "";
+        for (int i=0; i < adjMatrix.length; i++ ){
+            for (int j=0; j < adjMatrix.length; j++ ){
+                string = string + adjMatrix[i][j] + " ";
+            }
+            string = string + "\n";
+        }
+        System.out.println(string);
+    }
+
+    @FXML
+    private void loadFromMatrix(){
+        customPane.getChildren().clear();
+
+        int x = (int)customPane.getPrefWidth()/2;
+        int y = (int)customPane.getPrefHeight()/2;
+        int num = adjMatrix.length;
+        int squr = (int)sqrt(num) + 1;
+
+        int yy=y,xx=x;
+        for(int i=0; i < squr; i++){
+            for(int j=0; j < squr; j++){
+                if(num-- <= 0) break;
+                addNode(xx,yy);
+                yy += 120;
+            }
+            xx += 120;
+            yy = y;
+        }
+
+        //todo not fnish
+
+        for(int i=0; i < nodesList.size(); i++){
+            for(int j=1; j < nodesList.get(i).size(); j++){
+                drawLine2(nodesList.get(i).get(0), nodesList.get(i).get(j), adjMatrix[nodesList.get(i).get(0).getIndex()][nodesList.get(i).get(j).getIndex()]);
+            }
+        }
+
     }
 
     @FXML
     private void restartButtonHandler() {
         waitingForPlacement = false;
+        adjList.clear();
         nodesList.clear();
         graphNodeLinesList.clear();
         xDirList.clear();
@@ -209,7 +242,8 @@ public class MainPage {
         if(selectedFile == null) return;
 
         GraphDataSave saveData = new GraphDataSave(this.adjList, this.xDirList, this.yDirList,
-                this.nodesList,this.allGraphState, this.indexOfGraph);
+                this.nodesList,this.allGraphState,this.allInNode, this.allOutNode, this.indexOfGraph);
+
         try {
             FileIO.writeAnObjectToFile(selectedFile.getAbsolutePath(),saveData);
             dialog.showInformationDialog("Save File", "Graph saved.");
@@ -217,7 +251,6 @@ public class MainPage {
             //todo
             e.printStackTrace();
         }
-
     }
 
     private void setGraphNodeListener(GraphNode graphNode){
@@ -240,13 +273,11 @@ public class MainPage {
 
                 graphNode.setDirX(event1.getSceneX() + dragDelta.x);
                 graphNode.setDirY(event1.getSceneY() + dragDelta.y);
-
             }
         });
 
         graphNode.setOnMouseReleased(event -> {
             graphNode.setCursor(Cursor.DEFAULT);
-
 
             if (!isRunning && event.isDragDetect()) {
                 try {
@@ -262,6 +293,9 @@ public class MainPage {
                     setNodesDefaultColor();
                 }
             }
+
+            xDirList.set(graphNode.getIndex(), event.getSceneX() + dragDelta.x);
+            yDirList.set(graphNode.getIndex(), event.getSceneY() + dragDelta.y);
         });
     }
 
@@ -355,21 +389,25 @@ public class MainPage {
     }
 
     private Line _drawLine(GraphNode graphNode1, GraphNode graphNode2, int weight){
+        Line l = drawLine2(graphNode1,graphNode2,weight);
 
+        Pair<Integer, Integer> temp = new Pair<>(graphNode2.getIndex(), weight);
+        adjList.get(graphNode1.getIndex()).add(temp);
+        nodesList.get(graphNode1.getIndex()).add(graphNode2);
+
+        return l;
+    }
+
+    private Line drawLine2(GraphNode graphNode1, GraphNode graphNode2, int weight){
         Arrow arrow;
 
         double node1X = graphNode1.getLayoutX()+25, node1Y = graphNode1.getLayoutY()+25;
         double node2X = graphNode2.getLayoutX()+25,node2Y= graphNode2.getLayoutY()+25;
 
-        Pair<Integer, Integer> temp = new Pair<>(graphNode2.getIndex(), weight);
-        adjList.get(graphNode1.getIndex()).add(temp);
 
         LabelSerializable label = makeLabel(weight+"", graphNode1, graphNode2, node1X, node1Y, node2X, node2Y);
         final double ALPHA = calculateAlpha(graphNode1, graphNode2);
         arrow = makeArrow(ALPHA, node1X,node1Y, node2X, node2Y);
-
-
-        nodesList.get(graphNode1.getIndex()).add(graphNode2);
 
         graphNode1.setStyle(NODE_STYLE_PURPLE);
         graphNode2.setStyle(NODE_STYLE_PURPLE);
@@ -377,9 +415,11 @@ public class MainPage {
         customPane.getChildren().add(arrow);
         customPane.getChildren().add(label);
 
+
         arrow.toFront();
         graphNode1.toFront();
         graphNode2.toFront();
+
         return new Line(arrow,label);
     }
 
@@ -476,6 +516,8 @@ public class MainPage {
         this.nodesList = graphData.getNodesList();
         this.indexOfGraph = graphData.getIndex();
         this.allGraphState = graphData.getAllGraphState();
+        this.allOutNode = graphData.getAllOutNode();
+        this.allInNode = graphData.getAllInNode();
 
         // load vertexes :
         for (int i = 0; i < xDirList.size(); i++) {
@@ -527,7 +569,7 @@ public class MainPage {
         });
     }
 
-    private void addNode(){
+    private void addNodeLisner(){
         clickNotDragDetectingOn(customPane)
                 .withPressedDurationTreshold(2500)
                 .setOnMouseClickedNotDragged((mouseEvent) -> {
@@ -546,26 +588,30 @@ public class MainPage {
                         setNodesDefaultColor();
                     }
                     else if (waitingForPlacement && !isRunning) {
-                        xDirList.add(centerX);
-                        yDirList.add(centerY);
-                        GraphNode graphNode = new GraphNode(indexOfGraph++, centerX, centerY);
-
-                        LinkedList<GraphNode> tmp = new LinkedList<>();
-                        tmp.add(graphNode);
-                        nodesList.add(tmp);
-
-                        LinkedList<Pair<Integer, Integer>> tmp_2 = new LinkedList<>();
-                        adjList.add(tmp_2);
-
-                        allInNode.add(new LinkedList<>());
-                        allOutNode.add(new LinkedList<>());
-
-                        allGraphState.add(new LinkedList<>());
-
-                        setGraphNodeListener(graphNode);
-                        customPane.getChildren().add(graphNode);
+                        addNode(centerX, centerY);
                     }
                 });
+    }
+
+    private void addNode(double centerX, double centerY){
+        xDirList.add(centerX);
+        yDirList.add(centerY);
+        GraphNode graphNode = new GraphNode(indexOfGraph++, centerX, centerY);
+
+        LinkedList<GraphNode> tmp = new LinkedList<>();
+        tmp.add(graphNode);
+        nodesList.add(tmp);
+
+        LinkedList<Pair<Integer, Integer>> tmp_2 = new LinkedList<>();
+        adjList.add(tmp_2);
+
+        allInNode.add(new LinkedList<>());
+        allOutNode.add(new LinkedList<>());
+
+        allGraphState.add(new LinkedList<>());
+
+        setGraphNodeListener(graphNode);
+        customPane.getChildren().add(graphNode);
     }
 
     private boolean isThreadRunning(){
