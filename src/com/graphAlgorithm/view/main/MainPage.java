@@ -53,7 +53,7 @@ public class MainPage {
 
     private int indexOfGraph = 0;
     private boolean waitingForPlacement = false;
-    private boolean isRunning = false;
+    private boolean isRunning = false, waitForLine = false;
     private Thread thread = new Thread();
     private Dialog dialog = new Dialog();
     private LinkedList<GraphNode> graphNodeLinesList = new LinkedList<>();
@@ -207,6 +207,7 @@ public class MainPage {
         graphNode.setOnMouseClicked(event1 -> {
             if (!isRunning) {
                 try {
+                    waitForLine = true;
                     graphNode.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
                     graphNodeLinesList.add(graphNode);
                     drawLine();
@@ -214,6 +215,7 @@ public class MainPage {
                     //todo
                     System.out.println(e.toString());
                     graphNodeLinesList.clear();
+                    waitForLine = false;
                     setNodesDefaultColor();
                 }
             }
@@ -414,6 +416,11 @@ public class MainPage {
                     }
                     if (mouseEvent.getX() < 25 || mouseEvent.getY() > customPane.getHeight() - 25 || mouseEvent.getX() > customPane.getWidth() - 25 || mouseEvent.getY() < 25)
                         return;
+                    else if(waitForLine){
+                        waitForLine = false;
+                        graphNodeLinesList.clear();
+                        setNodesDefaultColor();
+                    }
                     else if (waitingForPlacement && !isRunning) {
                         xDirList.add(centerX);
                         yDirList.add(centerY);
