@@ -32,8 +32,6 @@ public class MainPage {
     @FXML
     private JFXSlider slider;
     @FXML
-    private Button btnFinish;
-    @FXML
     private Button btnBfs;
     @FXML
     private Button btnDfs;
@@ -48,12 +46,14 @@ public class MainPage {
 
     private String NODE_STYLE_PURPLE = "-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
             " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50";
+    private String NODE_STYLE_BLUE = "-fx-background-color: #0000ff ;-fx-background-radius: 50 ;" +
+            " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50";
 
-    private Thread thread = new Thread();
-    private boolean waitingForPlacement = false;
     private int indexOfGraph = 0;
+    private boolean waitingForPlacement = false;
+    private boolean isRunning = false;
+    private Thread thread = new Thread();
     private Dialog dialog = new Dialog();
-    private boolean isFinished = false;
     private LinkedList<GraphNode> graphNodeLinesList = new LinkedList<>();
     private LinkedList<Double> xDirList = new LinkedList<>();
     private LinkedList<Double> yDirList = new LinkedList<>();
@@ -62,36 +62,9 @@ public class MainPage {
     private ZoomableScrollPane zoomableScrollPane;
 
 
-    /**todo, done*/
-    private boolean dfsBfsButtonHandler(){
-        if (isThreadRunning()) {
-            resetThread();
-            return false;
-        }
-        dialog.setChoiceOptionWithRandomVertesec(nodesList);
-        dialog.showChoiceDialog("Getting source vertex",
-                "please select the source vertex : ","");
-
-        return dialog.getChoiceDialog().showAndWait().isPresent();
-    }
-
-    @FXML
-    private void BFSButtonHandler() {
-        if(dfsBfsButtonHandler())
-            BFS_Algorithm(dialog.getSelectedItem_Integer());
-    }
-
-    @FXML
-    private void DFSButtonHandler() {
-        if(dfsBfsButtonHandler())
-            DFS_Algorithm(dialog.getSelectedItem_Integer());
-    }
-
     @FXML
     void initialize() {
-        setAlgorithmButtonsDisable(true);
         waitingForPlacement = true;
-
         zoomableScrollPane  = new ZoomableScrollPane(customPane);
         borderPane.setCenter(zoomableScrollPane);
 
@@ -100,67 +73,28 @@ public class MainPage {
         addNode();
     }
 
-    private int DIJ_getSource(){
-        dialog.setChoiceOption(nodesList);
-        dialog.showChoiceDialog("options","Getting source vertex","please select the source vertex : ");
-        if (!dialog.getChoiceDialog().showAndWait().isPresent()) return -1;
-        else return dialog.getSelectedItem_Integer();
-    }
-
-    private int DIJ_getDestination(){
-        dialog.showChoiceDialog("options","Getting destination vertex","please select the destination vertex : ");
-        if (!dialog.getChoiceDialog().showAndWait().isPresent()) return -1;
-        else return dialog.getSelectedItem_Integer();
+    @FXML
+    private void BFSButtonHandler() {
+        isRunning=true;
+        if(dfsBfsButtonHandler())
+            BFS_Algorithm(dialog.getSelectedItem_Integer());
+        isRunning = false;
     }
 
     @FXML
-    public void DIJButtonHandler() {
+    private void DFSButtonHandler() {
+        if (dfsBfsButtonHandler())
+            DFS_Algorithm(dialog.getSelectedItem_Integer());
+    }
+
+    @FXML
+    private void tspAlgorithmHandler(){
+
         if (isThreadRunning()) {
             resetThread();
             return;
         }
-
-        // reset the colours of vertexes :
-        setNodesDefaultColor();
-
-        final int sourceVertex;
-        final int destinationVertex;
-
-        sourceVertex = DIJ_getSource();
-        dialog.getChoiceDialogsOptions().remove(""+sourceVertex);
-        destinationVertex = DIJ_getDestination();
-        if(sourceVertex == -1  || destinationVertex == -1)return;
-
-        thread = new Thread(() -> {
-            setAlgorithmButtonsDisable(true);
-            btnDJT.setDisable(false);
-
-            DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
-            dijkstraAlgorithm.algorithm(adjList, sourceVertex);
-            LinkedList<Integer> path = dijkstraAlgorithm.shortestPath(destinationVertex);
-
-            for (Integer integer : path) {
-                nodesList.get(integer).get(0).setStyle(NODE_STYLE_PURPLE);
-                MakeDelay();
-            }
-            setAlgorithmButtonsDisable(false);
-        });
-        thread.start();
-    }
-
-    private int tspAlgorithmGetSource(){
-        dialog.setChoiceOption(nodesList);
-        dialog.showChoiceDialog("select","select source","select source");
-        if (!dialog.getChoiceDialog().showAndWait().isPresent()) return -1;
-        return  dialog.getSelectedItem_Integer();
-    }
-
-    public void tspAlgorithmHandler(){
-        if (isThreadRunning()) {
-            resetThread();
-            return;
-        }
-        // reset the colours of vertexes :
+        // reset the colours of vertexes:
         setNodesDefaultColor();
 
         final int sourceVertex;
@@ -179,36 +113,73 @@ public class MainPage {
             return;
         }
 
-        thread = new Thread(() -> {
-            setAlgorithmButtonsDisable(true);
-            btnTSP.setDisable(false);
-            // coloring the nodes :
-            for (Integer integer : tspResultList) {
-                nodesList.get(integer).get(0).setStyle(NODE_STYLE_PURPLE);
-                MakeDelay();
-            }
-            setAlgorithmButtonsDisable(false);
-        });
-        thread.start();
+        TSP_Algorithm(tspResultList);
     }
 
-    private double[][] convertAdjListToMatrix(
-            LinkedList<LinkedList<Pair<Integer, Integer>>> adjList){
-        double[][] dataMatrix  = new double[adjList.size()][adjList.size()];
-        //initialise
-        for (int i=0; i<adjList.size(); i++){
-            for (int j = 0; j < adjList.size(); j++) {
-                dataMatrix[i][j] = Double.MAX_VALUE ;
+    @FXML
+    public void DIJButtonHandler() {
+        if (isThreadRunning()) {
+            resetThread();
+            return;
+        }
+        isRunning = true;
+
+        // reset the colours of vertexes:
+        setNodesDefaultColor();
+
+        final int sourceVertex, destinationVertex;
+
+        //todo find a better way
+        sourceVertex = DIJ_getSource();
+        dialog.getChoiceDialogsOptions().remove(""+sourceVertex);
+        destinationVertex = DIJ_getDestination();
+        if(sourceVertex == -1  || destinationVertex == -1)return;
+        //todo
+
+        DIJ_Algorithm(sourceVertex, destinationVertex);
+        isRunning = false;
+    }
+
+    @FXML
+    private void loadGraphButtonHandler(){
+
+        File selectedFile = graphFileOpener();
+
+        if (selectedFile == null) return;
+
+        GraphDataSave graphData;
+        try {
+            graphData =  (GraphDataSave)FileIO.readAnObjectFromFile(selectedFile.getAbsolutePath());
+            LoadDataToMainProgram(graphData);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("ClassNotFoundException");
+        }
+    }
+
+    @FXML
+    private void saveAdjMatrix(){
+        int[][] adjMatrix = new int[adjList.size()][adjList.size()];
+        for (int i = 0; i<adjList.size();i++){
+            for (int j = 0; j<adjList.get(i).size();j++) {
+                adjMatrix[i][adjList.get(i).get(j).getFirst()] = adjList.get(i).get(j).getSecond();
             }
         }
-        // filling the values of matrix with adjList :
-        for (int i = 0; i < adjList.size() ; i++) {
-            for (int j = 0; j < adjList.get(i).size(); j++) {
-                Pair<Integer , Integer> tmp = adjList.get(i).get(j);
-                dataMatrix[i][tmp.getFirst()] = tmp.getSecond();
-            }
-        }
-        return dataMatrix ;
+    }
+
+    @FXML
+    private void restartButtonHandler() {
+        waitingForPlacement = false;
+        nodesList.clear();
+        graphNodeLinesList.clear();
+        xDirList.clear();
+        yDirList.clear();
+        indexOfGraph = 0;
+        isRunning = false;
+        customPane.getChildren().clear();
+        initialize();
     }
 
     @FXML
@@ -228,9 +199,9 @@ public class MainPage {
 
     }
 
-    private void setGraphNodeLessees(GraphNode graphNode){
+    private void setGraphNodeListener(GraphNode graphNode){
         graphNode.setOnMouseClicked(event1 -> {
-            if (!isFinished) {
+            if (!isRunning) {
                 try {
                     graphNode.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
                     graphNodeLinesList.add(graphNode);
@@ -245,7 +216,7 @@ public class MainPage {
 
     private void _drawLine(GraphNode graphNode1, GraphNode graphNode2, int weight){
 
-        Arrow arrow = null;
+        Arrow arrow;
 
         double node1X = graphNode1.getLayoutX()+25, node1Y = graphNode1.getLayoutY()+25;
         double node2X = graphNode2.getLayoutX()+25,node2Y= graphNode2.getLayoutY()+25;
@@ -294,7 +265,8 @@ public class MainPage {
         return label;
     }
 
-    private Arrow makeArrow(double ALPHA, double node1X, double node1Y, double node2X, double node2Y){
+    private Arrow makeArrow
+            (double ALPHA, double node1X, double node1Y, double node2X, double node2Y){
         //set x and y for arrow
         double desX =(node2X ) + cos(ALPHA)*25;
         double desY =(node2Y) + sin(ALPHA)*25;
@@ -341,6 +313,22 @@ public class MainPage {
         return fileChooser;
     }
 
+    private void TSP_Algorithm(List<Integer> tspResultList){
+        thread = new Thread(() -> {
+            isRunning = true;
+            setAlgorithmButtonsDisable(true);
+            btnTSP.setDisable(false);
+            // coloring the nodes :
+            for (Integer integer : tspResultList) {
+                nodesList.get(integer).get(0).setStyle(NODE_STYLE_BLUE);
+                MakeDelay();
+            }
+            setAlgorithmButtonsDisable(false);
+            isRunning = false;
+        });
+        thread.start();
+    }
+
     private File graphFileOpener(){
         return graphFileChooser().showOpenDialog(new Stage());
     }
@@ -351,7 +339,6 @@ public class MainPage {
 
     private void LoadDataToMainProgram(GraphDataSave graphData){
         restartButtonHandler();
-        btnFinish.setDisable(false);
         this.adjList = graphData.getAdjList();
         this.xDirList = graphData.getxDir();
         this.yDirList = graphData.getyDir();
@@ -361,7 +348,7 @@ public class MainPage {
         // load vertexes :
         for (int i = 0; i < xDirList.size(); i++) {
             GraphNode graphNode = new GraphNode(i, xDirList.get(i), yDirList.get(i));
-            setGraphNodeLessees(graphNode);
+            setGraphNodeListener(graphNode);
             customPane.getChildren().add(graphNode);
         }
 
@@ -381,72 +368,14 @@ public class MainPage {
                 double ALPHA = calculateAlpha(graphNode1, graphNode2);
                 arrow = makeArrow(ALPHA, node1X ,node1Y, node2X, node2Y);
 
-                graphNode1.setStyle(NODE_STYLE_PURPLE);
-                graphNode2.setStyle(NODE_STYLE_PURPLE);
+                graphNode1.setStyle(NODE_STYLE_BLUE);
+                graphNode2.setStyle(NODE_STYLE_BLUE);
                 customPane.getChildren().add(arrow);
                 customPane.getChildren().add(label);
                 arrow.toBack();
                 graphNode1.toFront();
                 graphNode2.toFront();
             }
-        }
-    }
-
-    @FXML
-    private void loadGraphButtonHandler(){
-        btnFinish.setDisable(false);
-
-        File selectedFile = graphFileOpener();
-
-        if (selectedFile == null) return;
-
-        GraphDataSave graphData;
-        try {
-            graphData =  (GraphDataSave)FileIO.readAnObjectFromFile(selectedFile.getAbsolutePath());
-            LoadDataToMainProgram(graphData);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("ClassNotFoundException");
-        }
-    }
-
-    /**todo, done*/
-
-
-    @FXML
-    private void saveAdjMatrix(){
-        int[][] adjMatrix = new int[adjList.size()][adjList.size()];
-        for (int i = 0; i<adjList.size();i++){
-            for (int j = 0; j<adjList.get(i).size();j++) {
-                adjMatrix[i][adjList.get(i).get(j).getFirst()] = adjList.get(i).get(j).getSecond();
-            }
-        }
-    }
-
-    @FXML
-    private void restartButtonHandler() {
-        waitingForPlacement = false;
-        btnFinish.setDisable(true);
-        setAlgorithmButtonsDisable(true);
-        nodesList.clear();
-        graphNodeLinesList.clear();
-        xDirList.clear();
-        yDirList.clear();
-        indexOfGraph = 0;
-        isFinished = false;
-        customPane.getChildren().clear();
-        initialize();
-    }
-
-    @FXML
-    private void finishButtonHandler() {
-        if (!nodesList.isEmpty()) {
-            waitingForPlacement = false;
-            btnFinish.setDisable(true);
-            setAlgorithmButtonsDisable(false);
-            isFinished = true;
         }
     }
 
@@ -469,8 +398,6 @@ public class MainPage {
         clickNotDragDetectingOn(customPane)
                 .withPressedDurationTreshold(2500)
                 .setOnMouseClickedNotDragged((mouseEvent) -> {
-
-                    btnFinish.setDisable(false);
                     double centerX = mouseEvent.getX() - 20;
                     double centerY = mouseEvent.getY() - 20;
                     for (int i = 0; i < xDirList.size(); i++) {
@@ -480,8 +407,7 @@ public class MainPage {
                     }
                     if (mouseEvent.getX() < 25 || mouseEvent.getY() > customPane.getHeight() - 25 || mouseEvent.getX() > customPane.getWidth() - 25 || mouseEvent.getY() < 25)
                         return;
-                    else if (waitingForPlacement) {
-                        btnFinish.setVisible(true);
+                    else if (waitingForPlacement && !isRunning) {
                         xDirList.add(centerX);
                         yDirList.add(centerY);
                         GraphNode graphNode = new GraphNode(indexOfGraph++, centerX, centerY);
@@ -490,7 +416,7 @@ public class MainPage {
                         adjList.add(tmp_2);
                         tmp.add(graphNode);
                         nodesList.add(tmp);
-                        setGraphNodeLessees(graphNode);
+                        setGraphNodeListener(graphNode);
                         customPane.getChildren().add(graphNode);
                     }
                 });
@@ -502,7 +428,6 @@ public class MainPage {
 
     private void resetThread(){
         thread.stop();
-        setAlgorithmButtonsDisable(false);
         setNodesDefaultColor();
     }
 
@@ -512,11 +437,32 @@ public class MainPage {
         }
     }
 
+    private void DIJ_Algorithm(int sourceVertex, int destinationVertex){
+        thread = new Thread(() -> {
+            isRunning = true;
+            setAlgorithmButtonsDisable(true);
+            btnDJT.setDisable(false);
+
+            DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
+            dijkstraAlgorithm.algorithm(adjList, sourceVertex);
+            LinkedList<Integer> path = dijkstraAlgorithm.shortestPath(destinationVertex);
+
+            for (Integer integer : path) {
+                nodesList.get(integer).get(0).setStyle(NODE_STYLE_BLUE);
+                MakeDelay();
+            }
+            setAlgorithmButtonsDisable(false);
+            isRunning = false;
+        });
+        thread.start();
+    }
+
     private void BFS_Algorithm(int s) {
         int[] finalS = new int[1];
         finalS[0] = s;
 
         thread = new Thread(() -> {
+            isRunning = true;
             setAlgorithmButtonsDisable(true);
             btnBfs.setDisable(false);
 
@@ -535,12 +481,9 @@ public class MainPage {
                 finalS[0] = queue.poll().getIndex();
                 System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
                 nodesList.get(finalS[0]).get(0)
-                        .setStyle("-fx-background-color:  #4d4bfa ; -fx-font-size: 16;-fx-background-radius: 50 ;" +
-                                " -fx-text-fill: #fff ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                        .setStyle(NODE_STYLE_BLUE);
 
-                Iterator<GraphNode> i = nodesList.get(finalS[0]).listIterator();
-                while (i.hasNext()) {
-                    GraphNode n = i.next();
+                for (GraphNode n : nodesList.get(finalS[0])) {
                     if (!visited[n.getIndex()]) {
                         visited[n.getIndex()] = true;
                         queue.add(n);
@@ -551,6 +494,7 @@ public class MainPage {
             }
 
             setAlgorithmButtonsDisable(false);
+            isRunning =false;
         });
 
         thread.start();
@@ -558,15 +502,17 @@ public class MainPage {
 
     private void DFS_Algorithm(int v) {
 
-        boolean[] visited = new boolean[nodesList.size()];
+        boolean[] isVisited = new boolean[nodesList.size()];
 
         thread = new Thread(() -> {
+            isRunning = true;
             setAlgorithmButtonsDisable(true);
             btnDfs.setDisable(false);
 
-            DFSUtil(nodesList.get(v).get(0).getIndex(), visited);
+            DFSUtil(nodesList.get(v).get(0).getIndex(), isVisited);
 
             setAlgorithmButtonsDisable(false);
+            isRunning = false;
         });
 
         thread.start();
@@ -576,8 +522,7 @@ public class MainPage {
     private void DFSUtil(int v, boolean[] visited) {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
-        nodesList.get(v).get(0).setStyle("-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
-                " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50");
+        nodesList.get(v).get(0).setStyle(NODE_STYLE_BLUE);
 
         //MakeDelay
         MakeDelay();
@@ -595,11 +540,55 @@ public class MainPage {
         btnTSP.setDisable(f);
     }
 
-    private void setAlgoButtVsible(boolean f){
-        btnDfs.setVisible(f);
-        btnBfs.setVisible(f);
-        btnDJT.setVisible(f);
-        btnTSP.setVisible(f);
+    private boolean dfsBfsButtonHandler(){
+        if (isThreadRunning()) {
+            resetThread();
+            return false;
+        }
+        dialog.setChoiceOptionWithRandomVertesec(nodesList);
+        dialog.makeChoiceDialog("Getting source vertex",
+                "please select the source vertex : ","");
+
+        return dialog.getChoiceDialog().showAndWait().isPresent();
+    }
+
+    private int DIJ_getSource(){
+        dialog.setChoiceOption(nodesList);
+        dialog.makeChoiceDialog("options","Getting source vertex","please select the source vertex : ");
+        if (!dialog.getChoiceDialog().showAndWait().isPresent()) return -1;
+        else return dialog.getSelectedItem_Integer();
+    }
+
+    private int DIJ_getDestination(){
+        dialog.makeChoiceDialog("options","Getting destination vertex","please select the destination vertex : ");
+        if (!dialog.getChoiceDialog().showAndWait().isPresent()) return -1;
+        else return dialog.getSelectedItem_Integer();
+    }
+
+    private int tspAlgorithmGetSource(){
+        dialog.setChoiceOption(nodesList);
+        dialog.makeChoiceDialog("select","select source","select source");
+        if (!dialog.getChoiceDialog().showAndWait().isPresent()) return -1;
+        return  dialog.getSelectedItem_Integer();
+    }
+
+    private double[][] convertAdjListToMatrix(
+            LinkedList<LinkedList<Pair<Integer, Integer>>> adjList){
+        double[][] dataMatrix  = new double[adjList.size()][adjList.size()];
+        //initialise
+        for (int i=0; i<adjList.size(); i++){
+            for (int j = 0; j < adjList.size(); j++) {
+                dataMatrix[i][j] = Double.MAX_VALUE ;
+            }
+        }
+        // filling the values of matrix with adjList :
+        for (int i = 0; i < adjList.size() ; i++) {
+            for (int j = 0; j < adjList.get(i).size(); j++) {
+                Pair<Integer , Integer> tmp = adjList.get(i).get(j);
+                dataMatrix[i][tmp.getFirst()] = tmp.getSecond();
+            }
+        }
+        return dataMatrix ;
     }
 
     private void MakeDelay(){

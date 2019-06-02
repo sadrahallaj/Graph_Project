@@ -18,7 +18,7 @@ public class Dialog {
     private LinkedList<String> choiceDialogsOptions = new LinkedList<>();
     private TextInputDialog textInputDialog;
 
-    public void showChoiceDialog(String title, String headerText, String contentText){
+    public void makeChoiceDialog(String title, String headerText, String contentText){
          choiceDialog = new ChoiceDialog<>(choiceDialogsOptions.get(0), choiceDialogsOptions);
          choiceDialog.setTitle(title);
          choiceDialog.setHeaderText(headerText);
@@ -29,11 +29,10 @@ public class Dialog {
          javafx.scene.image.Image iconImage = new javafx.scene.image.Image(new File("/source/options.png")
                  .toURI().toString());
          stage.getIcons().add(iconImage);
-         choiceDialog.show();
     }
 
     public int getSelectedItem_Integer(){
-        if (choiceDialog.getSelectedItem() == "random vertex") {
+        if (choiceDialog.getSelectedItem() == "Random Vertex") {
             Random rand = new Random();
             return rand.nextInt(choiceDialogsOptions.size());
         }else{
@@ -72,8 +71,8 @@ public class Dialog {
         dialog.setTitle("");
         dialog.setContentText(Title);
         Optional<String> result = dialog.showAndWait();
-        if(Integer.parseInt(result.toString()) != 0){
-            return Integer.parseInt(result.toString());
+        if(Integer.parseInt(result.get()) != 0){
+            return Integer.parseInt(result.get());
         }else return null;
     }
 
