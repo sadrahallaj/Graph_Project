@@ -1,4 +1,4 @@
-package com.graphAlgorithm.view.other;
+package com.graphAlgorithm.view.componenets;
 
 
 import javafx.scene.Node;

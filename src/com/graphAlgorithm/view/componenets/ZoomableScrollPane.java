@@ -1,4 +1,4 @@
-package com.graphAlgorithm.view.other;
+package com.graphAlgorithm.view.componenets;
 
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
