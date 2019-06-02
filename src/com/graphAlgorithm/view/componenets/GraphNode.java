@@ -14,16 +14,20 @@ public class GraphNode extends Button implements Serializable {
     }
 
     public void setDirY(double dirY) {
+        setLayoutY(dirY);
         DirY = dirY;
+    }
+
+    public void setDirX(double dirX)
+    {
+        DirX = dirX;
+        setLayoutX(dirX);
     }
 
     public double getDirX() {
         return DirX;
     }
 
-    public void setDirX(double dirX) {
-        DirX = dirX;
-    }
 
     /**
      * garph node, a button that save the information about each ndoe of graph
@@ -53,5 +57,4 @@ public class GraphNode extends Button implements Serializable {
     public int getIndex() {
         return index;
     }
-
 }

@@ -1,6 +1,9 @@
 package com.graphAlgorithm.model;
 
 
+import com.graphAlgorithm.view.componenets.Arrow;
+import com.graphAlgorithm.view.componenets.LabelSerializable;
+import com.graphAlgorithm.view.main.MainPage;
 import com.graphAlgorithm.view.other.Pair;
 import com.graphAlgorithm.view.componenets.GraphNode;
 
@@ -14,17 +17,25 @@ public class GraphDataSave implements Serializable {
     private LinkedList<Double> yDir ;
     private LinkedList<LinkedList<GraphNode>> nodesList ;
     private LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ;
+    private LinkedList<LinkedList<Pair<GraphNode, MainPage.Line>>> allGraphState = new LinkedList<>();
 
     public GraphDataSave(
             LinkedList<LinkedList<Pair<Integer, Integer>>> adjList ,
             LinkedList<Double> xDir, LinkedList<Double> yDir,
-            LinkedList<LinkedList<GraphNode>> nodesList , int index ) {
+            LinkedList<LinkedList<GraphNode>> nodesList,
+            LinkedList<LinkedList<Pair<GraphNode, MainPage.Line>>> allGraphState
+            , int index ) {
 
         this.index = index;
         this.xDir = xDir;
         this.yDir = yDir;
         this.nodesList = nodesList;
         this.adjList = adjList;
+        this.allGraphState = allGraphState;
+    }
+
+    public LinkedList<LinkedList<Pair<GraphNode, MainPage.Line>>> getAllGraphState() {
+        return allGraphState;
     }
 
     public int getIndex() {
