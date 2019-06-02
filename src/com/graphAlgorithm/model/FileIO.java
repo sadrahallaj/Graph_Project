@@ -1,6 +1,9 @@
 package com.graphAlgorithm.model;
 
+import com.graphAlgorithm.view.componenets.GraphNode;
+
 import java.io.*;
+import java.util.LinkedList;
 
 public class FileIO {
 
@@ -24,6 +27,14 @@ public class FileIO {
         InputStream file = new FileInputStream(filePath);
         InputStream buffer = new BufferedInputStream(file);
         ObjectInput input = new ObjectInputStream(buffer);
-        return input.readObject();
+        return setLayout((GraphDataSave) input.readObject());
+    }
+
+    private static GraphDataSave setLayout(GraphDataSave graphDataSave){
+        LinkedList<LinkedList<GraphNode>> nodesList = graphDataSave.getNodesList();
+        for (LinkedList<GraphNode> graphNodes : nodesList)
+            for (GraphNode graphNode : graphNodes)
+                graphNode.copy();
+        return graphDataSave;
     }
 }

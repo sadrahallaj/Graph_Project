@@ -1,6 +1,5 @@
 package com.graphAlgorithm.view.componenets;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.scene.control.Button;
 
 import java.io.Serializable;
@@ -43,6 +42,11 @@ public class GraphNode extends Button implements Serializable {
         this.setStyle("-fx-background-color: #d0d0d0; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
     }
 
+    public void copy(){
+        this.setLayoutX(DirX);
+        this.setLayoutY(DirY);
+    }
+
     /**
      * @return return the index
      */
@@ -51,4 +55,3 @@ public class GraphNode extends Button implements Serializable {
     }
 
 }
-
