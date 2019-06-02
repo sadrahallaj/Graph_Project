@@ -96,8 +96,6 @@ public class MainPage {
             resetThread();
             return;
         }
-//        // reset the colours of vertexes:
-//        setNodesDefaultColor();
 
         final int sourceVertex;
         sourceVertex = tspAlgorithmGetSource();
