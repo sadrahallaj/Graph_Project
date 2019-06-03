@@ -253,6 +253,50 @@ public class MainPage {
         }
         
     }
+
+    private void deleteNode(int index){
+        for (int i=0;i<allInNode.get(index).size();i++){
+            customPane.getChildren().remove(allInNode.get(index).get(i).second);
+        }
+        for (int i=0;i<allOutNode.get(index).size();i++){
+            customPane.getChildren().remove(allOutNode.get(index).get(i).second);
+        }
+        allInNode.get(index).clear();
+        allOutNode.get(index).clear();
+
+        for (int i = 0; i <allInNode.size() ; i++) {
+            for (int j = 0; j <allInNode.get(i).size() ; j++) {
+                if (allInNode.get(i).get(j).first.getIndex()==index){
+                    allInNode.get(i).remove(j);
+
+                }
+
+            }
+        }
+        graphNodeLinesList.set(index,null);
+        for (int i = 0; i < nodesList.size() ; i++) {
+            for (int j = 0; j < nodesList.get(i).size() ; j++) {
+                if(nodesList.get(i).get(j).getIndex()==index){
+                    nodesList.get(i).remove(j);
+                }
+
+            }
+        }
+        nodesList.get(index).set(index,null);
+
+        for (int i = 0; i <adjList.size() ; i++) {
+            for (int j = 0; j <adjList.get(i).size() ; j++) {
+                if (adjList.get(i).get(j).first==index){
+                    adjList.get(i).remove(j);
+                }
+
+            }
+
+        }
+        adjList.set(index,null);
+
+    }
+
     @FXML
     private void restartButtonHandler() {
         waitingForPlacement = false;
