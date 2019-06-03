@@ -43,12 +43,14 @@ public class MainPage {
     @FXML
     private BorderPane borderPane;
 
-    private String NODE_STYLE_PURPLE = "-fx-background-color: #f93f98 ;-fx-background-radius: 50 ;" +
-            " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50";
-    private String NODE_STYLE_BLUE = "-fx-background-color: #0000ff ;-fx-background-radius: 50 ;" +
-            " -fx-text-fill: #e5e5e5 ; -fx-font-size: 16; -fx-pref-height: 50 ; -fx-pref-width: 50";
-    private String NODE_STYLE_DEFULT = "-fx-background-color: #cfcfcf; -fx-font-size: 16;" +
-            " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50";
+//    private String NODE_STYLE_PURPLE = "-fx-background-color: #34495e; -fx-font-size: 16;" +
+//            " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50; -fx-text-fill: white; -fx-font-weight: bold";
+
+    private String NODE_STYLE_SELCTION = "-fx-background-color: #ff0b00; -fx-font-size: 16;" +
+            " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50; -fx-text-fill: black; -fx-font-weight: bold";
+
+    private String NODE_STYLE_DEFULT = "-fx-background-color: #34495e; -fx-font-size: 16;" +
+            " -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50; -fx-text-fill: white; -fx-font-weight: bold";
 
     int[][] adjMatrix;
     private int indexOfGraph = 0;
@@ -75,6 +77,7 @@ public class MainPage {
 
     @FXML
     void initialize() {
+        setNodesDefaultColor();
         waitingForPlacement = true;
         zoomableScrollPane  = new ZoomableScrollPane(customPane);
         borderPane.setCenter(zoomableScrollPane);
@@ -138,6 +141,7 @@ public class MainPage {
 
         //todo find a better way
         sourceVertex = DIJ_getSource();
+        if(sourceVertex == -1) return;
         dialog.getChoiceDialogsOptions().remove(""+sourceVertex);
         destinationVertex = DIJ_getDestination();
         if(sourceVertex == -1  || destinationVertex == -1)return;
@@ -279,7 +283,7 @@ public class MainPage {
             if (!isRunning && event.isDragDetect()) {
                 try {
                     waitForLine = true;
-                    graphNode.setStyle("-fx-background-color: #ff0000; -fx-font-size: 16; -fx-background-radius: 50 ; -fx-pref-height: 50 ; -fx-pref-width: 50");
+                    graphNode.setStyle(NODE_STYLE_SELCTION);
                     graphNodeLinesList.add(graphNode);
                     drawLine();
                 } catch (Exception e) {
@@ -309,7 +313,7 @@ public class MainPage {
             int weight = Integer.parseInt(line.label.getText());
             deleteLine(graphNode, line);
 
-            line = _drawLine(graphNode,out, weight);
+            line = drawLine2(graphNode,out, weight);
             allOutNode.get(graphNode.getIndex()).get(i).second = line;
 
             for (int j=0; j<allInNode.get(out.getIndex()).size(); j++){
@@ -328,7 +332,7 @@ public class MainPage {
             int weight = Integer.parseInt(line.label.getText());
             deleteLine(graphNode, line);
 
-            line =  _drawLine(in,graphNode, weight);
+            line =  drawLine2(in,graphNode, weight);
             allInNode.get(graphNode.getIndex()).get(i).second =line;
 
             for (int j=0; j<allOutNode.get(in.getIndex()).size(); j++){
@@ -372,6 +376,9 @@ public class MainPage {
         allInNode.get(graphNode2.getIndex()).add(new Pair<>(graphNode1,line));
         allOutNode.get(graphNode1.getIndex()).add(new Pair<>(graphNode2,line));
 
+        graphNode1.setStyle(NODE_STYLE_SELCTION);
+        graphNode2.setStyle(NODE_STYLE_SELCTION);
+
         setNodesDefaultColor();
         waitForLine = false;
     }
@@ -405,9 +412,6 @@ public class MainPage {
         LabelSerializable label = makeLabel(weight+"", graphNode1, graphNode2, node1X, node1Y, node2X, node2Y);
         final double ALPHA = calculateAlpha(graphNode1, graphNode2);
         arrow = makeArrow(ALPHA, node1X,node1Y, node2X, node2Y);
-
-        graphNode1.setStyle(NODE_STYLE_PURPLE);
-        graphNode2.setStyle(NODE_STYLE_PURPLE);
 
         customPane.getChildren().add(arrow);
         customPane.getChildren().add(label);
@@ -488,7 +492,7 @@ public class MainPage {
             btnTSP.setDisable(false);
             // coloring the nodes :
             for (Integer integer : tspResultList) {
-                nodesList.get(integer).get(0).setStyle(NODE_STYLE_BLUE);
+                nodesList.get(integer).get(0).setStyle(NODE_STYLE_SELCTION);
                 MakeDelay();
             }
             setAlgorithmButtonsDisable(false);
@@ -539,8 +543,8 @@ public class MainPage {
                 double ALPHA = calculateAlpha(graphNode1, graphNode2);
                 arrow = makeArrow(ALPHA, node1X ,node1Y, node2X, node2Y);
 
-                graphNode1.setStyle(NODE_STYLE_BLUE);
-                graphNode2.setStyle(NODE_STYLE_BLUE);
+                graphNode1.setStyle(NODE_STYLE_SELCTION);
+                graphNode2.setStyle(NODE_STYLE_SELCTION);
                 customPane.getChildren().add(arrow);
                 customPane.getChildren().add(label);
                 arrow.toBack();
@@ -586,6 +590,7 @@ public class MainPage {
                     }
                     else if (waitingForPlacement && !isRunning) {
                         addNode(centerX, centerY);
+
                     }
                 });
     }
@@ -609,6 +614,7 @@ public class MainPage {
 
         setGraphNodeListener(graphNode);
         customPane.getChildren().add(graphNode);
+        graphNode.setStyle(NODE_STYLE_DEFULT);
     }
 
     private boolean isThreadRunning(){
@@ -638,9 +644,15 @@ public class MainPage {
             DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
             dijkstraAlgorithm.algorithm(adjList, sourceVertex);
             LinkedList<Integer> path = dijkstraAlgorithm.shortestPath(destinationVertex);
+            if (path.size()< 2) {
+                isRunning = false;
+                setAlgorithmButtonsDisable(false);
+                thread.stop();
+                return;
+            }
 
             for (Integer integer : path) {
-                nodesList.get(integer).get(0).setStyle(NODE_STYLE_BLUE);
+                nodesList.get(integer).get(0).setStyle(NODE_STYLE_SELCTION);
                 MakeDelay();
             }
             setAlgorithmButtonsDisable(false);
@@ -673,7 +685,7 @@ public class MainPage {
                 finalS[0] = queue.poll().getIndex();
                 System.out.print(nodesList.get(finalS[0]).get(0).getIndex() + " ");
                 nodesList.get(finalS[0]).get(0)
-                        .setStyle(NODE_STYLE_BLUE);
+                        .setStyle(NODE_STYLE_SELCTION);
 
                 for (GraphNode n : nodesList.get(finalS[0])) {
                     if (!visited[n.getIndex()]) {
@@ -711,7 +723,7 @@ public class MainPage {
     private void DFSUtil(int v, boolean[] visited) {
         visited[nodesList.get(v).get(0).getIndex()] = true;
         System.out.print(nodesList.get(v).get(0).getIndex() + " ");
-        nodesList.get(v).get(0).setStyle(NODE_STYLE_BLUE);
+        nodesList.get(v).get(0).setStyle(NODE_STYLE_SELCTION);
 
         //MakeDelay
         MakeDelay();
@@ -767,7 +779,7 @@ public class MainPage {
         //initialise
         for (int i=0; i<adjList.size(); i++){
             for (int j = 0; j < adjList.size(); j++) {
-                dataMatrix[i][j] = Double.MAX_VALUE ;
+                dataMatrix[i][j] = 0.0 ;
             }
         }
         // filling the values of matrix with adjList :
