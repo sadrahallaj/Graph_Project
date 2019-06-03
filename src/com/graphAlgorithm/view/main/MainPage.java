@@ -134,9 +134,6 @@ public class MainPage {
         }
         isRunning = true;
 
-//        // reset the colours of vertexes:
-//        setNodesDefaultColor();
-
         final int sourceVertex, destinationVertex;
 
         //todo find a better way

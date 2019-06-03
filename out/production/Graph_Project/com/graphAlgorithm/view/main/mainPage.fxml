@@ -52,7 +52,15 @@
                      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                   </VBox.margin>
                </JFXButton>
-               <JFXButton onAction="#saveAdjMatrix" prefHeight="59.0" prefWidth="206.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Save AdjMatrix" />
+               <JFXButton onAction="#saveAdjMatrix" prefHeight="59.0" prefWidth="206.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Save AdjMatrix">
+                  <VBox.margin>
+                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                  </VBox.margin></JFXButton>
+               <JFXButton onAction="#loadFromMatrix" prefHeight="59.0" prefWidth="206.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="Load AdjMatrix">
+                  <VBox.margin>
+                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                  </VBox.margin>
+               </JFXButton>
                     <VBox fx:id="speedControl" prefHeight="70.0" prefWidth="206.0" style="-fx-background-color: red; -fx-background-radius: 0;">
                         <children>
                             <Label alignment="CENTER" prefHeight="21.0" prefWidth="364.0" text="preview speed:">
