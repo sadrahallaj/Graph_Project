@@ -188,6 +188,8 @@ public class MainPage {
     @FXML
     private void loadFromMatrix(){
         customPane.getChildren().clear();
+        xDirList.clear();
+        yDirList.clear();
 
         int x = (int)customPane.getPrefWidth()/2;
         int y = (int)customPane.getPrefHeight()/2;
@@ -200,21 +202,57 @@ public class MainPage {
                 if(num-- <= 0) break;
                 addNode(xx,yy);
                 yy += 120;
+                xDirList.add((double) xx);
+                yDirList.add((double) yy);
             }
             xx += 120;
             yy = y;
         }
 
-        //todo not fnish
+        //todo not finish
 
         for(int i=0; i < nodesList.size(); i++){
             for(int j=1; j < nodesList.get(i).size(); j++){
+                nodesList.get(i).get(0).setDirX(xDirList.get(nodesList.get(i).get(0).getIndex()));
+                nodesList.get(i).get(0).setDirY(yDirList.get(nodesList.get(i).get(0).getIndex()));
+                nodesList.get(i).get(j).setDirX(xDirList.get(nodesList.get(i).get(j).getIndex()));
+                nodesList.get(i).get(j).setDirY(yDirList.get(nodesList.get(i).get(j).getIndex()));
                 drawLine2(nodesList.get(i).get(0), nodesList.get(i).get(j), adjMatrix[nodesList.get(i).get(0).getIndex()][nodesList.get(i).get(j).getIndex()]);
             }
         }
 
     }
 
+    public void loadGraphFromMatrix(int[][] adjMatrix){
+        restartButtonHandler();
+        
+        // Node List :
+        for (int i = 0; i < adjMatrix.length; i++) {
+            GraphNode graphNode = new GraphNode(i, xDirList.get(i) , yDirList.get(i));
+            LinkedList<GraphNode> tmp = new LinkedList<>();
+            tmp.add(graphNode);
+            for (int j = 0; j < adjMatrix.length; j++) {
+                if(adjMatrix[i][j] != 0 ){
+                    GraphNode graphNode1 = new GraphNode(j, xDirList.get(j), yDirList.get(j));
+                    tmp.add(graphNode1);
+                }
+            }
+            nodesList.add(tmp);
+        }
+        
+        // AdjList :
+        for (int i = 0; i < adjMatrix.length; i++) {
+            LinkedList<Pair<Integer , Integer>> tmp = new LinkedList<>();
+            for (int j = 0; j < adjMatrix.length; j++) {
+                if(adjMatrix[i][j] != 0) {
+                    Pair<Integer , Integer > pair = new Pair<>(j, adjMatrix[i][j]);
+                    tmp.add(pair);
+                }
+            }
+            adjList.add(i, tmp);
+        }
+        
+    }
     @FXML
     private void restartButtonHandler() {
         waitingForPlacement = false;
