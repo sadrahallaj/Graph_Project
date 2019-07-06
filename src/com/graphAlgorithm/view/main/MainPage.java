@@ -883,6 +883,7 @@ public class MainPage {
     // TODO
     public void tcpWithAco(){
         AcoTsp acoTsp = new AcoTsp(, convertAdjListToMatrix(adjList));
+        double[] path = acoTsp.getResult();
     }
 
 }

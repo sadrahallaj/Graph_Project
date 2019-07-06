@@ -109,7 +109,8 @@ public class AcoTsp {
         return cost;
     }
 
-    private double[] getResult() {
+    public double[] getResult() {
+        algorithm();
         System.out.println(totalCostOfArray(pathForEachAnt[this.source]));
         return pathForEachAnt[this.source];
     }
