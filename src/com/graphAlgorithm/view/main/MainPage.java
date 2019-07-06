@@ -880,10 +880,55 @@ public class MainPage {
             e.printStackTrace();
         }
     }
-    // TODO
-    public void tcpWithAco(){
-        AcoTsp acoTsp = new AcoTsp(, convertAdjListToMatrix(adjList));
+
+    /**
+     * show a dialog and get the source for tcp algorithm
+     * @return source
+     */
+    private int tcpAlgorithmGetSource(){
+        dialog.setChoiceOption(nodesList);
+        dialog.makeChoiceDialog("select","select source","select source");
+        if (!dialog.getChoiceDialog().showAndWait().isPresent()) return -1;
+        return  dialog.getSelectedItem_Integer();
+    }
+
+    /**
+     * main tcp algorithm button
+     */
+    @FXML
+    private void tcpWithAco(){
+        int source = tcpAlgorithmGetSource();
+        AcoTsp acoTsp = new AcoTsp(source, convertAdjListToMatrix(adjList));
         double[] path = acoTsp.getResult();
+        System.out.println(path.length);
+    }
+
+    /**
+     * coloring the result
+     * @param path path
+     */
+    public void acoPathColoring(double[] path){
+        thread = new Thread(() -> {
+            isRunning = true;
+            setAlgorithmButtonsDisable(true);
+            btnDJT.setDisable(false);
+
+
+            if (path.length< 2) {
+                isRunning = false;
+                setAlgorithmButtonsDisable(false);
+                thread.stop();
+                return;
+            }
+
+            for (double v : path) {
+                nodesList.get((int)v).get(0).setStyle(NODE_STYLE_SELCTION);
+                MakeDelay();
+            }
+            setAlgorithmButtonsDisable(false);
+            isRunning = false;
+        });
+        thread.start();
     }
 
 }
