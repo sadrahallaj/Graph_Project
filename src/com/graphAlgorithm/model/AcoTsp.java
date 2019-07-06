@@ -72,6 +72,7 @@ public class AcoTsp {
                 while (countUnvisitedVertexies(visited) != 0) {
                     int nextVertex = findNextVertex(currentVertex, visited);
                     pathForEachAnt[j][counter++] = nextVertex ;
+                    visited[nextVertex] = true ;
                     currentVertex = nextVertex ;
                 }
                 pathForEachAnt[j][counter] = j ;
@@ -82,7 +83,13 @@ public class AcoTsp {
                 for (int k = 0; k < pheromoneMatrix.length; k++) {
                     // update pheromone for edge j , k :
                     // we should know if antk has travel throw j , k ?
-
+                    double pheromono = pheromoneMatrix[j][k] ;
+                    for (int l = 0; l < distancesMatrix.length; l++) {
+                        if(isAntHasGoneThrowEdge(j, k , i )){
+                            pheromono += 1 / totalCostOfArray(pathForEachAnt[i]);
+                        }
+                    }
+                    pheromoneMatrix[j][k] = pheromono ;
                 }
             }
 
@@ -91,18 +98,19 @@ public class AcoTsp {
 
 
    // Lk
-    private int totalCostOfArray(int[] array) {
+    private int totalCostOfArray(double[] array) {
         int cost = 0;
-        int currentVertex = array[0];
+        double currentVertex = array[0];
         for (int i = 1; i < array.length; i++) {
-            int nextVertex = array[i];
-            cost += distancesMatrix[currentVertex][nextVertex];
+            double nextVertex = array[i];
+            cost += distancesMatrix[(int)currentVertex][(int)nextVertex];
             currentVertex = nextVertex;
         }
         return cost;
     }
 
     private double[] getResult() {
+        System.out.println(totalCostOfArray(pathForEachAnt[this.source]));
         return pathForEachAnt[this.source];
     }
 
@@ -154,12 +162,14 @@ public class AcoTsp {
         return indexOfMaxValue ;
     }
 
+    // check if ant has travel throw j to k not ?
     private boolean isAntHasGoneThrowEdge(int j , int k , int ant){
 
         boolean condition = false ;
         for (int i = 0; i < pathForEachAnt[ant].length; i++) {
-            if(pathForEachAnt[ant][i] == j && (((i + 1 <=pathForEachAnt[ant].length)&& pathForEachAnt[ant][i+1] == k ) || ((i - 1 >= 0 ) && pathForEachAnt[ant][i - 1 ] == k ) )
-               || pathForEachAnt[ant][i] == k && (((i + 1 <=pathForEachAnt[ant].length)&& pathForEachAnt[ant][i+1] == j ) || ((i - 1 >= 0 ) && pathForEachAnt[ant][i - 1 ] == j ))){
+            if(pathForEachAnt[ant][i] == j &&
+                    (((i + 1 <=pathForEachAnt[ant].length)&& pathForEachAnt[ant][i+1] == k )
+                            || ((i - 1 >= 0 ) && pathForEachAnt[ant][i - 1 ] == k ))){
                    condition = true ;
             }
         }
