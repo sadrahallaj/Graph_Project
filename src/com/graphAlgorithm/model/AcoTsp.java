@@ -96,7 +96,6 @@ public class AcoTsp {
         }
     }
 
-
    // Lk
     private int totalCostOfArray(double[] array) {
         int cost = 0;
@@ -111,7 +110,8 @@ public class AcoTsp {
 
     public double[] getResult() {
         algorithm();
-        System.out.println(totalCostOfArray(pathForEachAnt[this.source]));
+//        System.out.println(totalCostOfArray(pathForEachAnt[this.source]));
+        System.out.println("total cost : " +  totalCostOfArray(pathForEachAnt[source]) + "\n");
         return pathForEachAnt[this.source];
     }
 
@@ -126,13 +126,13 @@ public class AcoTsp {
     private int findNextVertex(int j, boolean[] visited) {
         LinkedList<Integer> vertexies = new LinkedList<>();
         for (int i = 0; i < distancesMatrix.length; i++) {
-            if (distancesMatrix[j][i] != 0 && visited[i] != false) vertexies.add(i);
+            if (distancesMatrix[j][i] != 0 && visited[i] == false) vertexies.add(i);
         }
 
         // ∑Ʈα (1/n) β : maxraj loop :
         double maxraj = 0;
-        for (int k = 0; k < distancesMatrix[j].length; k++) {
-            double taw = pheromoneMatrix[j][vertexies.get(k)];
+        for (int k = 0; k < vertexies.size(); k++) { // distancesMatrix[j].length
+             double taw = pheromoneMatrix[j][vertexies.get(k)];
             if (pheromoneMatrix[j][k] != 0)
                 maxraj += taw * visibilityOfEdgeMatrix[j][vertexies.get(k)];
         }
@@ -169,7 +169,7 @@ public class AcoTsp {
         boolean condition = false ;
         for (int i = 0; i < pathForEachAnt[ant].length; i++) {
             if(pathForEachAnt[ant][i] == j &&
-                    (((i + 1 <=pathForEachAnt[ant].length)&& pathForEachAnt[ant][i+1] == k )
+                    (((i + 1 <pathForEachAnt[ant].length)&& pathForEachAnt[ant][i+1] == k )
                             || ((i - 1 >= 0 ) && pathForEachAnt[ant][i - 1 ] == k ))){
                    condition = true ;
             }
