@@ -1,9 +1,6 @@
 package com.graphAlgorithm.model;
 
-import com.graphAlgorithm.Main;
-
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class AcoTsp {
@@ -91,6 +88,7 @@ public class AcoTsp {
                 }
                 pathForEachAnt[j][counter] = j ;
             }
+            printAntsPath();
 
             //update pheromoneMatrix :
             for (int j = 0; j < pheromoneMatrix.length; j++) {
@@ -110,7 +108,7 @@ public class AcoTsp {
                     pheromoneMatrix[j][k] = pheromono ;
                 }
             }
-            printpheromoneMatrix();
+//            printpheromoneMatrix();
 
         }
     }
@@ -120,6 +118,17 @@ public class AcoTsp {
         for (int i = 0; i < pheromoneMatrix.length; i++){
             for (int j = 0; j < pheromoneMatrix.length; j++){
                 System.out.printf("%f ",pheromoneMatrix[i][j]);
+            }
+            System.out.println();
+        }
+
+    }
+
+    public void printAntsPath(){
+        System.out.println();
+        for (int i = 0; i < pathForEachAnt.length; i++){
+            for (int j = 0; j < pathForEachAnt[i].length; j++){
+                System.out.print((int)pathForEachAnt[i][j] + " ");
             }
             System.out.println();
         }
@@ -179,10 +188,11 @@ public class AcoTsp {
             probiibltyOfEachEdge.add(sorat / maxraj);
         }
 
+//        return vertexies.get(findProbabilityInLinkedList(probiibltyOfEachEdge));
         return vertexies.get(findMaxInInLinkedList(probiibltyOfEachEdge));
     }
 
-    private int findMaxInInLinkedList(LinkedList<Double> list){
+    private int findProbabilityInLinkedList(LinkedList<Double> list){
         int it = 0;
         int[] ProbablyList = new int[100];
         for (int i = 0; i < list.size(); i++) {
@@ -190,7 +200,20 @@ public class AcoTsp {
                 ProbablyList[++it] = i;
             }
         }
-        return ProbablyList[(int)(Math.random()*100)-1];
+        return ProbablyList[(int)(Math.random()*99)];
+    }
+
+    private int findMaxInInLinkedList(LinkedList<Double> list){
+        double max = Double.MIN_VALUE ;
+        int indexOfMaxValue = 0 ;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i) > max ){
+                max = list.get(i);
+                indexOfMaxValue = i ;
+            }
+        }
+
+        return indexOfMaxValue ;
     }
 
     // check if ant has travel throw j to k not ?
