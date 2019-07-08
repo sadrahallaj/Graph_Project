@@ -44,8 +44,8 @@ public class AcoTsp {
 
         // initial pathForEachAnt :
         // for all ants set to 0 at first
-        pathForEachAnt = new double[distancesMatrix.length][distancesMatrix.length + 1];
-        for (int i = 0; i < distancesMatrix.length; i++) {
+        pathForEachAnt = new double[antNumber][distancesMatrix.length + 1];
+        for (int i = 0; i < antNumber; i++) {
             for (int j = 0; j < distancesMatrix.length + 1; j++) {
                 pathForEachAnt[i][j] = i;
             }
@@ -53,7 +53,7 @@ public class AcoTsp {
 
         // initial pathCostForEachAnt
         // for all ants set to 0 at first
-        pathCostForEachAnt = new double[distancesMatrix.length];
+        pathCostForEachAnt = new double[antNumber];
         for (int i = 0; i < pathCostForEachAnt.length; i++) {
             pathCostForEachAnt[i] = 0;
         }
@@ -92,9 +92,11 @@ public class AcoTsp {
                     // update pheromone for edge j , k :
                     // we should know if antk has travel throw j , k ?
                     double pheromono = pheromoneMatrix[j][k] ;
-                    for (int l = 0; l < distancesMatrix.length; l++) {
-                        if(isAntHasGoneThrowEdge(j, k , i )){
-                            pheromono += 1 / totalCostOfArray(pathForEachAnt[i]);
+
+                    // to check if and i , has traver from j to k
+                    for (int l = 0; l < antNumber; l++) {
+                        if(isAntHasGoneThrowEdge(j, k , l )){
+                            pheromono += 1 / totalCostOfArray(pathForEachAnt[l]);
                         }
                     }
                     pheromoneMatrix[j][k] = pheromono ;
@@ -131,6 +133,7 @@ public class AcoTsp {
         return count;
     }
 
+    // try to find the next vertex from vertex j by ant and consider the visited cities :
     private int findNextVertex(int j, boolean[] visited) {
         LinkedList<Integer> vertexies = new LinkedList<>();
         for (int i = 0; i < distancesMatrix.length; i++) {
@@ -148,7 +151,6 @@ public class AcoTsp {
         LinkedList<Double> probiibltyOfEachEdge = new LinkedList<>();
 
         // Ʈα (1/n) β / ∑Ʈα (1/n) β
-
         for (int k = 0; k < vertexies.size(); k++) {
             int nextVertex = vertexies.get(k);
             double sorat = Math.pow(pheromoneMatrix[j][nextVertex] , alpha) * Math.pow(visibilityOfEdgeMatrix[j][nextVertex] , beta);
