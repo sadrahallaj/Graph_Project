@@ -188,8 +188,8 @@ public class AcoTsp {
             probiibltyOfEachEdge.add(sorat / maxraj);
         }
 
-//        return vertexies.get(findProbabilityInLinkedList(probiibltyOfEachEdge));
-        return vertexies.get(findMaxInInLinkedList(probiibltyOfEachEdge));
+        return vertexies.get(findProbabilityInLinkedList(probiibltyOfEachEdge));
+//        return vertexies.get(findMaxInInLinkedList(probiibltyOfEachEdge));
     }
 
     private int findProbabilityInLinkedList(LinkedList<Double> list){
@@ -239,7 +239,7 @@ public class AcoTsp {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++) distance[i][j] = input.nextDouble();
 
-        AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,5,5 , 0.5);
+        AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,15,5 , 0.5);
         double[] path = acoTsp.getResult();
         for (int i = 0; i < path.length; i++) {
             if(i == path.length - 1 ) System.out.println((int)path[i]);
