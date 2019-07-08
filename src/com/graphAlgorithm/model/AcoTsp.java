@@ -88,7 +88,7 @@ public class AcoTsp {
                 }
                 pathForEachAnt[j][counter] = j ;
             }
-            printAntsPath();
+//            printAntsPath();
 
             //update pheromoneMatrix :
             for (int j = 0; j < pheromoneMatrix.length; j++) {
@@ -136,8 +136,8 @@ public class AcoTsp {
     }
 
    // Lk
-    private int totalCostOfArray(double[] array) {
-        int cost = 0;
+    private double totalCostOfArray(double[] array) {
+        double cost = 0.0;
         double currentVertex = array[0];
         for (int i = 1; i < array.length; i++) {
             double nextVertex = array[i];
@@ -149,9 +149,12 @@ public class AcoTsp {
 
     public double[] getResult() {
         algorithm();
-//        System.out.println(totalCostOfArray(pathForEachAnt[this.source]));
-        System.out.println("total cost : " +  totalCostOfArray(pathForEachAnt[source]) + "\n");
+        System.out.println("total cost : " +  getTotalCost() + "\n");
         return pathForEachAnt[this.source];
+    }
+
+    public double getTotalCost(){
+        return totalCostOfArray(pathForEachAnt[source]);
     }
 
     private int countUnvisitedVertexies(boolean[] visitedArray) {
@@ -237,13 +240,20 @@ public class AcoTsp {
         double[][] distance = new double[n][n];
 
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++) distance[i][j] = input.nextDouble();
+            for (int j = 0; j < n; j++){
+                distance[i][j] = input.nextDouble();}
 
-        AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,15,5 , 0.5);
-        double[] path = acoTsp.getResult();
-        for (int i = 0; i < path.length; i++) {
-            if(i == path.length - 1 ) System.out.println((int)path[i]);
-            else  System.out.print((int) path[i] + "--->");
+
+        int sum=0;
+        for (int k = 0; k < 100; k++){
+            AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,5,5, 0.5);
+            double[] path = acoTsp.getResult();
+            sum += acoTsp.getTotalCost();
+            for (int i = 0; i < path.length; i++) {
+                if(i == path.length - 1 ) System.out.println((int)path[i]);
+                else  System.out.print((int) path[i] + "--->");
+            }
         }
+        System.out.println("sum = > " + (sum/100));
     }
 }
