@@ -1,6 +1,9 @@
 package com.graphAlgorithm.model;
 
+import com.graphAlgorithm.Main;
+
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class AcoTsp {
@@ -103,8 +106,20 @@ public class AcoTsp {
                     pheromoneMatrix[j][k] = pheromono ;
                 }
             }
+            printpheromoneMatrix();
 
         }
+    }
+
+    public void printpheromoneMatrix(){
+        System.out.println();
+        for (int i = 0; i < pheromoneMatrix.length; i++){
+            for (int j = 0; j < pheromoneMatrix.length; j++){
+                System.out.printf("%f ",pheromoneMatrix[i][j]);
+            }
+            System.out.println();
+        }
+
     }
 
    // Lk
@@ -138,7 +153,7 @@ public class AcoTsp {
     private int findNextVertex(int j, boolean[] visited) {
         LinkedList<Integer> vertexies = new LinkedList<>();
         for (int i = 0; i < distancesMatrix.length; i++) {
-            if (distancesMatrix[j][i] != 0 && visited[i] == false) vertexies.add(i);
+            if (distancesMatrix[j][i] != 0 && !visited[i]) vertexies.add(i);
         }
 
         // ∑Ʈα (1/n) β : maxraj loop :
@@ -162,16 +177,14 @@ public class AcoTsp {
     }
 
     private int findMaxInInLinkedList(LinkedList<Double> list){
-        double max = Double.MIN_VALUE ;
-        int indexOfMaxValue = 0 ;
+        int it = 0;
+        int[] ProbablyList = new int[100];
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i) > max ){
-                max = list.get(i);
-                indexOfMaxValue = i ;
+            for (int j = 0; j < list.get(i); j++){
+                ProbablyList[it++] = i;
             }
         }
-
-        return indexOfMaxValue ;
+        return ProbablyList[(int)(Math.random()*100)-1];
     }
 
     // check if ant has travel throw j to k not ?
