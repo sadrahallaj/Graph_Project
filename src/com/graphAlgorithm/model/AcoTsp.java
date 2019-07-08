@@ -9,10 +9,18 @@ public class AcoTsp {
     private int source;
     private double[][] pathForEachAnt;
     private double[] pathCostForEachAnt;
+    private double alpha ;
+    private double beta ;
+    private int iteriation ;
+    private int antNumber ;
 
-    public AcoTsp(int source, double[][] distanceMatrix) {
+    public AcoTsp(int source, double[][] distanceMatrix , double alpha , double beta , int iteriation , int antNumber) {
         this.source = source;
         this.distancesMatrix = distanceMatrix;
+        this.alpha = alpha ;
+        this.beta = beta ;
+        this.iteriation = iteriation ;
+        this.antNumber = antNumber ;
 
         // initial pheromoneMatrix : 
         // for all edges pheromone set to 1 at first 
@@ -58,9 +66,9 @@ public class AcoTsp {
         // 3 - pathCostForEachAnt
 
         // Iteration loop (main loop)
-        for (int i = 0; i < distancesMatrix.length; i++) {
+        for (int i = 0; i < iteriation; i++) {
             // loop for each ant :
-            for (int j = 0; j < distancesMatrix.length; j++) {
+            for (int j = 0; j < antNumber; j++) {
                 // loop for each edge :
                 boolean[] visited = new boolean[distancesMatrix.length];
                 for (int k = 0; k < visited.length; k++) {

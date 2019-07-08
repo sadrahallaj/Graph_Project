@@ -897,8 +897,13 @@ public class MainPage {
      */
     @FXML
     private void tcpWithAco(){
+        // change color to default color  :
+        for (int i = 0; i < nodesList.size(); i++) {
+            nodesList.get(i).get(0).setStyle(NODE_STYLE_DEFULT);
+        }
         int source = tcpAlgorithmGetSource();
-        AcoTsp acoTsp = new AcoTsp(source , convertAdjListToMatrix(adjList));
+        double [][] distancesMatrix = convertAdjListToMatrix(adjList);
+        AcoTsp acoTsp = new AcoTsp(source , distancesMatrix , 1 , 1 , distancesMatrix.length , distancesMatrix.length);
         double[] path = acoTsp.getResult();
         for (int i = 0; i < path.length; i++) {
             if(i == path.length - 1 ) System.out.println((int)path[i]);
