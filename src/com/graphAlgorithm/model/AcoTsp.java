@@ -15,6 +15,7 @@ public class AcoTsp {
     private int iteration;
     private int antNumber ;
     private double vaporization ;
+    private int indexOfBestAnt ;
 
     public AcoTsp(int source, double[][] distanceMatrix , double alpha , double beta , int iteration , int antNumber , double vaporization) {
         this.source = source;
@@ -24,6 +25,7 @@ public class AcoTsp {
         this.iteration = iteration ;
         this.antNumber = antNumber ;
         this.vaporization = vaporization ;
+        this.indexOfBestAnt = source;
 
         // initial pheromoneMatrix : 
         // for all edges pheromone set to 1 at first 
@@ -111,6 +113,29 @@ public class AcoTsp {
 //            printpheromoneMatrix();
 
         }
+
+        indexOfBestAnt = findTheBestPath(pathForEachAnt);
+
+    }
+
+    // find the best path at the end of the iterations
+    private int findTheBestPath(double[][]pathForEachAnt) {
+        int indexOfAnt = source ;
+        int totalCostOfEachAnt = Integer.MIN_VALUE ;
+        for (int i = 0; i < pathForEachAnt.length; i++) {
+            int cost = 0 ;
+            for (int j = 0; j < pathForEachAnt[i].length - 1; j++) {
+                double first = pathForEachAnt[i][j];
+                double second = pathForEachAnt[i][j+1];
+                cost += distancesMatrix[(int)first][(int)second];
+            }
+            if(cost >= totalCostOfEachAnt){
+                totalCostOfEachAnt = cost ;
+                indexOfAnt = i ;
+            }
+        }
+
+        return indexOfAnt ;
     }
 
     public void printpheromoneMatrix(){
@@ -150,11 +175,11 @@ public class AcoTsp {
     public double[] getResult() {
         algorithm();
         System.out.println("total cost : " +  getTotalCost() + "\n");
-        return pathForEachAnt[this.source];
+        return pathForEachAnt[indexOfBestAnt];
     }
 
     public double getTotalCost(){
-        return totalCostOfArray(pathForEachAnt[source]);
+        return totalCostOfArray(pathForEachAnt[indexOfBestAnt]);
     }
 
     private int countUnvisitedVertexies(boolean[] visitedArray) {
