@@ -18,6 +18,21 @@ public class TspAlgorithmDP {
         this(0, distance);
     }
 
+    public static void main(String[] args) {
+        int n;
+        Scanner input = new Scanner(System.in);
+        n = input.nextInt();
+        double[][] distance = new double[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) distance[i][j] = input.nextDouble();
+
+        TspAlgorithmDP tspAlgorithmDP = new TspAlgorithmDP(distance);
+        tspAlgorithmDP.solve();
+        System.out.println(tspAlgorithmDP.getTour().toString());
+        System.out.println(tspAlgorithmDP.getTourCost());
+    }
+
     public TspAlgorithmDP(int startNode, double[][] distance) {
 
         this.distance = distance;

@@ -1,6 +1,7 @@
 package com.graphAlgorithm.model;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class AcoTsp {
     private double[][] pheromoneMatrix;
@@ -11,15 +12,15 @@ public class AcoTsp {
     private double[] pathCostForEachAnt;
     private double alpha ;
     private double beta ;
-    private int iteriation ;
+    private int iteration;
     private int antNumber ;
 
-    public AcoTsp(int source, double[][] distanceMatrix , double alpha , double beta , int iteriation , int antNumber) {
+    public AcoTsp(int source, double[][] distanceMatrix , double alpha , double beta , int iteration , int antNumber) {
         this.source = source;
         this.distancesMatrix = distanceMatrix;
         this.alpha = alpha ;
         this.beta = beta ;
-        this.iteriation = iteriation ;
+        this.iteration = iteration ;
         this.antNumber = antNumber ;
 
         // initial pheromoneMatrix : 
@@ -66,7 +67,7 @@ public class AcoTsp {
         // 3 - pathCostForEachAnt
 
         // Iteration loop (main loop)
-        for (int i = 0; i < iteriation; i++) {
+        for (int i = 0; i < iteration; i++) {
             // loop for each ant :
             for (int j = 0; j < antNumber; j++) {
                 // loop for each edge :
@@ -96,7 +97,7 @@ public class AcoTsp {
                     // to check if and i , has traver from j to k
                     for (int l = 0; l < antNumber; l++) {
                         if(isAntHasGoneThrowEdge(j, k , l )){
-                            pheromono += 1 / totalCostOfArray(pathForEachAnt[l]);
+                            pheromono += 1.0 / totalCostOfArray(pathForEachAnt[l]);
                         }
                     }
                     pheromoneMatrix[j][k] = pheromono ;
@@ -127,8 +128,8 @@ public class AcoTsp {
 
     private int countUnvisitedVertexies(boolean[] visitedArray) {
         int count = 0;
-        for (int i = 0; i < visitedArray.length; i++) {
-            if (visitedArray[i] == false) count++;
+        for (boolean b : visitedArray) {
+            if (!b) count++;
         }
         return count;
     }
@@ -185,5 +186,22 @@ public class AcoTsp {
             }
         }
         return condition ;
+    }
+
+    public static void main(String[] args){
+        int n;
+        Scanner input = new Scanner(System.in);
+        n = input.nextInt();
+        double[][] distance = new double[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) distance[i][j] = input.nextDouble();
+
+        AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,5,5);
+        double[] path = acoTsp.getResult();
+        for (int i = 0; i < path.length; i++) {
+            if(i == path.length - 1 ) System.out.println((int)path[i]);
+            else  System.out.print((int) path[i] + "--->");
+        }
     }
 }
