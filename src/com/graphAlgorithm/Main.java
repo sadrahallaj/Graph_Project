@@ -1,5 +1,6 @@
 package com.graphAlgorithm;
 
+import com.graphAlgorithm.view.main.MainPage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -24,4 +25,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
