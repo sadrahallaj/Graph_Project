@@ -17,14 +17,16 @@ public class AcoTsp {
     private double beta ;
     private int iteration;
     private int antNumber ;
+    private double vaporization ;
 
-    public AcoTsp(int source, double[][] distanceMatrix , double alpha , double beta , int iteration , int antNumber) {
+    public AcoTsp(int source, double[][] distanceMatrix , double alpha , double beta , int iteration , int antNumber , double vaporization) {
         this.source = source;
         this.distancesMatrix = distanceMatrix;
         this.alpha = alpha ;
         this.beta = beta ;
         this.iteration = iteration ;
         this.antNumber = antNumber ;
+        this.vaporization = vaporization ;
 
         // initial pheromoneMatrix : 
         // for all edges pheromone set to 1 at first 
@@ -100,9 +102,11 @@ public class AcoTsp {
                     // to check if and i , has traver from j to k
                     for (int l = 0; l < antNumber; l++) {
                         if(isAntHasGoneThrowEdge(j, k , l )){
-                            pheromono += 1.0 / totalCostOfArray(pathForEachAnt[l]);
+                            // new value for pheromone
+                            pheromono = (1-vaporization) * pheromono + 1.0 / totalCostOfArray(pathForEachAnt[l]);
                         }
                     }
+                    // update pheromone
                     pheromoneMatrix[j][k] = pheromono ;
                 }
             }
@@ -212,7 +216,7 @@ public class AcoTsp {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++) distance[i][j] = input.nextDouble();
 
-        AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,5,5);
+        AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,5,5 , 0.5);
         double[] path = acoTsp.getResult();
         for (int i = 0; i < path.length; i++) {
             if(i == path.length - 1 ) System.out.println((int)path[i]);
