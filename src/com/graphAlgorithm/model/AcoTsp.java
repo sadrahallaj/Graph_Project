@@ -142,7 +142,7 @@ public class AcoTsp {
         for (int k = 0; k < vertexies.size(); k++) { // distancesMatrix[j].length
              double taw = pheromoneMatrix[j][vertexies.get(k)];
             if (pheromoneMatrix[j][k] != 0)
-                maxraj += taw * visibilityOfEdgeMatrix[j][vertexies.get(k)];
+                maxraj += Math.pow(taw , alpha) * Math.pow(visibilityOfEdgeMatrix[j][vertexies.get(k)] , beta);
         }
 
         LinkedList<Double> probiibltyOfEachEdge = new LinkedList<>();
@@ -151,7 +151,7 @@ public class AcoTsp {
 
         for (int k = 0; k < vertexies.size(); k++) {
             int nextVertex = vertexies.get(k);
-            double sorat = pheromoneMatrix[j][nextVertex] * visibilityOfEdgeMatrix[j][nextVertex];
+            double sorat = Math.pow(pheromoneMatrix[j][nextVertex] , alpha) * Math.pow(visibilityOfEdgeMatrix[j][nextVertex] , beta);
             probiibltyOfEachEdge.add(sorat / maxraj);
         }
 
