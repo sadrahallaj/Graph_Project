@@ -121,7 +121,7 @@ public class AcoTsp {
     // find the best path at the end of the iterations
     private int findTheBestPath(double[][]pathForEachAnt) {
         int indexOfAnt = source ;
-        int totalCostOfEachAnt = Integer.MIN_VALUE ;
+        int totalCostOfEachAnt = Integer.MAX_VALUE ;
         for (int i = 0; i < pathForEachAnt.length; i++) {
             int cost = 0 ;
             for (int j = 0; j < pathForEachAnt[i].length - 1; j++) {
@@ -129,7 +129,7 @@ public class AcoTsp {
                 double second = pathForEachAnt[i][j+1];
                 cost += distancesMatrix[(int)first][(int)second];
             }
-            if(cost >= totalCostOfEachAnt){
+            if(cost <= totalCostOfEachAnt){
                 totalCostOfEachAnt = cost ;
                 indexOfAnt = i ;
             }
