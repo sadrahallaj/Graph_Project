@@ -944,8 +944,9 @@ public class MainPage {
         }
         int source = tspAlgorithmGetSource();
         double [][] distancesMatrix = convertAdjListToMatrix(adjList);
-        AcoTsp acoTsp = new AcoTsp(source , distancesMatrix , 1 , 1 , distancesMatrix.length , distancesMatrix.length , 0.5);
+        AcoTsp acoTsp = new AcoTsp(source , distancesMatrix);
         double[] path = acoTsp.getResult();
+        System.out.println(acoTsp.getTotalCost());
         for (int i = 0; i < path.length; i++) {
             if(i == path.length - 1 ) System.out.println((int)path[i]);
             else  System.out.print((int) path[i] + "--->");

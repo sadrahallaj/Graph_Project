@@ -1,5 +1,11 @@
 package com.graphAlgorithm.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.security.Signature;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -16,22 +22,33 @@ public class AcoTsp {
     private int antNumber ;
     private double vaporization ;
     private int indexOfBestAnt ;
+    private int SIZE ;
 
-    public AcoTsp(int source, double[][] distanceMatrix , double alpha , double beta , int iteration , int antNumber , double vaporization) {
+    public AcoTsp(int source, double[][] distanceMatrix) {
         this.source = source;
-        this.distancesMatrix = distanceMatrix;
-        this.alpha = alpha ;
-        this.beta = beta ;
-        this.iteration = iteration ;
-        this.antNumber = antNumber ;
-        this.vaporization = vaporization ;
         this.indexOfBestAnt = source;
+        this.distancesMatrix = distanceMatrix;
+        this.SIZE = distanceMatrix.length;
+
+        if (SIZE < 45){
+            this.alpha = SIZE*2;
+            this.beta = SIZE/3;
+            this.antNumber = SIZE;
+            this.iteration = SIZE;
+        }else{
+            this.alpha = 45 ;
+            this.beta = 45 / 2;
+            this.antNumber = SIZE - SIZE/10;
+            this.iteration = SIZE;
+        }
+
+        this.vaporization = 0.6;
 
         // initial pheromoneMatrix : 
         // for all edges pheromone set to 1 at first 
         pheromoneMatrix = new double[distancesMatrix.length][distancesMatrix.length];
         for (int i = 0; i < distancesMatrix.length; i++) {
-            for (int j = 0; j < distanceMatrix.length; j++) {
+            for (int j = 0; j < SIZE; j++) {
                 if (i == j) pheromoneMatrix[i][j] = 0;
                 else pheromoneMatrix[i][j] = 1;
             }
@@ -174,7 +191,7 @@ public class AcoTsp {
 
     public double[] getResult() {
         algorithm();
-        System.out.println("total cost : " +  getTotalCost() + "\n");
+//        System.out.println("total cost : " +  getTotalCost() + "\n");
         return pathForEachAnt[indexOfBestAnt];
     }
 
@@ -225,7 +242,8 @@ public class AcoTsp {
         int[] ProbablyList = new int[100];
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < list.get(i)*100 - 1; j++){
-                ProbablyList[++it] = i;
+                ProbablyList[it++] = i;
+                if (it == 100) break;
             }
         }
         return ProbablyList[(int)(Math.random()*99)];
@@ -258,27 +276,60 @@ public class AcoTsp {
         return condition ;
     }
 
-    public static void main(String[] args){
-        int n;
-        Scanner input = new Scanner(System.in);
+
+    public static void Test(String testPath) throws FileNotFoundException {
+        int n,b;
+        Scanner input = new Scanner(new File(testPath));
         n = input.nextInt();
+        b = input.nextInt();
         double[][] distance = new double[n][n];
 
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++){
                 distance[i][j] = input.nextDouble();}
 
-
-        int sum=0;
+        double sum=0;
         for (int k = 0; k < 100; k++){
-            AcoTsp acoTsp = new AcoTsp(0,distance,0.7,0.7,5,5, 0.5);
-            double[] path = acoTsp.getResult();
+            AcoTsp acoTsp = new AcoTsp(0,distance);
+            acoTsp.getResult();
             sum += acoTsp.getTotalCost();
-            for (int i = 0; i < path.length; i++) {
-                if(i == path.length - 1 ) System.out.println((int)path[i]);
-                else  System.out.print((int) path[i] + "--->");
-            }
+            if (k%10==0)System.out.print(".");
         }
-        System.out.println("sum = > " + (sum/100));
+        System.out.println();
+        double avreg = sum/100;
+        System.out.println("best value is \'"+b+"\' and avr is =>" + avreg +" ===> \"%" + (int)((b/avreg)*100) + "\" ");
+    }
+
+    public static void singleTest(String testPath) throws FileNotFoundException {
+        int n,b;
+        Scanner input = new Scanner(new File(testPath));
+        n = input.nextInt();
+        b = input.nextInt();
+        double[][] distance = new double[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++){
+                distance[i][j] = input.nextDouble();}
+
+        long start = System.currentTimeMillis();
+
+        AcoTsp acoTsp = new AcoTsp(0,distance);
+        acoTsp.getResult();
+
+        long end = System.currentTimeMillis();
+        float sec = (end - start) / 1000F; System.out.println(sec + " seconds");
+        System.out.println("single Test: best value is \'"+b+"\' and avr is =>" + acoTsp.getTotalCost() +" ===> \"%" + (int)((b/acoTsp.getTotalCost())*100) + "\" ");
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        Test("src/source/test1.txt");
+        Test("src/source/test2.txt");
+        Test("src/source/test3.txt");
+
+        singleTest("src/source/test1.txt");
+        singleTest("src/source/test2.txt");
+        singleTest("src/source/test3.txt");
+        singleTest("src/source/test4.txt");
+//        singleTest("src/source/test5.txt");
     }
 }
