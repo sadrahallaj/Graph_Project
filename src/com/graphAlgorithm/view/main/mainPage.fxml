@@ -57,7 +57,15 @@
                      <Font name="System Bold" size="18.0" />
                   </font>
                 </JFXButton>
-               <JFXButton onAction="#saveGraphButtonHandler" prefHeight="59.0" prefWidth="500.0" ripplerFill="WHITE" style="-fx-background-color: #34495e; -fx-background-radius: 0; -fx-text-fill: white;" text="Save Data">
+                <JFXButton fx:id="btnAco" onAction="#tspWithAco" prefHeight="59.0" prefWidth="206.0" ripplerFill="WHITE" style="-fx-background-color: #34495e; -fx-background-radius: 0; -fx-text-fill: white;" text="TSP With ACO">
+                    <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+               <JFXButton onAction="#saveGraphButtonHandler" prefHeight="59.0" prefWidth="500.0" ripplerFill="WHITE" style="-fx-background-color: #34495e; -fx-background-radius: 0; -fx-text-fill: white;" text="Save Graph">
                   <VBox.margin>
                      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                   </VBox.margin>
@@ -65,7 +73,7 @@
                      <Font name="System Bold" size="18.0" />
                   </font>
                </JFXButton>
-               <JFXButton onAction="#loadGraphButtonHandler" prefHeight="59.0" prefWidth="500.0" ripplerFill="WHITE" style="-fx-background-color: #34495e; -fx-background-radius: 0; -fx-text-fill: white;" text="Load Data">
+               <JFXButton onAction="#loadGraphButtonHandler" prefHeight="59.0" prefWidth="500.0" ripplerFill="WHITE" style="-fx-background-color: #34495e; -fx-background-radius: 0; -fx-text-fill: white;" text="Load Graph">
                   <VBox.margin>
                      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                   </VBox.margin>
